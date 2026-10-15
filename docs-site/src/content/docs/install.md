@@ -1,25 +1,26 @@
 ---
 title: "Installation"
-description: "You can load Relayout via CDN, or by downloading a version as a local css file in you project, or by using npm and a tool to build your css and embedding Relayout in your built css."
+description: "You can load Relayout from a CDN, as a local css file in your project, or with npm and a tool such as Sass that embeds Relayout in your own css."
 ---
 
-You can load Relayout via CDN, or by downloading a version as a local css file in you project, or by using `npm` and a tool to build your css and embedding Relayout in your built css.
+You can load Relayout from a CDN, as a local css file in your project, or with `npm` and a tool such as Sass that embeds Relayout in your own css.
 
+Relayout is before 1.0, so a release can rename classes. Each example below names a version: use the one your project was written for, and move to a newer one on purpose.
 
 ## CDN Installation
 
-Add the following code to your page in the `<head>` section, where `__VERSION__` is the version to load.
+Add the following code to your page in the `<head>` section, where `0.2.0` is the version to load.
 
 ```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@{__VERSION__}/dist/css/relayout.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.2.0/dist/css/relayout.css" />
 ```
 
 ## Local Installation
 
-Download the Relayout version from CDN to a local css file which you link in your project. Include this css file in the build.
+Download the Relayout version from the CDN to a local css file, `https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.2.0/dist/css/relayout.css`, which you link in your project. Include this css file in the build.
 
 ```
-<link rel="stylesheet" href="assets/vendors/rl-0.1.0/relayout.min.css" />
+<link rel="stylesheet" href="assets/vendors/relayout-0.2.0/relayout.css" />
 ```
 
 ## NPM Installation
@@ -37,10 +38,12 @@ npm install @relayoutui/relayout --save-dev
 Create the file which will import Relayout (eg. `scss/app.scss`):
 
 ```
-@use "@relayoutui/relayout/src/css/relayout";
+@use "@relayoutui/relayout/dist/css/relayout";
 
-...rest of css code
+// ...rest of css code
 ```
+
+The package ships its compiled css in `dist/css/relayout.css`, which Sass loads from `node_modules`, as in the command below.
 
 ### Using `sass` to build css
 
@@ -50,10 +53,10 @@ Install `sass` as a dev dependency.
 npm install sass --save-dev
 ```
 
-Run the following command to build your `app.css`. Specify `--load-path=node_modules` to instruct Sass to search `node_modules`.
+Run the following command to build your `app.css`. `npx` runs the `sass` you installed in `node_modules`, and `--load-path=node_modules` instructs Sass to search `node_modules` for Relayout.
 
 ```
-sass --load-path=node_modules scss/app.scss assets/css/app.css
+npx sass --load-path=node_modules scss/app.scss assets/css/app.css
 ```
 
 You can update `package.json` file and add a `build-css` script to build your scss into css:
@@ -65,7 +68,7 @@ You can update `package.json` file and add a `build-css` script to build your sc
     "build-css": "sass --load-path=node_modules scss/app.scss assets/css/app.css"
   },
   "dependencies": {
-    "@relayoutui/relayout": "^0.1.0",
+    "@relayoutui/relayout": "^0.2.0",
     "sass": "^1.93.3"
   }
 }

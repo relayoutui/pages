@@ -39,7 +39,7 @@ Astro caches the rendered markdown, and a change to the plugin doesn't clear tha
 
 ## Relayout version
 
-The previews use the CSS of the `@relayoutui/relayout` version in `package.json`, so the docs describe a released version. After a Relayout release, update the dependency and the pages that change with it, in one pull request.
+The previews use the CSS of the `@relayoutui/relayout` version in `package.json`, so the docs describe a released version. After a Relayout release, update the dependency and the pages that change with it, in one pull request. `src/content/docs/install.md` names the version in its CDN, local file and npm examples (`0.2.0` at the time of writing): move it with the dependency.
 
 ## Deploy
 
