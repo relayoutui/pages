@@ -6,6 +6,12 @@
 // Relative to the page, as the stylesheets in its head are. Fetched once, however many demos the page has.
 const STYLESHEETS = ['assets/css/relayout.css', 'assets/css/demo-preset.css'];
 
+// The line under each view
+const HINTS = {
+    preview: 'Drag the frame\'s lower right corner to see the layout at another width.',
+    source: 'The rl- classes are the layout. The others are the example\'s look, from its own CSS.',
+};
+
 /** A stylesheet the demo needs didn't load. */
 class DemoStylesError extends Error
 {
@@ -183,7 +189,6 @@ class RelayoutDemo extends HTMLElement
         this._source.append(pre);
 
         this._hint = element('p', 'demo-hint');
-        this._hint.textContent = 'Drag the frame\'s lower right corner to see the layout at another width.';
 
         const body = element('div', 'rl-column rl-gap-m');
         body.append(bar, this._stage, this._source, this._hint);
@@ -207,15 +212,16 @@ class RelayoutDemo extends HTMLElement
     }
 
     /**
-     * Shows the rendered preset or its source, in the same place.
+     * Shows the rendered preset or its source, in the same place, with the line that goes under it.
      * @param {'preview' | 'source'} view which one
      */
     _showView(view)
     {
         this._viewButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
         this._stage.hidden = view !== 'preview';
-        this._hint.hidden = view !== 'preview';
         this._source.hidden = view !== 'source';
+        this._hint.dataset.view = view;
+        this._hint.textContent = HINTS[view];
     }
 }
 

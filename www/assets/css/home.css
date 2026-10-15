@@ -46,8 +46,17 @@
 /* ── Layout demo ──
    The page's half of <relayout-demo> (assets/js/demo.js): the buttons, the source view and the hint. The preset
    itself is styled inside its shadow root, by demo-preset.css. */
+/* The frame (inside the shadow root, demo-preset.css) and the source view read the same height and shadow, so the
+   toggle swaps one for the other in place. The shadow is the code window's (pages-base.css), per theme; the theme
+   is on <html>, which the shadow root's own selectors can't see, so it reaches the frame as a custom property. */
 relayout-demo {
+    --demo-height: 32rem;
+    --demo-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05);
     display: block;
+}
+
+[data-theme="dark"] relayout-demo {
+    --demo-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.3);
 }
 
 /* The chosen preset and view, in the brand's tone, as the Documentation button is at rest */
@@ -61,9 +70,11 @@ relayout-demo .btn[aria-pressed="true"] {
     visibility: hidden;
 }
 
-/* The same height as the frame, so the toggle swaps one for the other in place */
+/* The border counts inside the height, as the frame's does */
 .demo-source {
-    height: 22rem;
+    box-sizing: border-box;
+    height: var(--demo-height);
+    box-shadow: var(--demo-shadow);
 }
 
 .demo-source .code-body {
@@ -81,6 +92,7 @@ relayout-demo .btn[aria-pressed="true"] {
     font-size: inherit;
 }
 
+/* One line under either view, its text set by demo.js, so it holds its place when the view changes */
 .demo-hint {
     margin: 0;
     color: var(--text-subtle);
@@ -88,9 +100,9 @@ relayout-demo .btn[aria-pressed="true"] {
     text-align: center;
 }
 
-/* A touch screen has no corner to drag */
+/* A touch screen has no corner to drag. The line keeps its space, so the page still holds still. */
 @media (hover: none), (pointer: coarse) {
-    .demo-hint {
-        display: none;
+    .demo-hint[data-view="preview"] {
+        visibility: hidden;
     }
 }
