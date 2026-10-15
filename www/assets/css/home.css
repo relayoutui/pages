@@ -129,3 +129,9 @@ relayout-demo .btn[aria-pressed="true"] {
         visibility: hidden;
     }
 }
+
+/* ── Highlights ──
+   A class name or an element is read whole, so a chip doesn't break at its hyphens */
+.doc-card-body code {
+    white-space: nowrap;
+}
