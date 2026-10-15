@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Build outputs: the docs (docs-site/dist), Astro's cache, and the assembled site (.github/assemble-site.sh)
+dist/
+.astro/
+_site/
+
+# Env files
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
