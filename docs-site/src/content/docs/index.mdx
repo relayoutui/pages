@@ -1,0 +1,28 @@
+---
+title: Relayout Docs
+# Starlight appends the site title to every page's, which would read "Relayout Docs | Relayout Docs" here.
+head:
+    - tag: title
+      content: Relayout Docs
+description: Guides and reference for Relayout, the CSS layout framework that separates layout from aspect, with four layouts and a set of modifiers.
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Relayout is a lightweight framework which separates layout from aspect and handles structure, spacing and
+boundaries, not colors, typography or styling. It works as CSS classes, as web components, or both, in any
+project, design system or framework.
+
+There are four layouts, column, row, grid and frame, plus divider. Modifiers set the gap, alignment, padding,
+size and scrolling, and common patterns come from combining the two.
+
+<CardGrid>
+    <LinkCard title="Introduction" description="The layout problem, Relayout's approach, and how layouts compose." href="/pages/docs/introduction/" />
+    <LinkCard title="Installation" description="Load Relayout from a CDN, as a local CSS file, or from npm." href="/pages/docs/install/" />
+    <LinkCard title="Column" description="Elements one under another, with even spacing." href="/pages/docs/layouts/column/" />
+    <LinkCard title="Row" description="Elements side by side, wrapping onto the next line when they don't fit." href="/pages/docs/layouts/row/" />
+    <LinkCard title="Grid" description="Cells of equal width, as many per line as fit." href="/pages/docs/layouts/grid/" />
+    <LinkCard title="Frame" description="Content centered in the space of its parent." href="/pages/docs/layouts/frame/" />
+    <LinkCard title="Height, fill and scroll" description="Make an element fill the space around it, and choose which area scrolls." href="/pages/docs/modifiers/height/" />
+    <LinkCard title="Recipes" description="Headers, sidebars, app shells and equal columns, built from the four layouts." href="/pages/docs/recipes/" />
+</CardGrid>

@@ -1,0 +1,10 @@
+---
+// Starlight's head, plus the element that renders the docs previews.
+import Default from '@astrojs/starlight/components/Head.astro';
+---
+
+<Default {...Astro.props} />
+
+<script>
+    import '../scripts/preview-element';
+</script>

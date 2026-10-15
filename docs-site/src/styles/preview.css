@@ -1,0 +1,54 @@
+/* Inside each preview's shadow root (src/scripts/preview-element.ts): the frame and the debug outlines.
+ * Starlight's colors reach in as inherited custom properties, so the frame follows the theme. */
+
+/* The text size and line height of the old docs, so the snippets lay out as they did */
+:host {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* The heading and paragraph spacing the snippets were written with */
+.content :is(h1, h2) {
+    margin: 0.125em 0 0.25em;
+    padding: 0;
+}
+
+.content :is(h3, h4, h5, h6) {
+    margin: 0.5em 0 0.25em;
+    padding: 0;
+}
+
+.content p {
+    margin: 0.5em 0;
+}
+
+/* Links look like links, with or without an href */
+.content a {
+    color: var(--brand-text);
+    text-decoration: underline;
+}
+
+/* Resizable from its lower right corner, to see a layout at a narrower width */
+.frame {
+    resize: horizontal;
+    overflow: auto;
+    min-width: 8rem;
+    max-width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+}
+
+/* Debug outlines: blue around the layouts, coral around their children */
+.rl-debug [class*=rl-] {
+    background-color: var(--sl-color-bg);
+    border: dotted 1px #38bdf8;
+}
+
+.rl-debug [class*=rl-] > * {
+    background-color: var(--sl-color-gray-7, var(--sl-color-gray-6));
+    border: dotted 1px coral;
+    font-size: 0.875rem;
+}

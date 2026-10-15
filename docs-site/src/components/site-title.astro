@@ -1,0 +1,68 @@
+---
+// Replaces Starlight's site title with the lockup the other product docs use: the mark at 24px, the
+// word, then the section label. The lockup goes to Relayout's home page (../www, at /pages/), and the
+// label to the docs home, so either is one click from any docs page.
+import mark from '../assets/relayout-mark.svg';
+
+const { siteTitleHref } = Astro.locals.starlightRoute;
+---
+
+<div class="brand">
+    <a href="/pages/" class="site-title">
+        <img src={mark.src} width={mark.width} height={mark.height} alt="" />
+        <span class="word" translate="no">Relayout</span>
+    </a>
+    <a href={siteTitleHref} class="label">Docs</a>
+</div>
+
+<style>
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-width: 0;
+    }
+    /* The same structure as authstack.id's .nav-logo: the gap is 0.42em of the link's own text size,
+       and the word sets its own 1.125rem below. The mark is a little taller than the cap height so
+       it leads the pair. The word is in the system sans, as on the other docs, until a wordmark face is chosen. */
+    .site-title {
+        display: flex;
+        align-items: center;
+        gap: 0.42em;
+        color: var(--sl-color-white);
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    img {
+        height: 24px;
+        width: auto;
+        flex: none;
+    }
+    .word {
+        font-family: var(--sl-font-system);
+        font-weight: 600;
+        font-size: 1.125rem;
+        line-height: 1;
+    }
+    /* Turns the brand magenta on hover, like the header's icons, since it is a link. */
+    .label {
+        padding-inline-start: 1rem;
+        border-inline-start: 1px solid var(--sl-color-gray-5);
+        color: var(--sl-color-white);
+        font-size: 0.875rem;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: color 0.15s;
+    }
+    .label:hover {
+        color: var(--brand-text);
+    }
+    /* Below 360px the label would crowd the search button, so it gives way. */
+    @media (max-width: 22.49rem) {
+        .label {
+            display: none;
+        }
+    }
+</style>
