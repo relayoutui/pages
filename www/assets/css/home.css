@@ -1,0 +1,68 @@
+/* The home page's own rules, on top of relayout.css, pages-base.css and brand.css. Layout is Relayout's classes in
+   the markup; what is here is what they don't cover. */
+
+/* Read by screen readers, not shown: the title's word for them, in place of the cycling slot */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* ── The hero's word ──
+   Every word sits in the same grid cell, centred in it. home.js sets the slot's width to the current word's, in em
+   so it holds as the title's size follows the window, and the rest of the title slides to fit as the width changes.
+   Without the script the slot is as wide as the longest word. The current word fades and rises in, and the others
+   are out of sight. In the mark's magenta: at this size the 3:1 of a graphic is the bar, as for large text. */
+.word-slot {
+    display: inline-grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    transition: width 0.4s;
+}
+
+.word-slot .word {
+    grid-area: 1 / 1;
+    color: var(--brand);
+    opacity: 0;
+    transform: translateY(0.3em);
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.word-slot .word.is-current {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .word-slot,
+    .word-slot .word {
+        transition: none;
+    }
+}
+
+/* ── Demo placeholder ──
+   Where the layout demo goes: as wide as the hero's column and about as tall as a preset will be, on the alternate
+   band's colour with a dashed edge, so it reads as a space kept rather than as content. */
+.demo-placeholder {
+    width: 100%;
+    min-height: 20rem;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    background: var(--bg-alt);
+    color: var(--text-subtle);
+    text-align: center;
+}
+
+.demo-placeholder-title {
+    margin: 0;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.demo-placeholder-body {
+    margin: 0;
+    font-size: 0.9375rem;
+}
