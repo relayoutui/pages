@@ -1,0 +1,706 @@
+/* pages-base.css — the shared look of the Codesense product sites.
+
+   Source: codesense/portal/ui/pages/pages-base.css. `node build.mjs --pages --site <slug>` copies it,
+   and the fonts it names, into that site's assets/. Edit it here, never in a site's copy.
+
+   A site loads, in this order: relayout.min.css, pages-base.css, then its own brand.css. brand.css is
+   what makes the site its product. It must set:
+
+       --brand        the product colour, as it appears in logos/dist
+       --brand-text   the colour as small text, 4.5:1 on every light surface, and again under
+                      [data-theme="dark"] for every dark one
+       --brand-on     what sits on a --brand fill, 4.5:1 against it
+
+   and may set --wordmark-font, the face the product's name is set in (the system sans until chosen).
+
+   Extracted by copy from lpdf.io's styles.css and theme.css on 2026-10-05, keeping the rules the live
+   lpdf pages use, plus the code window and syntax tokens, which lpdf's CSS has and the new home pages
+   need, and .section-hero / .hero-glow, which lpdf writes inline.
+
+   Where this file deliberately differs from lpdf's, because lpdf's fails a contrast bar:
+     - Brand colour used as text goes through --brand-text. lpdf's legal-page links, FAQ links and
+       footer hovers use --brand, a graphic colour held to 3:1, so they measure about 3.2 on light.
+     - The code window's value, tag and comment tokens, and its filename (see the note there).
+   Still shared with lpdf, and still short of 4.5:1 in places: --text-subtle (dark: 3.67 to 4.42 across
+   the surfaces, against the 4.6 its comment claims; light: 4.13 on --bg-sunken).
+
+   Until lpdf moves onto this file (the last phase of
+   internal/Codesense/1.refine/Codesense-product-sites.md) it keeps its own copy of these rules, and the
+   two are meant to stay in step: a change to a shared rule goes in both. What lpdf has and this file
+   does not: its brand token and Radley face, the old docs engine (the docs are Starlight now), and the
+   blocks no live page uses. What this file has and lpdf does not: .tier-card__cta--disabled, which
+   lpdf only gets from portal.css, so on lpdf.io a "Coming soon" button looks live. */
+
+/* The figures face, for prices and anything else that has to be read as a number
+   rather than looked at. A mono gives every digit the same width, so a column of
+   prices lines up without being told to. Variable, so one file covers the range. */
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/JetBrainsMono-Variable.ttf') format('truetype');
+    font-weight: 100 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ── Theme tokens ──────────────────────────────────────────────────────────────
+   Cool neutral: every value below is one OKLCH hue, 258, at chroma 0.005–0.012, enough to be seen as a
+   decision and not enough to be seen as blue. It was chosen opposite lpdf's orange (hue 55). PaySignal's
+   gold (100) is 158° from it, AuthStack's blue (235) only 23°, so the accent is the thing to check by eye
+   on AuthStack.
+
+   The three text tiers are set by contrast against --bg, and the light and dark ramps are matched tier
+   for tier, so a page does not read louder in one theme than the other:
+
+       text 16:1 · muted 7:1 · subtle 4.6:1
+
+   Three surfaces for content, and --bg-elev is the top one in both themes: elevation runs toward light
+   whichever theme you are in. Sections alternate between --bg and --bg-alt. The header and footer are
+   the frame round the page and sit on --bg-chrome (white in light, near black in dark), the same
+   surfaces as the docs site's header, main column and sidebar. The page-to-band step is about 2 points
+   of OKLCH lightness in both themes.
+
+   A brand colour must clear 3:1 as a graphic on --bg-alt, the darkest light surface. The header height
+   and the header and footer gutter are the docs site's too: a 3rem header at every width, and
+   Starlight's 1rem gutter, 1.5rem from 50rem. */
+:root {
+    color-scheme: light;
+    --bg: #f5f8fb;
+    --bg-alt: #eef1f5;
+    --bg-elev: #ffffff;
+    --bg-chrome: #ffffff;
+    --bg-sunken: #e4e7eb;
+    --border: #cdd1d7;
+    --text: #141619;
+    --text-muted: #4e5258;
+    --text-subtle: #6a6e74;
+    --success: oklch(58% 0.12 155);
+    --wordmark-font: var(--rl-font-sans);
+    --nav-h: 3rem;
+    --gutter: 1rem;
+}
+@media (min-width: 50rem) {
+    :root { --gutter: 1.5rem; }
+}
+[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #1d2024;
+    --bg-alt: #171a1f;
+    --bg-elev: #23262b;
+    --bg-chrome: #121519;
+    /* Insets are the one thing that still goes down: a code chip is pressed into
+       the page, not lifted off it. */
+    --bg-sunken: #080a0d;
+    --border: #2f3339;
+    --text: #eceff3;
+    --text-muted: #989da4;
+    --text-subtle: #797d83;
+}
+
+/* ── Base ── */
+html, body { height: 100%; margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+/* Only the content scrolls. The header stays put and the scrollbar sits below it instead of
+   beside it, so the header does not shift between pages that scroll and pages that don't.
+
+   The window is fixed and <body> is the scroll container, from under the header to the bottom
+   of the window. The header is position:fixed, so it still belongs to the window rather than
+   to the body. The scrollbar gutter stays reserved so the content does not shift either.
+
+   Only where the pointer is a mouse: that is where a scrollbar is drawn beside the header.
+   Touch screens scroll the window, below. */
+@media (hover: hover) and (pointer: fine) {
+    html { overflow: hidden; }
+    body {
+        position: fixed;
+        inset: var(--nav-h) 0 0;
+        height: auto;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+        scroll-behavior: smooth;
+        scroll-padding-top: 1.5rem;
+    }
+}
+/* <body> takes focus on load so the keyboard scrolls it (pages.ts); it is not a control. */
+body:focus { outline: none; }
+/* Touch screens scroll the window, below the fixed header. iOS Safari clips a position:fixed
+   element that sits inside a scrolling element but outside its box, and the header is both:
+   it is in <body> and above it. It disappeared there. A touch screen has no scrollbar beside
+   the header to move, so nothing is lost. */
+@media (hover: none), (pointer: coarse) {
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 1.5rem); }
+    body { box-sizing: border-box; height: auto; min-height: 100%; padding-top: var(--nav-h); }
+}
+@media print {
+    html { overflow: visible; }
+    body { position: static; overflow: visible; }
+}
+body { font-family: var(--rl-font-sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+h1 { margin-block: 0.22em; }
+code { font-family: var(--rl-font-mono); font-size: 0.875em; background: var(--bg-sunken); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; }
+
+/* The first line of the hero, in the same face as the wordmark, so the page opens
+   in the product's own voice rather than in a second display face nobody chose.
+
+   No size of its own, so it takes the heading's clamp and sits level with the
+   second line the way a first line should. A fixed size here broke that pair once
+   by coming out smaller than the sentence following it. What tells the two lines
+   apart is the face and its weight, not the size. */
+.hero-title {
+    font-family: var(--wordmark-font);
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--text);
+}
+
+/* ── Nav ── */
+.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    /* The border counts inside the height, as in the docs header, so both are --nav-h. */
+    box-sizing: border-box;
+    height: var(--nav-h);
+    /* Solid rather than translucent. Glass reads as a layer by sampling what scrolls
+       under it, which is a different idea from standing on its own surface, and the
+       two cancel each other out when both are applied. */
+    background: var(--bg-chrome);
+    border-bottom: 1px solid var(--border);
+}
+.nav-inner { height: 100%; padding: 0 var(--gutter); }
+/* ── the lockup: artwork beside text, not one picture of both ──
+   The mark keeps its own colour and needs no theme swap, so it is one SVG. The word
+   inherits the page's text colour, which is what makes the pair work on either
+   ground. The gap is set in em off the word so the two hold their spacing at any
+   size, and the mark is a little taller than the cap height so it leads the pair
+   rather than sitting level with it. */
+.nav-logo { display: inline-flex; align-items: center; gap: 0.42em; text-decoration: none; }
+.nav-logo-mark { height: 24px; width: auto; display: block; flex: none; }
+.nav-logo-word {
+    font-family: var(--wordmark-font);
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1;
+    letter-spacing: 0;
+    color: var(--text);
+    white-space: nowrap;
+}
+.nav-links a { font-size: 0.9375rem; color: var(--text-muted); transition: color .15s; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--text); font-weight: 500; }
+.nav-link { font-size: 0.9375rem; color: var(--text-muted); text-decoration: none; transition: color .15s; }
+.nav-link:hover { color: var(--text); }
+.nav-section-label { font-size: 0.875rem; color: var(--text); letter-spacing: 0.08em; text-transform: uppercase; padding-left: 1rem; border-left: 1px solid var(--border); }
+.theme-btn {
+    width: 34px; height: 34px;
+    display: grid; place-items: center;
+    border: none; background: none; cursor: pointer;
+    border-radius: 7px; color: var(--text-muted);
+    transition: color .15s, background .15s;
+}
+.theme-btn:hover { color: var(--text); background: var(--bg-sunken); }
+
+/* ── Buttons ── */
+.btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 1rem; font-size: 0.9375rem; font-weight: 500;
+    border-radius: 7px; border: none; cursor: pointer;
+    font-family: var(--rl-font-sans);
+    transition: opacity .15s, transform .08s; white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+.btn:hover { opacity: .88; }
+.btn-primary { background: var(--text); color: var(--bg); }
+.btn-secondary { background: var(--bg-elev); color: var(--text); border: 1px solid var(--border); }
+.btn-lg { padding: 0.6875rem 1rem; font-size: 0.9375rem; border-radius: 8px; }
+.btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; border-radius: 6px; }
+/* The free-tier CTA where it appears outside the pricing page. Runs the same ladder
+   as .tier-card__cta in theme.css — brand edge at rest, brand fill on hover — so the
+   home hero and the Community card state the same action the same way.
+
+   Was .btn-amber, painted from --color-community-badge at hue 43. That was a second
+   orange, two hues off --brand and duller, left over from when the tiers carried
+   three unrelated colours; it read as a near-miss of the brand rather than as a
+   choice. Its white hover label also measured 3.84 on that fill, under the 4.5 a
+   label this size needs — --brand-on clears it at 4.77.
+
+   The mix is in oklab, as is every other mix of the brand with a grey in the site. In oklch
+   the grey's faint blue hue counts, and Safari takes the short way round the colour wheel
+   from orange to it, through pink: the same 50% came out brown in Chrome and magenta in
+   Safari. oklab has no hue to take the wrong way round. */
+.btn-brand { background: transparent; color: var(--brand-text); border: 1px solid color-mix(in oklab, var(--brand) 50%, var(--border)); transition: background .15s, color .15s, transform .08s; }
+/* On hover for a pointer that hovers. A touch screen keeps :hover on after a tap, so the button
+   stayed filled, under iOS's own tap highlight, with its dark label lost in it. There the same
+   fill is the pressed state, and it comes and goes with no transition: label and fill swap
+   colours, so a fade passes through the point where they are the same, and a tap that follows
+   a link can leave the page frozen there. */
+@media (hover: hover) {
+    .btn-brand:hover { background: var(--brand); border-color: var(--brand); color: var(--brand-on); opacity: 1; }
+}
+@media (hover: none) {
+    .btn-brand { -webkit-tap-highlight-color: transparent; transition: transform .08s; }
+    .btn-brand:active { background: var(--brand); border-color: var(--brand); color: var(--brand-on); }
+}
+.btn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border); transition: background .15s, color .15s, transform .08s; }
+.btn-ghost:hover { background: var(--text); color: var(--bg); opacity: 1; }
+
+/* ── Sections ──
+   The vertical padding is doing contrast work, not just spacing. Two bands a couple
+   of points of lightness apart are told apart by the length of the edge between them
+   and by the quiet either side of it, so the thinner the fill difference the more
+   air the boundary needs. */
+.section { padding: clamp(3rem, 5vw, 4.5rem) 2rem; border-top: 1px solid var(--border); }
+/* The alternating band, not an inset. The class name predates the distinction. */
+.section-sunken { background: var(--bg-alt); }
+.container { max-width: 1120px; margin: 0 auto; }
+
+/* ── Section header ── */
+.section-label { font-family: var(--rl-font-mono); font-size: 0.8125rem; color: var(--text-subtle); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.section-title { font-size: clamp(1.8125rem, 4vw, 2.5625rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.1; }
+.section-body { font-size: 1.0625rem; color: var(--text-muted); line-height: 1.6; max-width: 40rem; margin: 0; }
+
+/* ── Footer ── */
+footer { background: var(--bg-chrome); border-top: 1px solid var(--border); }
+/* A step below the header's. The footer lockup sits above small print rather than
+   leading the page, so matching the header made it the loudest thing down here. */
+.footer-logo { display: inline-flex; align-items: center; gap: 0.42em; text-decoration: none; }
+.footer-logo-mark { height: 1.125rem; width: auto; display: block; flex: none; }
+.footer-logo-word {
+    font-family: var(--wordmark-font);
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1;
+    color: var(--text);
+    white-space: nowrap;
+}
+/* Links turn the brand colour on hover, as the docs site's header icons do. As text it is --brand-text. */
+.footer-links a { font-size: 0.8125rem; color: var(--text-subtle); transition: color .15s; }
+.footer-links a:hover { color: var(--brand-text); }
+
+/* ── Site footer ── */
+/* Columns of links, then a centred copyright on its own line. Both share the --gutter that
+   .nav-inner uses, so the footer lines up with the header. No .container — the footer renders over
+   content of unknown width, and a page column here would misalign against whatever sits above. */
+.footer-columns { padding: 2rem var(--gutter); align-items: start; }
+.footer-heading {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text); margin-bottom: 0.25rem;
+}
+/* A step up from the 0.8125rem the portal's single-line bar uses: these are a vertical list to be
+   read, not a row of afterthoughts. */
+.footer-columns .footer-links a { font-size: 0.875rem; }
+.footer-tagline { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.35; margin: 0; }
+/* Language name leads its row; the repo and package links sit under it, a step quieter. */
+.footer-sdk { font-size: 0.875rem; color: var(--text-muted); transition: color .15s; }
+.footer-sdk:hover { color: var(--brand-text); }
+.footer-columns .footer-sdk-links a { font-size: 0.8125rem; color: var(--text-subtle); }
+/* No rule above the copyright. The footer already has one — its own border-top — and a second
+   inside a block that has no other dividers reads as two stacked footers rather than one. Space
+   separates it instead, balanced against the 2rem the columns end on. */
+.footer-baseline { padding: 0.25rem var(--gutter) 2rem; text-align: center; }
+/* margin:0 because there is no `p { margin: 0 }` reset in this stylesheet — the browser default
+   1em would otherwise add ~28px to the baseline row on its own. */
+.footer-copy { font-size: 0.8125rem; color: var(--text-subtle); margin: 0; }
+
+/* ── Badge ── */
+.badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 10px; font-size: 0.8125rem; font-weight: 500;
+    border-radius: 999px; line-height: 1.5; letter-spacing: .01em;
+    background: var(--bg-sunken); color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 99px; background: var(--success); flex-shrink: 0; }
+
+/* ── Hero ──
+   The band the first screen sits in: a section without its top rule, clipped, with a soft wash of the
+   brand colour fading from the top centre. The wash is decoration and takes no part in layout. */
+.section-hero { border-top: none; position: relative; overflow: hidden; }
+.hero-glow {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 50% 0%, color-mix(in oklch, var(--brand) 8%, transparent), transparent 35%);
+    pointer-events: none;
+}
+/* Positioned, so the content paints above the wash rather than under it. */
+.section-hero > .container { position: relative; }
+.section-title--hero { font-size: clamp(2.3125rem, 5vw, 3.8125rem); letter-spacing: -.03em; line-height: 1.04; }
+.hero-subtitle { color: var(--text-muted); font-weight: 500; }
+.hero-note { font-size: 0.9375rem; color: var(--text-subtle); margin: 0; }
+/* An inline link inside body copy: quieter than --brand-text, underlined so it is still a link. */
+.link-quiet { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── Code window ── */
+.code-window {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 24px 48px -12px rgba(0,0,0,.1), 0 8px 16px -4px rgba(0,0,0,.05);
+    overflow: hidden;
+}
+[data-theme="dark"] .code-window {
+    box-shadow: 0 24px 48px -12px rgba(0,0,0,.6), 0 8px 16px -4px rgba(0,0,0,.3);
+}
+.code-titlebar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px; border-bottom: 1px solid var(--border);
+    background: var(--bg-sunken);
+}
+.code-dot { width: 10px; height: 10px; border-radius: 99px; flex-shrink: 0; }
+.code-filename { font-family: var(--rl-font-mono); font-size: 0.8125rem; color: var(--text-muted); margin-left: 10px; }
+.code-body {
+    font-family: var(--rl-font-mono); font-size: 0.875rem;
+    line-height: 1.75; padding: 22px 24px;
+    overflow-x: auto; white-space: pre; color: var(--text);
+}
+
+/* ── Syntax tokens ── */
+/* Text on --bg-elev, so each is held at 4.5:1 there in both themes. lpdf's own copy of these four fails
+   it (its value is one green for both themes, 3.7 on light, and its comment colour is --text-subtle),
+   which has gone unnoticed because no live lpdf page draws a code window. */
+.t-tag  { color: color-mix(in oklab, var(--brand-text) 85%, var(--text-muted)); }
+.t-attr { color: var(--text-muted); }
+.t-val  { color: #2c8235; }
+.t-cmt  { color: var(--text-muted); font-style: italic; }
+[data-theme="dark"] .t-val { color: #4a9e50; }
+
+/* ── Document-type cards ── */
+.doc-card {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.625rem;
+}
+.doc-card-icon {
+    width: 36px; height: 36px; background: var(--bg-sunken);
+    border: 1px solid var(--border); border-radius: 8px;
+    display: grid; place-items: center; color: var(--text);
+}
+.doc-card-title { font-size: 1rem; font-weight: 600; letter-spacing: -.01em; }
+.doc-card-body  { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* ── SDK / platform strip ── */
+.sdk-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.sdk-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.sdk-icon-fa {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    color: var(--text-muted);
+}
+/* The Font Awesome hash and code glyphs carry more ink than the language marks, so they run a step
+   smaller to read at the same weight. */
+.sdk-icon-glyph {
+    width: 2.42rem;
+    height: 2.42rem;
+}
+.icon-sm {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+}
+.sdk-item-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: .02em;
+}
+
+.sdk-item-links {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8125rem;
+    color: var(--text-subtle);
+}
+
+.sdk-item-links a {
+    color: var(--text-subtle);
+    text-decoration: none;
+    transition: color .15s;
+}
+
+.sdk-item-links a:hover {
+    color: var(--brand-text);
+}
+
+.sdk-dot {
+    color: var(--border);
+    user-select: none;
+}
+
+/* ── Legal documents ──────────────────────────────────────────────────────────
+   The license, the support policy and the three Codesense-wide documents in the
+   portal all render through md-html and share this treatment. The register is
+   deliberately not the register of the rest of the site: a serif face, a narrow
+   measure and a quiet heading scale, because these are instruments to be read
+   rather than pages to be scanned.
+
+   Keep this block identical to the one in portal.css. The same reader crosses
+   between the two — the license here, the terms there — and the seam shows. */
+.page-legal {
+    /* No webfont. The stack asks for whichever text serif the reader's platform
+       already ships — Charter on macOS, Sitka on Windows — and lands on Georgia,
+       which is on all of them. Self-hosting one face would make the three render
+       identically, at the cost of the only blocking download on the page. */
+    --legal-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, Georgia, 'Times New Roman', serif;
+    /* A step down from --text: a wall of legal prose at full contrast is tiring,
+       and the headings need somewhere to step up to. Mixed rather than fixed so
+       it follows the palette instead of pinning two more hex values to it. */
+    --legal-text: color-mix(in oklch, var(--text) 82%, var(--bg));
+}
+
+/* One column for the document and for whatever sits above it, so they share a
+   left edge. Scoped under main: the footer's own container must stay page-width. */
+.page-legal main .container { max-width: 46rem; }
+
+.page-legal md-html {
+    display: block;
+    font-family: var(--legal-serif);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--legal-text);
+}
+
+.page-legal md-html h1 {
+    font-size: 2rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2;
+    color: var(--text); margin: 0 0 0.75rem;
+}
+/* Every one of these documents opens the same way: title, copyright, then an
+   effective date or a contact address. Those two lines are masthead, not prose. */
+.page-legal md-html h1 + p,
+.page-legal md-html h1 + p + p {
+    font-family: var(--rl-font-sans);
+    font-size: 0.8125rem; line-height: 1.5; color: var(--text-subtle); margin: 0.125rem 0;
+}
+/* md-html strips the `---` rules the sources use between sections, so the rule
+   comes back on the heading that followed each one. */
+.page-legal md-html h2 {
+    font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text);
+    margin: 2.75rem 0 0.875rem; padding-top: 2rem; border-top: 1px solid var(--border);
+}
+.page-legal md-html h3 {
+    font-size: 1.0625rem; font-weight: 600; color: var(--text); margin: 1.75rem 0 0.5rem;
+}
+.page-legal md-html p  { margin: 0.875rem 0; }
+.page-legal md-html ul,
+.page-legal md-html ol { margin: 0.875rem 0; padding-left: 1.5rem; }
+.page-legal md-html li { margin: 0.375rem 0; }
+.page-legal md-html strong { font-weight: 700; color: var(--text); }
+.page-legal md-html a {
+    color: var(--brand-text); text-decoration: underline; text-underline-offset: 2px;
+    text-decoration-color: color-mix(in oklch, var(--brand) 40%, transparent);
+}
+.page-legal md-html a:hover { text-decoration-color: var(--brand); }
+.page-legal md-html code {
+    font-family: var(--rl-font-mono); font-size: 0.8125rem;
+    background: var(--bg-sunken); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px;
+}
+
+/* Tables stay in the sans. The privacy policy's recipient and retention tables
+   are read down their columns rather than across in sentences, and a serif at
+   this size muddies them. */
+.page-legal md-html table {
+    width: 100%; border-collapse: collapse; margin: 1.5rem 0;
+    font-family: var(--rl-font-sans); font-size: 0.875rem; line-height: 1.5;
+}
+.page-legal md-html th {
+    text-align: left; font-weight: 600; color: var(--text);
+    padding: 0 1rem 0.5rem 0; border-bottom: 1px solid var(--border);
+}
+.page-legal md-html td {
+    padding: 0.625rem 1rem 0.625rem 0; border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+.page-legal md-html tr:last-child td { border-bottom: none; }
+.page-legal md-html th:last-child,
+.page-legal md-html td:last-child { padding-right: 0; }
+
+/* ── Pricing FAQ ── */
+.faq-item {
+    border-top: 1px solid var(--border);
+    padding: 1.25rem 0;
+}
+.faq-item:last-child {
+    border-bottom: 1px solid var(--border);
+}
+.faq-q {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+.faq-a {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+.faq-a a { color: var(--brand-text); }
+
+/* ── 404 page ── */
+.fourohfour { font-size: 1.5rem; font-weight: 600; color: var(--text); line-height: 1; }
+/* Was a hardcoded #f97316 — a second orange, close enough to --brand to look
+   deliberate and far enough to drift. Reads the token now, so it follows the brand
+   instead of shadowing it. */
+a.home-link { color: var(--brand-text); text-decoration: none; font-size: 0.9375rem; font-weight: 500; }
+a.home-link:hover { opacity: 0.8; }
+
+/* ── Tiers ── tokens (--brand-text, --brand-on) come from the site's brand.css ── */
+/* ── tier-card-wrap — reserves space above card for floating top badge ── */
+.tier-card-wrap {
+    position: relative;
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.tier-card__top-badge {
+    position: absolute;
+    top: 1.25rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    z-index: 1;
+}
+
+/* ── tier-card — neutral border, no colored background ──
+   On the header's colour, as are the two cards above the tiers on the pricing page: white in
+   light, near black in dark. */
+.tier-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2.5rem 1.75rem 1.75rem;
+    border-radius: 14px;
+    box-sizing: border-box;
+    border: 1px solid var(--border);
+    background: var(--bg-chrome);
+    flex: 1;
+}
+
+/* ── tier label pill inside the card: outlined, outlined, filled ──
+   All three sit on the same brand edge, which is what says "this is a tier". Weight then
+   steps through the label and the fill: Community muted, Professional in the brand, Enterprise
+   filled with it. Community carried a grey edge until it stopped reading as part of the same
+   set as the two beside it. Mirrored in the portal's `portal.css`. */
+.tier-label {
+    align-self: flex-start;
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    border: 1px solid transparent;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+.tier-label--community    { border-color: var(--brand);  color: var(--text-muted); }
+.tier-label--professional { border-color: var(--brand);  color: var(--brand-text); }
+.tier-label--enterprise   { background: var(--brand); border-color: var(--brand); color: var(--brand-on); }
+
+/* ── top badge pill (outlined, straddles card border) ── */
+.tier-top-pill {
+    display: inline-block;
+    padding: 0.2em 0.8em;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    border: 1.5px solid;
+    background: var(--bg);
+}
+/* "Recommended" is the only top badge that argues for something, so it takes the
+   brand. The rest state a fact and stay neutral. Keeping the recommendation out of
+   the tier ladder is what lets it move to another tier without repainting one. */
+.tier-top-pill--community    { color: var(--text-muted); border-color: var(--border); }
+.tier-top-pill--professional { color: var(--brand-text); border-color: var(--brand); }
+.tier-top-pill--enterprise   { color: var(--text-muted); border-color: var(--border); }
+
+/* ── price ──
+   A price is a number to be read, not a shape to be looked at, which is a different
+   job from the wordmark's and now has a different face. The mono gives every digit
+   one width, so a column of prices lines up whatever the amounts are, and a 9 can
+   never be mistaken for anything else. The display face it replaced made "Free" and
+   "Quote" read as small logos beside it. */
+.tier-price {
+    font-family: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+}
+
+/* The currency symbol used to be set in Tahoma, because the old display face drew a
+   poor one. The mono's own is fine, so it inherits and the price is one face again. */
+.tier-currency {
+    font-weight: 500;
+    font-size: 0.75em;
+    vertical-align: top;
+    padding-top: calc(0.18em + 1px);
+    color: var(--text-muted);
+}
+
+/* ── CTA base — outline, fills with tier color on hover ── */
+.tier-card__cta {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6875rem 1rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid;
+    cursor: pointer;
+    font-family: var(--rl-font-sans);
+    text-decoration: none;
+    background: transparent;
+    transition: background .15s, color .15s, transform .08s;
+}
+.tier-card__cta:active { transform: translateY(1px); }
+
+/* One button treatment for all three, since the tier is already stated by the pill
+   above it and a per-tier button colour only re-said it in a third hue. Brand
+   outline, brand fill on hover. */
+.tier-card__cta {
+    color: var(--brand-text);
+    border-color: color-mix(in oklab, var(--brand) 50%, var(--border));
+}
+/* Fill on hover for a pointer that hovers. A touch screen keeps :hover on after a tap, so there
+   the fill is the pressed state, with no transition (see .btn-brand in styles.css). */
+@media (hover: hover) {
+    .tier-card__cta:hover {
+        background: var(--brand);
+        border-color: var(--brand);
+        color: var(--brand-on);
+    }
+}
+@media (hover: none) {
+    .tier-card__cta { -webkit-tap-highlight-color: transparent; transition: transform .08s; }
+    .tier-card__cta:active { background: var(--brand); border-color: var(--brand); color: var(--brand-on); }
+}
+
+/* A tier whose button is not live yet. Beaten to the outline and the hover fill above by being
+   inert: a disabled button that fills on hover reads as a live one. Mirrors portal.css. */
+.tier-card__cta--disabled {
+    color: var(--text-subtle);
+    border-color: var(--border);
+    background: transparent;
+    cursor: default;
+    opacity: 0.6;
+    pointer-events: none;
+}

@@ -1,0 +1,21 @@
+/* Relayout's brand, on top of pages-base.css.
+
+   --brand is the colour of the mark (codesense/logos/dist/relayout-mark.svg), the docs' --brand. The other two are
+   measured against the surfaces in pages-base.css (bg · bg-alt · bg-elev · bg-chrome), 2026-10-15:
+
+       --brand        3:1 as a graphic: light 3.98 · 3.75 · 4.25 · 4.25, dark 3.85 · 4.11 · 3.57 · 4.31
+       --brand-text   4.5:1 as text: light #d0057b 4.94 · 4.65 · 5.26 · 5.26, dark #fe3aa3 4.94 · 5.27 · 4.59 · 5.53
+       --brand-on     4.5:1 against the --brand fill: #1f0012 4.63
+
+   Light --brand-text is the docs' tone. Dark is a step lighter along the mark's hue than the docs' #fd299a, which
+   is 4.31 on --bg-elev, a surface the docs don't have. White on the fill is 4.25, so the label on it is a dark tone
+   of the same hue. */
+:root {
+    --brand: #ec008c;
+    --brand-text: #d0057b;
+    --brand-on: #1f0012;
+}
+
+[data-theme="dark"] {
+    --brand-text: #fe3aa3;
+}

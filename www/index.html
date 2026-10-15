@@ -1,14 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Relayout</title>
-    <!-- A placeholder until the home page is built here: the address goes to the docs. -->
-    <meta http-equiv="refresh" content="0; url=docs/">
-    <link rel="canonical" href="https://relayoutui.github.io/pages/docs/">
+    <meta charset="UTF-8" />
+    <script>
+        // The docs' theme choice (docs-site/src/theme.ts), set before the page paints: the cs-theme cookie, then
+        // localStorage, and dark when neither holds one
+        try
+        {
+            const stored = document.cookie.split('; ').find(c => c.startsWith('cs-theme='))?.split('=')[1] ?? localStorage.getItem('cs-theme');
+            if (stored === 'light') document.documentElement.dataset.theme = 'light';
+        }
+        catch
+        {
+            // Storage is blocked: the page stays dark
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relayout — Responsive layouts</title>
+    <meta name="description" content="Relayout is a lightweight, responsive layout system: compose interfaces from a few layouts and modifiers, without media queries." />
+    <link rel="canonical" href="https://relayoutui.github.io/pages/" />
+    <meta property="og:title" content="Relayout — Responsive layouts" />
+    <meta property="og:description" content="Relayout is a lightweight, responsive layout system: compose interfaces from a few layouts and modifiers, without media queries." />
+    <meta property="og:url" content="https://relayoutui.github.io/pages/" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" href="assets/css/relayout.css" />
+    <link rel="stylesheet" href="assets/css/pages-base.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <script type="module" src="assets/js/home.js"></script>
 </head>
 <body>
-    <p><a href="docs/">Relayout docs</a></p>
+    <nav class="nav">
+        <div class="nav-inner rl-row rl-nowrap rl-justify-between">
+            <a href="./" class="nav-logo">
+                <img src="assets/images/relayout-mark.svg" alt="" class="nav-logo-mark" />
+                <span class="nav-logo-word" translate="no">Relayout</span>
+            </a>
+            <button type="button" class="theme-btn" aria-label="Toggle theme" title="Toggle theme">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,16.37a86.4,86.4,0,0,1,16,3V212.67a86.4,86.4,0,0,1-16,3Zm32,9.26a87.81,87.81,0,0,1,16,10.54V195.83a87.81,87.81,0,0,1-16,10.54ZM40,128a88.11,88.11,0,0,1,80-87.63V215.63A88.11,88.11,0,0,1,40,128Zm160,50.54V77.46a87.82,87.82,0,0,1,0,101.08Z"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="rl-column">
+        <section class="section section-hero">
+            <div class="hero-glow"></div>
+            <div class="container rl-column rl-gap-2xl">
+                <div class="rl-column rl-align-center rl-text-center rl-gap-l">
+                    <div class="rl-row rl-gap-s rl-justify-center">
+                        <span class="badge">Pre-release</span>
+                    </div>
+                    <!-- The word cycles in home.js. Screen readers get the first one, from the hidden span. -->
+                    <h1 class="section-title section-title--hero">
+                        <span class="hero-title">
+                            Build
+                            <span class="visually-hidden">responsive</span>
+                            <span class="word-slot" aria-hidden="true">
+                                <span class="word is-current">responsive</span>
+                                <span class="word">reusable</span>
+                                <span class="word">readable</span>
+                                <span class="word">refined</span>
+                                <span class="word">remarkable</span>
+                                <span class="word">resilient</span>
+                            </span>
+                            layouts
+                        </span>
+                    </h1>
+                    <p class="section-body">Any project. Any stack. Any screen.<br />Compose interfaces from four layouts and a few modifiers, without media queries.</p>
+                    <div class="rl-row rl-gap-m rl-justify-center">
+                        <a href="docs/" class="btn btn-brand btn-lg">Documentation</a>
+                    </div>
+                </div>
+
+                <div class="demo-placeholder rl-column rl-align-center rl-justify-center rl-gap-s rl-padding-xl">
+                    <p class="demo-placeholder-title">Layout demo</p>
+                    <p class="demo-placeholder-body">Common layouts, rendered live, with their source. Coming soon.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- The product sites' footer (product-footer in the portal): no .container, so the columns line up under
+             the header's logo, inside the same gutter -->
+        <div class="footer-columns">
+            <div class="rl-grid rl-grid-fit-m rl-gap-xl">
+                <div class="rl-column rl-gap-s">
+                    <a href="./" class="footer-logo">
+                        <img src="assets/images/relayout-mark.svg" alt="" class="footer-logo-mark" />
+                        <span class="footer-logo-word" translate="no">Relayout</span>
+                    </a>
+                    <p class="footer-tagline">Any project. Any stack.<br />Any screen.</p>
+                </div>
+                <div class="rl-column rl-gap-s">
+                    <span class="footer-heading">Package</span>
+                    <div class="rl-column rl-gap-xs">
+                        <a href="docs/install/" class="footer-sdk">@relayoutui/relayout</a>
+                        <div class="rl-row rl-gap-m footer-links footer-sdk-links">
+                            <a href="https://github.com/relayoutui/relayout" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            <a href="https://www.npmjs.com/package/@relayoutui/relayout" target="_blank" rel="noopener noreferrer">npm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="rl-column rl-gap-s">
+                    <span class="footer-heading">Documentation</span>
+                    <div class="rl-column rl-gap-m footer-links">
+                        <a href="docs/introduction/">Introduction</a>
+                        <a href="docs/install/">Installation</a>
+                        <a href="docs/layouts/column/">Layouts</a>
+                        <a href="docs/modifiers/gap/">Modifiers</a>
+                        <a href="docs/recipes/">Recipes</a>
+                    </div>
+                </div>
+                <div class="rl-column rl-gap-s">
+                    <span class="footer-heading">License</span>
+                    <div class="rl-column rl-gap-m footer-links">
+                        <a href="https://github.com/relayoutui/relayout/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+                    </div>
+                </div>
+                <div class="rl-column rl-gap-s">
+                    <span class="footer-heading">Company</span>
+                    <div class="rl-column rl-gap-m footer-links">
+                        <a href="https://my.codesense.dev/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+                        <a href="https://my.codesense.dev/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-baseline">
+            <p class="footer-copy">© 2026 Codesense LLC</p>
+        </div>
+    </footer>
 </body>
 </html>
