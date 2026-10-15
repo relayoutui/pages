@@ -1,0 +1,66 @@
+name: Deploy the site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # The home page is static, so the only thing built here is the docs. A pull request builds and
+  # assembles the site to prove it can; only main uploads it.
+  build:
+    name: Build the site
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      # Astro 7 needs Node 22.12 or newer
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: docs-site/package-lock.json
+
+      - name: Install the docs dependencies
+        run: npm ci
+        working-directory: docs-site
+
+      # Umami is added only when the UMAMI_WEBSITE_ID repository variable is set
+      - name: Build the docs
+        run: npm run build
+        working-directory: docs-site
+        env:
+          UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
+
+      - name: Assemble the site
+        run: bash ./.github/assemble-site.sh _site
+
+      - uses: actions/upload-pages-artifact@v5
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        with:
+          path: _site/
+
+  # Waits for approval in the production environment
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: production
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v6
+
+      - id: deployment
+        uses: actions/deploy-pages@v5
