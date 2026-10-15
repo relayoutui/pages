@@ -254,17 +254,6 @@ mobile-starlight-toc nav {
     color: var(--brand-text);
 }
 
-/* The GitHub and npm links in the header and the phone menu rest in gray-2 and take the brand tone
-   on hover, like the theme toggle and lpdf.io's registry links. Starlight's own rule, accent at
-   rest, sits in a layer, so this plain one wins. */
-.social-icons a[rel='me'] {
-    color: var(--sl-color-gray-2);
-    transition: color 0.15s;
-}
-.social-icons a[rel='me']:hover {
-    color: var(--brand-text);
-}
-
 starlight-tabs [role='tab'][aria-selected='true'] {
     --sl-tab-color-border: var(--brand);
 }
