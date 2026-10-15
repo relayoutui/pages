@@ -5,7 +5,7 @@ description: "The grid places elements in cells of equal width. Each cell has a 
 
 Class: `rl-grid`
 
-The grid places elements in cells of equal width. Each cell has a minimum width, and as many cells fit side by side as the available width allows; the elements that don't fit continue on a new line. The cells widen to share the space that's left.
+The grid places elements in cells of equal width. Each cell has a minimum width, and as many cells fit side by side as the available width allows; the elements that don't fit continue on a new line. The cells widen to share the space that's left. A cell is never wider than the grid: in a grid narrower than one cell's minimum, the one column shrinks to fit.
 
 Grids are well suited for card layouts, image galleries, product listings, dashboard widgets, and any collection of similar items that should be displayed in a uniform grid structure. A grid is also the way to make equal columns that stack on narrow screens; for equal columns that never stack, use a [row](/pages/docs/layouts/row/) with `rl-nowrap` and `rl-width-fill` on each element.
 
@@ -228,6 +228,41 @@ Apply class `rl-grid-fill-*` to the grid container, where `*` can be `xs`, `s`, 
     <div>Item 7</div>
     <div>Item 8</div>
     <div>Item 9</div>
+</div>
+```
+
+## Narrower than a cell
+
+A grid narrower than its cells' minimum width has one column, as wide as the grid, so it never overflows its container. Here `rl-grid-fit-2xl` (20rem cells) is in a 12rem container.
+
+```html preview debug
+<div style="width: 12rem;">
+    <div class="rl-grid rl-grid-fit-2xl rl-gap-m">
+        <div>Item 1</div>
+        <div>Item 2</div>
+        <div>Item 3</div>
+    </div>
+</div>
+```
+
+A grid needs a width from its parent to fit cells into. When its width comes from its content instead, it has one column as wide as that content. This happens in a row without `rl-width-fill`, in a column with `rl-align-start` or `rl-align-center`, and in an inline-block. To place the cells side by side, give the grid a width. In a row, use `rl-width-fill`.
+
+```html preview debug
+<div class="rl-column rl-gap-m">
+    <div class="rl-row">
+        <div class="rl-grid rl-grid-fit-s rl-gap-m">
+            <div>A</div>
+            <div>B</div>
+            <div>C</div>
+        </div>
+    </div>
+    <div class="rl-row">
+        <div class="rl-grid rl-grid-fit-s rl-gap-m rl-width-fill">
+            <div>A</div>
+            <div>B</div>
+            <div>C</div>
+        </div>
+    </div>
 </div>
 ```
 
@@ -468,8 +503,8 @@ The grid layout uses CSS Grid for responsive cells of equal width:
 - **Base class required**: All grid variants (`rl-grid-fit-*`, `rl-grid-fill-*`) must include `rl-grid` class
 - **Auto-fit behavior**: Collapses empty cells, allowing the cells in use to expand and fill space
 - **Auto-fill behavior**: Keeps room for empty cells, creating a more rigid grid structure
-- **Cell sizing**: Uses `grid-template-columns: repeat(auto-fit/fill, minmax(MIN, 1fr))`
-- **Minimum widths**: Six size options from `xs` (3.125rem) to `2xl` (20rem)
+- **Cell sizing**: Uses `grid-template-columns: repeat(auto-fit/fill, minmax(min(MIN, 100%), 1fr))`
+- **Minimum widths**: Six size options from `xs` (3.125rem) to `2xl` (20rem), capped at the grid's width
 - **Default variant**: `rl-grid` alone uses auto-fit with 6.25rem minimum (same as `rl-grid-fit-s`)
 - **Responsive cells**: The number of cells per line adjusts automatically based on container width and minimum size
 - **Alignment**: `rl-align-*` controls vertical positioning within cells, `rl-justify-*` controls horizontal
