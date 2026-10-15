@@ -218,6 +218,59 @@
                 </relayout-demo>
             </div>
         </section>
+
+        <!-- Highlights, in the product sites' look (lpdf.io, authstack.id). The grid's cells are xl, not 2xl: a 2xl
+             cell (20rem) is wider than a 360px phone leaves inside the section's padding, and Relayout's grid doesn't
+             shrink a cell below its minimum. In an xl-wide column they still make three across. -->
+        <section class="section">
+            <div class="container rl-column rl-gap-2xl">
+                <p class="section-label rl-text-center">Highlights</p>
+                <div class="rl-grid rl-grid-fit-xl rl-gap-l rl-width-xl">
+                    <div class="doc-card">
+                        <div class="doc-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                        </div>
+                        <p class="doc-card-title">Four layouts</p>
+                        <p class="doc-card-body">Column, row, grid and frame, plus a divider. Four names to learn, and modifiers for the rest: gap, alignment, padding and size.</p>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                        </div>
+                        <p class="doc-card-title">No media queries</p>
+                        <p class="doc-card-body">Rows wrap, grids fit as many cells as the width allows, and content drops below its sidebar when it runs out of room. Layouts follow the space they're given, not the screen.</p>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <p class="doc-card-title">Classes or elements</p>
+                        <p class="doc-card-body">Put the <code>rl-</code> classes on any HTML, in any framework, or use the same layouts as web components: <code>&lt;rl-row rl-gap-m&gt;</code>.</p>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        </div>
+                        <p class="doc-card-title">Say what grows</p>
+                        <p class="doc-card-body"><code>rl-width-fill</code> and <code>rl-height-fill</code> let any child take the space that's left, and <code>rl-scroll</code> scrolls only the area that should.</p>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+                        </div>
+                        <p class="doc-card-title">Tokens to theme</p>
+                        <p class="doc-card-body">Spacing, text sizes, colours and shadows are CSS custom properties, with light and dark defaults. Override one on <code>:root</code> and everything that uses it follows.</p>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                        </div>
+                        <p class="doc-card-title">Small, no dependencies</p>
+                        <p class="doc-card-body">The CSS is about 2.5 KB gzipped, and the web components under 8 KB with Lit built in. Open source, under the MIT license.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
