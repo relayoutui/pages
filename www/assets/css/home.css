@@ -43,26 +43,89 @@
     }
 }
 
-/* ── Demo placeholder ──
-   Where the layout demo goes: as wide as the hero's column and about as tall as a preset will be, on the alternate
-   band's colour with a dashed edge, so it reads as a space kept rather than as content. */
-.demo-placeholder {
-    width: 100%;
-    min-height: 20rem;
-    border: 1px dashed var(--border);
+/* ── Layout demo ──
+   The page's half of <relayout-demo> (assets/js/demo.js): the buttons, the source view and the hint. The preset
+   itself is styled inside its shadow root, by demo-preset.css. */
+/* The frame (inside the shadow root, demo-preset.css) and the source view read the same height, so the toggle swaps
+   one for the other in place */
+relayout-demo {
+    --demo-height: 32rem;
+    display: block;
+}
+
+/* ── The window ──
+   Round the preview and the source, so the demo reads as a demo and not as part of the page: a title bar with
+   window dots, the preset as a file name and a Live demo badge (pages-base.css's code window title bar and badge),
+   over a recessed body that shows beside a narrowed frame. The code window's border, corners and shadow. */
+.demo-window {
+    overflow: hidden;
+    border: 1px solid var(--border);
     border-radius: 12px;
     background: var(--bg-alt);
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .demo-window {
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.3);
+}
+
+/* Decoration, in the colours windows use for them */
+.demo-window .code-dot:nth-child(1) {
+    background: #ff5f57;
+}
+
+.demo-window .code-dot:nth-child(2) {
+    background: #febc2e;
+}
+
+.demo-window .code-dot:nth-child(3) {
+    background: #28c840;
+}
+
+.demo-window .badge {
+    padding: 1px 8px;
+    font-size: 0.75rem;
+}
+
+/* The chosen preset and view, in the brand's tone, as the Documentation button is at rest */
+relayout-demo .btn[aria-pressed="true"] {
+    border-color: color-mix(in oklab, var(--brand) 50%, var(--border));
+    color: var(--brand-text);
+}
+
+/* Hidden until the preset's styles have loaded, so it never shows unstyled. It keeps its height meanwhile. */
+.demo-stage.is-loading {
+    visibility: hidden;
+}
+
+/* The padding counts inside the height, so it matches the frame's */
+.demo-source {
+    box-sizing: border-box;
+    height: var(--demo-height);
+    margin: 0;
+    overflow: auto;
+    background: var(--bg-elev);
+}
+
+/* pages-base.css draws inline code as a chip; a block of source is one piece of text */
+.demo-source code {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: inherit;
+}
+
+/* One line under either view, its text set by demo.js, so it holds its place when the view changes */
+.demo-hint {
+    margin: 0;
     color: var(--text-subtle);
+    font-size: 0.8125rem;
     text-align: center;
 }
 
-.demo-placeholder-title {
-    margin: 0;
-    color: var(--text-muted);
-    font-weight: 600;
-}
-
-.demo-placeholder-body {
-    margin: 0;
-    font-size: 0.9375rem;
+/* A touch screen has no corner to drag. The line keeps its space, so the page still holds still. */
+@media (hover: none), (pointer: coarse) {
+    .demo-hint[data-view="preview"] {
+        visibility: hidden;
+    }
 }

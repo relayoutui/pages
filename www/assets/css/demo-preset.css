@@ -1,0 +1,247 @@
+/* Inside each preset's shadow root on the home page (assets/js/demo.js), after relayout.css. The page's tokens
+   (pages-base.css, brand.css) reach in as inherited custom properties, so a preset follows the theme.
+
+   Relayout's classes in a preset's markup do the layout. This file is the rest: the look of the plain elements, and
+   of the few classes of the examples' own (logo, primary, hero, thumb, avatar, badge, stat, card, active), as a
+   page's own CSS would be. Nothing here sets layout but the decoration's. */
+
+/* Relayout's default border is a mid grey; the page's hairline fits the surfaces */
+:host {
+    --rl-border-default: solid 1px var(--border);
+    --demo-gradient-1: linear-gradient(135deg, #ec008c, #7c3aed);
+    --demo-gradient-2: linear-gradient(135deg, #f97316, #ec008c);
+    --demo-gradient-3: linear-gradient(135deg, #06b6d4, #7c3aed);
+    display: block;
+    color: var(--text);
+    font-family: var(--rl-font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    text-align: left;
+}
+
+/* The rule above would otherwise beat the browser's own for `hidden`, which the Source view sets on the host */
+:host([hidden]) {
+    display: none;
+}
+
+/* ── The frame ──
+   Inside the demo's window (home.css), under its title bar. Its height is the demo's (--demo-height, set on
+   <relayout-demo> in home.css), the same as the source view's, so the toggle swaps one for the other in place.
+   Resizable from its lower right corner, to see the layout at another width; it scrolls if a preset is taller. The
+   line on its right shows where a narrowed frame ends; at full width the window's edge hides it. */
+.frame {
+    box-sizing: border-box;
+    height: var(--demo-height, 32rem);
+    min-width: 12rem;
+    max-width: 100%;
+    overflow: auto;
+    resize: horizontal;
+    background: var(--bg);
+    box-shadow: 1px 0 0 var(--border);
+}
+
+/* A definite height, so a preset's rl-height-full (the app shell) and min-height: 100% (the pages) resolve to the
+   frame's. A taller preset overflows it, and the frame scrolls. */
+.content {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+/* A preset that doesn't fill the frame sits in from its edges, in the middle of its height. It is at least as tall
+   as the frame and grows with the preset, so a preset taller than the frame (a card in a narrow frame) makes the
+   frame scroll, with the padding below it too. Its child keeps its height: a flex item with overflow hidden, as the
+   card is, would otherwise shrink to the frame's height and clip its own bottom. */
+.content.is-padded {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    min-height: 100%;
+    padding: 2rem;
+}
+
+.content.is-padded > * {
+    flex-shrink: 0;
+}
+
+/* ── Surfaces ── */
+header,
+footer {
+    background: var(--bg-chrome);
+}
+
+header {
+    border-bottom: 1px solid var(--border);
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+}
+
+aside {
+    background: var(--bg-alt);
+}
+
+.card,
+.stat {
+    background: var(--bg-elev);
+}
+
+.card {
+    overflow: hidden;
+}
+
+.hero {
+    background: radial-gradient(ellipse at 50% 0%, color-mix(in oklab, var(--brand) 20%, transparent), transparent 70%);
+}
+
+/* ── Text ── */
+h2 {
+    margin: 0;
+    font-size: 1.625rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+}
+
+.hero h2 {
+    font-size: 2.25rem;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.1875rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+p {
+    max-width: 38em;
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.stat span {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+}
+
+.stat strong {
+    font-size: 1.875rem;
+    line-height: 1.1;
+}
+
+/* ── The name: a gradient mark before it ── */
+.logo {
+    color: var(--text);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+}
+
+.logo::before {
+    content: '';
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 0.45em;
+    border-radius: 0.3em;
+    background: var(--demo-gradient-1);
+    vertical-align: -0.2em;
+}
+
+/* ── Links, without an href so they don't navigate the page: they still look and act like links ── */
+a {
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+}
+
+a:hover,
+a.active {
+    color: var(--brand-text);
+}
+
+aside a {
+    padding: 0.375rem 0.75rem;
+    border-radius: 8px;
+}
+
+aside a:hover,
+aside a.active {
+    background: color-mix(in oklab, var(--brand) 14%, transparent);
+}
+
+aside strong {
+    padding: 0 0.75rem 0.25rem;
+}
+
+/* ── Buttons ── */
+button {
+    padding: 0.5rem 1.125rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-elev);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+button.primary {
+    border-color: var(--brand);
+    background: var(--brand);
+    color: var(--brand-on);
+}
+
+/* ── Pictures: gradients in place of images, three in turn, counted among the pictures or among the articles
+   that hold them ── */
+.thumb {
+    height: 7rem;
+    border-radius: 10px;
+    background: var(--demo-gradient-1);
+}
+
+.thumb:nth-child(3n + 2),
+article:nth-child(3n + 2) > .thumb {
+    background: var(--demo-gradient-2);
+}
+
+.thumb:nth-child(3n),
+article:nth-child(3n) > .thumb {
+    background: var(--demo-gradient-3);
+}
+
+/* A card's picture runs to its edges, under its rounded top */
+.card > .thumb {
+    height: 9.5rem;
+    border-radius: 0;
+}
+
+.avatar {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.badge {
+    padding: 0.125rem 0.75rem;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--brand) 16%, transparent);
+    color: var(--brand-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+}

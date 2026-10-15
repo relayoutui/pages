@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="assets/css/brand.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
     <script type="module" src="assets/js/home.js"></script>
+    <script type="module" src="assets/js/demo.js"></script>
 </head>
 <body>
     <nav class="nav">
@@ -73,10 +74,148 @@
                     </div>
                 </div>
 
-                <div class="demo-placeholder rl-column rl-align-center rl-justify-center rl-gap-s rl-padding-xl">
-                    <p class="demo-placeholder-title">Layout demo</p>
-                    <p class="demo-placeholder-body">Common layouts, rendered live, with their source. Coming soon.</p>
-                </div>
+                <!-- Each template is one preset: demo.js renders it and shows it as source, so the two always match.
+                     The rl- classes are the layout. The others (logo, primary, hero, thumb, avatar, badge, stat, card,
+                     active) are the examples' look, in assets/css/demo-preset.css. Links have no href, so they don't
+                     navigate the page. -->
+                <relayout-demo>
+                    <template data-label="Header">
+                        <div class="rl-column" style="min-height: 100%;">
+                            <header class="rl-row rl-justify-between rl-gap-l rl-padding-l">
+                                <span class="logo">Acme</span>
+                                <nav class="rl-row rl-gap-l">
+                                    <a>Product</a>
+                                    <a>Pricing</a>
+                                    <a>Docs</a>
+                                    <button class="primary">Sign in</button>
+                                </nav>
+                            </header>
+                            <main class="hero rl-column rl-align-center rl-justify-center rl-gap-l rl-padding-xl rl-height-fill rl-text-center">
+                                <h2>Ship your next idea</h2>
+                                <p>The name sits on the left and the links on the right. Narrow the frame and the links wrap under the name.</p>
+                                <div class="rl-row rl-justify-center rl-gap-m">
+                                    <button class="primary">Get started</button>
+                                    <button>Learn more</button>
+                                </div>
+                            </main>
+                        </div>
+                    </template>
+                    <template data-label="Page with footer">
+                        <div class="rl-column" style="min-height: 100%;">
+                            <header class="rl-row rl-justify-between rl-gap-l rl-padding-l">
+                                <span class="logo">Acme</span>
+                                <nav class="rl-row rl-gap-l">
+                                    <a>Docs</a>
+                                    <a class="active">Blog</a>
+                                    <a>About</a>
+                                </nav>
+                            </header>
+                            <main class="rl-column rl-gap-l rl-padding-xl rl-height-fill">
+                                <h2>Blog</h2>
+                                <div class="rl-grid rl-grid-fit-l rl-gap-l">
+                                    <article class="rl-column rl-gap-m">
+                                        <div class="thumb"></div>
+                                        <h3>Layouts without media queries</h3>
+                                    </article>
+                                    <article class="rl-column rl-gap-m">
+                                        <div class="thumb"></div>
+                                        <h3>Four layouts are enough</h3>
+                                    </article>
+                                    <article class="rl-column rl-gap-m">
+                                        <div class="thumb"></div>
+                                        <h3>Fill, scroll and between</h3>
+                                    </article>
+                                </div>
+                            </main>
+                            <footer class="rl-row rl-justify-between rl-gap-l rl-padding-l">
+                                <span>© Acme</span>
+                                <nav class="rl-row rl-gap-l">
+                                    <a>Terms</a>
+                                    <a>Privacy</a>
+                                </nav>
+                            </footer>
+                        </div>
+                    </template>
+                    <template data-label="App shell">
+                        <div class="rl-column rl-height-full">
+                            <header class="rl-row rl-justify-between rl-gap-l rl-padding-l">
+                                <span class="logo">Acme</span>
+                                <span class="avatar">JD</span>
+                            </header>
+                            <div class="rl-row rl-nowrap rl-height-fill">
+                                <aside class="rl-column rl-gap-xs rl-padding-m rl-height-fill rl-scroll" style="width: 12em;">
+                                    <a class="active">Dashboard</a>
+                                    <a>Projects</a>
+                                    <a>Tasks</a>
+                                    <a>Calendar</a>
+                                    <a>Team</a>
+                                    <a>Reports</a>
+                                    <a>Invoices</a>
+                                    <a>Customers</a>
+                                    <a>Integrations</a>
+                                    <a>Billing</a>
+                                    <a>Settings</a>
+                                    <a>Help</a>
+                                </aside>
+                                <main class="rl-column rl-gap-l rl-padding-xl rl-width-fill rl-height-fill rl-scroll">
+                                    <h2>Dashboard</h2>
+                                    <div class="rl-grid rl-grid-fit-m rl-gap-m">
+                                        <div class="stat rl-column rl-gap-xs rl-padding-l rl-border rl-radius-m"><span>Projects</span><strong>12</strong></div>
+                                        <div class="stat rl-column rl-gap-xs rl-padding-l rl-border rl-radius-m"><span>Open tasks</span><strong>48</strong></div>
+                                        <div class="stat rl-column rl-gap-xs rl-padding-l rl-border rl-radius-m"><span>Team</span><strong>7</strong></div>
+                                    </div>
+                                    <p>The header stays put. The sidebar and this area each scroll on their own.</p>
+                                    <div class="rl-row rl-justify-between rl-gap-m rl-padding-m rl-border rl-radius-m"><span>Website redesign</span><span class="badge">Today</span></div>
+                                    <div class="rl-row rl-justify-between rl-gap-m rl-padding-m rl-border rl-radius-m"><span>Mobile app</span><span class="badge">Tomorrow</span></div>
+                                    <div class="rl-row rl-justify-between rl-gap-m rl-padding-m rl-border rl-radius-m"><span>Billing update</span><span class="badge">Friday</span></div>
+                                    <div class="rl-row rl-justify-between rl-gap-m rl-padding-m rl-border rl-radius-m"><span>Onboarding emails</span><span class="badge">Next week</span></div>
+                                    <div class="rl-row rl-justify-between rl-gap-m rl-padding-m rl-border rl-radius-m"><span>Search</span><span class="badge">Next month</span></div>
+                                    <div class="rl-row rl-justify-between rl-gap-m rl-padding-m rl-border rl-radius-m"><span>Dark theme</span><span class="badge">Later</span></div>
+                                </main>
+                            </div>
+                        </div>
+                    </template>
+                    <template data-label="Card" data-padded>
+                        <article class="card rl-column rl-border rl-radius-l rl-width-s">
+                            <div class="thumb"></div>
+                            <div class="rl-column rl-gap-m rl-padding-l">
+                                <div class="rl-row rl-justify-between rl-gap-m">
+                                    <h3>Cabin by the lake</h3>
+                                    <span class="badge">New</span>
+                                </div>
+                                <p>The title and the badge are pushed apart. When the card is too narrow for both, the badge moves under the title.</p>
+                                <hr class="rl-divider" />
+                                <div class="rl-row rl-justify-between rl-gap-m">
+                                    <span class="avatar">JD</span>
+                                    <div class="rl-row rl-gap-s">
+                                        <button>Save</button>
+                                        <button class="primary">Book</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </template>
+                    <template data-label="Sidebar" data-padded>
+                        <div class="rl-row rl-align-start rl-gap-l">
+                            <aside class="rl-column rl-gap-xs rl-padding-m rl-border rl-radius-m" style="width: 12em;">
+                                <strong>Filters</strong>
+                                <a class="active">All</a>
+                                <a>Open</a>
+                                <a>Closed</a>
+                                <a>Archived</a>
+                            </aside>
+                            <main class="rl-column rl-gap-m rl-width-fill" style="min-width: 16em;">
+                                <h2>Results</h2>
+                                <p>The content takes the width the sidebar leaves. When less than 16em would be left, it moves below the sidebar.</p>
+                                <div class="rl-grid rl-grid-fit-m rl-gap-m">
+                                    <div class="thumb"></div>
+                                    <div class="thumb"></div>
+                                    <div class="thumb"></div>
+                                </div>
+                            </main>
+                        </div>
+                    </template>
+                </relayout-demo>
             </div>
         </section>
     </main>
