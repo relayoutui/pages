@@ -46,17 +46,45 @@
 /* ── Layout demo ──
    The page's half of <relayout-demo> (assets/js/demo.js): the buttons, the source view and the hint. The preset
    itself is styled inside its shadow root, by demo-preset.css. */
-/* The frame (inside the shadow root, demo-preset.css) and the source view read the same height and shadow, so the
-   toggle swaps one for the other in place. The shadow is the code window's (pages-base.css), per theme; the theme
-   is on <html>, which the shadow root's own selectors can't see, so it reaches the frame as a custom property. */
+/* The frame (inside the shadow root, demo-preset.css) and the source view read the same height, so the toggle swaps
+   one for the other in place */
 relayout-demo {
     --demo-height: 32rem;
-    --demo-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05);
     display: block;
 }
 
-[data-theme="dark"] relayout-demo {
-    --demo-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.3);
+/* ── The window ──
+   Round the preview and the source, so the demo reads as a demo and not as part of the page: a title bar with
+   window dots, the preset as a file name and a Live demo badge (pages-base.css's code window title bar and badge),
+   over a recessed body that shows beside a narrowed frame. The code window's border, corners and shadow. */
+.demo-window {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-alt);
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .demo-window {
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.3);
+}
+
+/* Decoration, in the colours windows use for them */
+.demo-window .code-dot:nth-child(1) {
+    background: #ff5f57;
+}
+
+.demo-window .code-dot:nth-child(2) {
+    background: #febc2e;
+}
+
+.demo-window .code-dot:nth-child(3) {
+    background: #28c840;
+}
+
+.demo-window .badge {
+    padding: 1px 8px;
+    font-size: 0.75rem;
 }
 
 /* The chosen preset and view, in the brand's tone, as the Documentation button is at rest */
@@ -70,18 +98,13 @@ relayout-demo .btn[aria-pressed="true"] {
     visibility: hidden;
 }
 
-/* The border counts inside the height, as the frame's does */
+/* The padding counts inside the height, so it matches the frame's */
 .demo-source {
     box-sizing: border-box;
     height: var(--demo-height);
-    box-shadow: var(--demo-shadow);
-}
-
-.demo-source .code-body {
-    box-sizing: border-box;
-    height: 100%;
     margin: 0;
     overflow: auto;
+    background: var(--bg-elev);
 }
 
 /* pages-base.css draws inline code as a chip; a block of source is one piece of text */

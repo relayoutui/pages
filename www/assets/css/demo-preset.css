@@ -25,9 +25,10 @@
 }
 
 /* ── The frame ──
-   Its height and shadow are the demo's (--demo-height and --demo-shadow, set on <relayout-demo> in home.css), the
-   same as the source view's, so the toggle swaps one for the other in place. Resizable from its lower right corner,
-   to see the layout at another width; it scrolls if a preset is taller. */
+   Inside the demo's window (home.css), under its title bar. Its height is the demo's (--demo-height, set on
+   <relayout-demo> in home.css), the same as the source view's, so the toggle swaps one for the other in place.
+   Resizable from its lower right corner, to see the layout at another width; it scrolls if a preset is taller. The
+   line on its right shows where a narrowed frame ends; at full width the window's edge hides it. */
 .frame {
     box-sizing: border-box;
     height: var(--demo-height, 32rem);
@@ -35,10 +36,8 @@
     max-width: 100%;
     overflow: auto;
     resize: horizontal;
-    border: 1px solid var(--border);
-    border-radius: 12px;
     background: var(--bg);
-    box-shadow: var(--demo-shadow);
+    box-shadow: 1px 0 0 var(--border);
 }
 
 /* A definite height, so a preset's rl-height-full (the app shell) and min-height: 100% (the pages) resolve to the

@@ -147,7 +147,7 @@ class RelayoutDemo extends HTMLElement
             });
     }
 
-    /** Builds the preset buttons, the Preview and Source toggle, the frame and the source view. */
+    /** Builds the preset buttons, the Preview and Source toggle, and the window holding the frame and the source. */
     _build()
     {
         const presetGroup = element('div', 'rl-row rl-gap-s', { role: 'group', 'aria-label': 'Preset layouts' });
@@ -182,16 +182,29 @@ class RelayoutDemo extends HTMLElement
         frame.append(this._content);
         this._root.append(frame);
 
-        this._source = element('div', 'demo-source code-window');
-        const pre = element('pre', 'code-body');
+        this._source = element('pre', 'demo-source code-body');
         this._code = element('code', '');
-        pre.append(this._code);
-        this._source.append(pre);
+        this._source.append(this._code);
+
+        // A window round both, so the demo reads as a demo and not as part of the page: window dots, the preset as
+        // a file name, and a Live demo badge
+        const dots = element('span', 'rl-row rl-nowrap rl-gap-m', { 'aria-hidden': 'true' });
+        dots.append(element('span', 'code-dot'), element('span', 'code-dot'), element('span', 'code-dot'));
+        this._filename = element('span', 'code-filename rl-width-fill');
+        const badge = element('span', 'badge');
+        badge.append(element('span', 'badge-dot'), 'Live demo');
+        const titlebar = element('div', 'code-titlebar rl-row rl-nowrap rl-gap-m');
+        titlebar.append(dots, this._filename, badge);
+
+        const windowBody = element('div', 'demo-window-body');
+        windowBody.append(this._stage, this._source);
+        const demoWindow = element('div', 'demo-window');
+        demoWindow.append(titlebar, windowBody);
 
         this._hint = element('p', 'demo-hint');
 
         const body = element('div', 'rl-column rl-gap-m');
-        body.append(bar, this._stage, this._source, this._hint);
+        body.append(bar, demoWindow, this._hint);
         this.append(body);
     }
 
@@ -206,6 +219,7 @@ class RelayoutDemo extends HTMLElement
 
         this._content.className = 'padded' in template.dataset ? 'content is-padded' : 'content';
         this._content.replaceChildren(template.content.cloneNode(true));
+        this._filename.textContent = `${template.dataset.label.toLowerCase().replace(/\W+/g, '-')}.html`;
 
         this._code.replaceChildren();
         appendHighlighted(this._code, dedent(template.innerHTML));
