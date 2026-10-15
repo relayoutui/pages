@@ -48,13 +48,21 @@
     height: 100%;
 }
 
-/* A preset that doesn't fill the frame sits in from its edges, in the middle of its height. `safe` keeps a preset
-   taller than the frame from being pushed out of reach above the top. */
+/* A preset that doesn't fill the frame sits in from its edges, in the middle of its height. It is at least as tall
+   as the frame and grows with the preset, so a preset taller than the frame (a card in a narrow frame) makes the
+   frame scroll, with the padding below it too. Its child keeps its height: a flex item with overflow hidden, as the
+   card is, would otherwise shrink to the frame's height and clip its own bottom. */
 .content.is-padded {
     display: flex;
     flex-direction: column;
-    justify-content: safe center;
+    justify-content: center;
+    height: auto;
+    min-height: 100%;
     padding: 2rem;
+}
+
+.content.is-padded > * {
+    flex-shrink: 0;
 }
 
 /* ── Surfaces ── */
