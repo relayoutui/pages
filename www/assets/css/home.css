@@ -43,26 +43,54 @@
     }
 }
 
-/* ── Demo placeholder ──
-   Where the layout demo goes: as wide as the hero's column and about as tall as a preset will be, on the alternate
-   band's colour with a dashed edge, so it reads as a space kept rather than as content. */
-.demo-placeholder {
-    width: 100%;
-    min-height: 20rem;
-    border: 1px dashed var(--border);
-    border-radius: 12px;
-    background: var(--bg-alt);
+/* ── Layout demo ──
+   The page's half of <relayout-demo> (assets/js/demo.js): the buttons, the source view and the hint. The preset
+   itself is styled inside its shadow root, by demo-preset.css. */
+relayout-demo {
+    display: block;
+}
+
+/* The chosen preset and view, in the brand's tone, as the Documentation button is at rest */
+relayout-demo .btn[aria-pressed="true"] {
+    border-color: color-mix(in oklab, var(--brand) 50%, var(--border));
+    color: var(--brand-text);
+}
+
+/* Hidden until the preset's styles have loaded, so it never shows unstyled. It keeps its height meanwhile. */
+.demo-stage.is-loading {
+    visibility: hidden;
+}
+
+/* The same height as the frame, so the toggle swaps one for the other in place */
+.demo-source {
+    height: 22rem;
+}
+
+.demo-source .code-body {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
+    overflow: auto;
+}
+
+/* pages-base.css draws inline code as a chip; a block of source is one piece of text */
+.demo-source code {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: inherit;
+}
+
+.demo-hint {
+    margin: 0;
     color: var(--text-subtle);
+    font-size: 0.8125rem;
     text-align: center;
 }
 
-.demo-placeholder-title {
-    margin: 0;
-    color: var(--text-muted);
-    font-weight: 600;
-}
-
-.demo-placeholder-body {
-    margin: 0;
-    font-size: 0.9375rem;
+/* A touch screen has no corner to drag */
+@media (hover: none), (pointer: coarse) {
+    .demo-hint {
+        display: none;
+    }
 }

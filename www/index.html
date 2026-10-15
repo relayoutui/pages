@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="assets/css/brand.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
     <script type="module" src="assets/js/home.js"></script>
+    <script type="module" src="assets/js/demo.js"></script>
 </head>
 <body>
     <nav class="nav">
@@ -73,10 +74,106 @@
                     </div>
                 </div>
 
-                <div class="demo-placeholder rl-column rl-align-center rl-justify-center rl-gap-s rl-padding-xl">
-                    <p class="demo-placeholder-title">Layout demo</p>
-                    <p class="demo-placeholder-body">Common layouts, rendered live, with their source. Coming soon.</p>
-                </div>
+                <!-- Each template is one preset: demo.js renders it and shows it as source, so the two always match.
+                     Links have no href, so they don't navigate the page. -->
+                <relayout-demo>
+                    <template data-label="Header">
+                        <header class="rl-row rl-justify-between rl-gap-m rl-padding-m">
+                            <strong>Acme</strong>
+                            <nav class="rl-row rl-gap-l">
+                                <a>Product</a>
+                                <a>Pricing</a>
+                                <a>Docs</a>
+                                <a>Sign in</a>
+                            </nav>
+                        </header>
+                    </template>
+                    <template data-label="Page with footer">
+                        <div class="rl-column rl-height-full">
+                            <header class="rl-row rl-justify-between rl-gap-m rl-padding-m">
+                                <strong>Acme</strong>
+                                <nav class="rl-row rl-gap-l">
+                                    <a>Docs</a>
+                                    <a>Blog</a>
+                                </nav>
+                            </header>
+                            <main class="rl-column rl-gap-s rl-padding-l rl-height-fill">
+                                <h3>Page title</h3>
+                                <p>The main area takes the height the header and footer leave, so the footer stays at the bottom.</p>
+                            </main>
+                            <footer class="rl-row rl-justify-between rl-gap-m rl-padding-m">
+                                <span>© Acme</span>
+                                <nav class="rl-row rl-gap-l">
+                                    <a>Terms</a>
+                                    <a>Privacy</a>
+                                </nav>
+                            </footer>
+                        </div>
+                    </template>
+                    <template data-label="App shell">
+                        <div class="rl-column rl-height-full">
+                            <header class="rl-row rl-justify-between rl-gap-m rl-padding-m">
+                                <strong>Acme</strong>
+                                <button>Account</button>
+                            </header>
+                            <div class="rl-row rl-nowrap rl-height-fill">
+                                <aside class="rl-column rl-gap-m rl-padding-m rl-height-fill rl-scroll" style="width: 10em;">
+                                    <a>Dashboard</a>
+                                    <a>Projects</a>
+                                    <a>Tasks</a>
+                                    <a>Calendar</a>
+                                    <a>Team</a>
+                                    <a>Reports</a>
+                                    <a>Invoices</a>
+                                    <a>Customers</a>
+                                    <a>Integrations</a>
+                                    <a>Billing</a>
+                                    <a>Settings</a>
+                                    <a>Help</a>
+                                </aside>
+                                <main class="rl-column rl-gap-m rl-padding-m rl-width-fill rl-height-fill rl-scroll">
+                                    <h3>Dashboard</h3>
+                                    <p>The header stays put. The sidebar and this area each scroll on their own.</p>
+                                    <div class="rl-row rl-justify-between rl-padding-m rl-border rl-radius-m"><span>Website redesign</span><span>Today</span></div>
+                                    <div class="rl-row rl-justify-between rl-padding-m rl-border rl-radius-m"><span>Mobile app</span><span>Tomorrow</span></div>
+                                    <div class="rl-row rl-justify-between rl-padding-m rl-border rl-radius-m"><span>Billing update</span><span>Friday</span></div>
+                                    <div class="rl-row rl-justify-between rl-padding-m rl-border rl-radius-m"><span>Onboarding emails</span><span>Next week</span></div>
+                                    <div class="rl-row rl-justify-between rl-padding-m rl-border rl-radius-m"><span>Search</span><span>Next month</span></div>
+                                    <div class="rl-row rl-justify-between rl-padding-m rl-border rl-radius-m"><span>Reports export</span><span>Next month</span></div>
+                                    <div class="rl-row rl-justify-between rl-padding-m rl-border rl-radius-m"><span>Dark theme</span><span>Later</span></div>
+                                </main>
+                            </div>
+                        </div>
+                    </template>
+                    <template data-label="Card" data-padded>
+                        <article class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-s">
+                            <div class="rl-row rl-justify-between rl-gap-m">
+                                <strong>Card title</strong>
+                                <button>Share</button>
+                            </div>
+                            <hr class="rl-divider" />
+                            <p>The title and its action are pushed apart. When the card is too narrow for both, the action moves under the title.</p>
+                            <div class="rl-row rl-justify-end rl-gap-s">
+                                <button>Dismiss</button>
+                                <button>Open</button>
+                            </div>
+                        </article>
+                    </template>
+                    <template data-label="Sidebar" data-padded>
+                        <div class="rl-row rl-align-start rl-gap-m">
+                            <aside class="rl-column rl-gap-s rl-padding-m rl-border rl-radius-m" style="width: 12em;">
+                                <strong>Filters</strong>
+                                <a>All</a>
+                                <a>Open</a>
+                                <a>Closed</a>
+                            </aside>
+                            <main class="rl-column rl-gap-s rl-width-fill" style="min-width: 16em;">
+                                <h3>Results</h3>
+                                <p>The content takes the width the sidebar leaves. When less than 16em would be left, it moves below the sidebar.</p>
+                            </main>
+                        </div>
+                    </template>
+                </relayout-demo>
             </div>
         </section>
     </main>

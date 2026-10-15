@@ -1,0 +1,104 @@
+/* Inside each preset's shadow root on the home page (assets/js/demo.js), after relayout.css. The page's tokens
+   (pages-base.css, brand.css) reach in as inherited custom properties, so a preset follows the theme. The plain
+   elements a preset is made of get the page's neutral surfaces here, so its source shows Relayout's classes and
+   little else. */
+
+/* Relayout's default border is a mid grey; the page's hairline fits the surfaces */
+:host {
+    --rl-border-default: solid 1px var(--border);
+    display: block;
+    color: var(--text);
+    font-family: var(--rl-font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* The rule above would otherwise beat the browser's own for `hidden`, which the Source view sets on the host */
+:host([hidden]) {
+    display: none;
+}
+
+/* A fixed height, so switching presets doesn't move the page. Resizable from its lower right corner, to see the
+   layout at another width; the frame scrolls if a preset is taller. */
+.frame {
+    box-sizing: border-box;
+    height: 22rem;
+    min-width: 12rem;
+    max-width: 100%;
+    overflow: auto;
+    resize: horizontal;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+}
+
+.content {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.content.is-padded {
+    padding: 1.5rem;
+}
+
+header,
+footer {
+    background: var(--bg-chrome);
+}
+
+header {
+    border-bottom: 1px solid var(--border);
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+}
+
+aside {
+    background: var(--bg-alt);
+}
+
+article {
+    background: var(--bg-elev);
+}
+
+/* The name in a header is the one touch of the brand */
+header > strong:first-child {
+    color: var(--brand-text);
+}
+
+h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+p {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+/* Links without an href, so they don't navigate the page: they still look and act like links */
+a {
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+a:hover {
+    color: var(--brand-text);
+}
+
+button {
+    padding: 0.375rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-elev);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
