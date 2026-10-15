@@ -21,10 +21,6 @@ export default defineConfig({
             title: 'Relayout Docs',
             description: 'Relayout is a lightweight, responsive layout system: compose interfaces from a few primitive layouts and modifiers, without media queries.',
             favicon: '/favicon.ico',
-            social: [
-                { icon: 'github', label: 'GitHub', href: 'https://github.com/relayoutui/relayout' },
-                { icon: 'npm', label: 'npm', href: 'https://www.npmjs.com/package/@relayoutui/relayout' },
-            ],
             head: umamiWebsiteId
                 ? [
                     {
@@ -33,12 +29,14 @@ export default defineConfig({
                     },
                 ]
                 : [],
-            // The header, frame, title and theme toggle of the other product docs (lpdf.io, authstack.id)
+            // The header, frame, title, header links and theme toggle of the other product docs
+            // (lpdf.io, authstack.id). The GitHub and npm links are in social-icons.astro.
             components: {
                 Head: './src/components/head.astro',
                 Header: './src/components/header.astro',
                 PageFrame: './src/components/page-frame.astro',
                 SiteTitle: './src/components/site-title.astro',
+                SocialIcons: './src/components/social-icons.astro',
                 ThemeProvider: './src/components/theme-provider.astro',
                 ThemeSelect: './src/components/theme-toggle.astro',
             },
