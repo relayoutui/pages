@@ -24,7 +24,7 @@ The page loads nothing from another site.
 
 ## Locally
 
-The Caddyfile in `_local` serves this repo at http://relayout.local: `www/` at `/pages/` and the docs' build at `/pages/docs/`, and `/` goes to `/pages/`. Clone the repo into `relayout/pages`, beside the Relayout code, for its paths to match. A change in `www/` shows on reload. The docs need `npm run build` in `docs-site` first, then reload; `/pages/docs` is 404 until a build has run.
+The Caddyfile in `_local` serves this repo at http://relayout.local: `www/` at `/pages/` and the docs' build at `/pages/docs/`, and `/` goes to `/pages/`. Clone the repo into `relayout/repos/relayout-pages`, beside the Relayout code in `relayout/repos/relayout`, for its paths to match. A change in `www/` shows on reload. The docs need `npm run build` in `docs-site` first, then reload; `/pages/docs` is 404 until a build has run.
 
 ## Deploy
 
