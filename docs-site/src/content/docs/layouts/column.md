@@ -276,15 +276,15 @@ Apply class `rl-radius-*` to the column container, where `*` can be `xs`, `s`, `
 
 ## Width
 
-By default, containers take up the full width available to them. Width classes constrain the maximum width and center the container horizontally.
+By default, containers take up the full width available to them. Width classes constrain the maximum width, and `rl-center-self` centers the container horizontally.
 
 Apply class `rl-width-*` to the container, where `*` can be `xs`, `s`, `m`, `l`, `xl`, or `2xl`.
 
 ```html preview
 <div>
-    <div class="rl-radius-m rl-padding-m rl-border rl-width-xs">Acta non verba</div>
+    <div class="rl-radius-m rl-padding-m rl-border rl-width-xs rl-center-self">Acta non verba</div>
     <br />
-    <div class="rl-radius-l rl-padding-m rl-border  rl-width-s">Tempus fugit</div>
+    <div class="rl-radius-l rl-padding-m rl-border  rl-width-s rl-center-self">Tempus fugit</div>
 </div>
 ```
 

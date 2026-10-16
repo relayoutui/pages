@@ -9,18 +9,18 @@ Relayout is before 1.0, so a release can rename classes. Each example below name
 
 ## CDN Installation
 
-Add the following code to your page in the `<head>` section, where `0.2.2` is the version to load.
+Add the following code to your page in the `<head>` section, where `0.3.0` is the version to load.
 
 ```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.2.2/dist/css/relayout.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.3.0/dist/css/relayout.css" />
 ```
 
 ## Local Installation
 
-Download the Relayout version from the CDN to a local css file, `https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.2.2/dist/css/relayout.css`, which you link in your project. Include this css file in the build.
+Download the Relayout version from the CDN to a local css file, `https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.3.0/dist/css/relayout.css`, which you link in your project. Include this css file in the build.
 
 ```
-<link rel="stylesheet" href="assets/vendors/relayout-0.2.2/relayout.css" />
+<link rel="stylesheet" href="assets/vendors/relayout-0.3.0/relayout.css" />
 ```
 
 ## NPM Installation
@@ -68,7 +68,7 @@ You can update `package.json` file and add a `build-css` script to build your sc
     "build-css": "sass --load-path=node_modules scss/app.scss assets/css/app.css"
   },
   "dependencies": {
-    "@relayoutui/relayout": "^0.2.2",
+    "@relayoutui/relayout": "^0.3.0",
     "sass": "^1.93.3"
   }
 }

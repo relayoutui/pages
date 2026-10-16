@@ -284,19 +284,19 @@ Apply class `rl-radius-*` to the row container, where `*` can be `xs`, `s`, `m`,
 
 ## Width
 
-By default, containers take up the full width available to them. Width classes constrain the maximum width and center the container horizontally.
+By default, containers take up the full width available to them. Width classes constrain the maximum width, and `rl-center-self` centers the container horizontally.
 
 Apply class `rl-width-*` to the container, where `*` can be `xs`, `s`, `m`, `l`, `xl`, or `2xl`.
 
 ```html preview
 <div>
-    <div class="rl-row rl-gap-s rl-radius-m rl-padding-m rl-border rl-width-s">
+    <div class="rl-row rl-gap-s rl-radius-m rl-padding-m rl-border rl-width-s rl-center-self">
         <div>Small</div>
         <div>Width</div>
         <div>Container</div>
     </div>
     <br />
-    <div class="rl-row rl-gap-s rl-radius-l rl-padding-m rl-border rl-width-l">
+    <div class="rl-row rl-gap-s rl-radius-l rl-padding-m rl-border rl-width-l rl-center-self">
         <div>Large</div>
         <div>Width</div>
         <div>Container</div>

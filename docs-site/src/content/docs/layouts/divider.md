@@ -135,7 +135,7 @@ Dividers are commonly used in menus and navigation components.
 ```
 
 ```html preview
-<div class="rl-column rl-border rl-radius-m rl-width-xs">
+<div class="rl-column rl-border rl-radius-m rl-width-xs rl-center-self">
     <div class="rl-padding-m">Dashboard</div>
     <div class="rl-divider"></div>
     <div class="rl-padding-m">Projects</div>
