@@ -439,20 +439,20 @@ Apply class `rl-radius-*` to the grid container, where `*` can be `xs`, `s`, `m`
 
 ## Width
 
-By default, containers take up the full width available to them. Width classes constrain the maximum width and center the container horizontally.
+By default, containers take up the full width available to them. Width classes constrain the maximum width, and `rl-center-self` centers the container horizontally.
 
 Apply class `rl-width-*` to the container, where `*` can be `xs`, `s`, `m`, `l`, `xl`, or `2xl`.
 
 ```html preview
 <div>
-    <div class="rl-grid rl-gap-m rl-radius-m rl-padding-m rl-border rl-width-xs">
+    <div class="rl-grid rl-gap-m rl-radius-m rl-padding-m rl-border rl-width-xs rl-center-self">
         <div>Item 1</div>
         <div>Item 2</div>
         <div>Item 3</div>
         <div>Item 4</div>
     </div>
     <br />
-    <div class="rl-grid rl-gap-m rl-radius-l rl-padding-m rl-border rl-width-s">
+    <div class="rl-grid rl-gap-m rl-radius-l rl-padding-m rl-border rl-width-s rl-center-self">
         <div>Item 1</div>
         <div>Item 2</div>
         <div>Item 3</div>

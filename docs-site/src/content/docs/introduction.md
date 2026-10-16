@@ -292,7 +292,7 @@ Layouts adapt to available space without media queries.
 Use width modifiers to control layout boundaries:
 
 ```html preview
-<div class="rl-column rl-gap-l rl-width-s">
+<div class="rl-column rl-gap-l rl-width-s rl-center-self">
     <div class="rl-row rl-gap-m rl-padding-m rl-border rl-radius-m">
         <div style="font-weight: bold;">Constrained Header</div>
         <div class="rl-row rl-gap-m rl-width-fill">
@@ -303,12 +303,12 @@ Use width modifiers to control layout boundaries:
     </div>
     <div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m">
         <div>Centered content area with maximum width for readability.</div>
-        <div>The width modifier centers and constrains the entire composition.</div>
+        <div>The width modifier constrains the entire composition, and rl-center-self centers it.</div>
     </div>
 </div>
 ```
 
-Width modifiers center and constrain entire composed layouts.
+Width modifiers constrain entire composed layouts, and `rl-center-self` centers them.
 
 ## Vertical space composition
 

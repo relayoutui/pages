@@ -1,17 +1,19 @@
 ---
 title: "Width"
-description: "The width modifier constrains the maximum width of a container and centers it horizontally within its parent. By default, all layout containers expand to fill 100% of the available width. Width modifiers provide a way to limit content width for better readability and visual hierarchy."
+description: "The width modifier constrains the maximum width of a container, and rl-center-self centers it horizontally within its parent. By default, all layout containers expand to fill 100% of the available width. Width modifiers provide a way to limit content width for better readability and visual hierarchy."
 ---
 
-Class: `rl-width-*`
+Classes: `rl-width-*`, `rl-center-self`
 
-The width modifier constrains the maximum width of a container and centers it horizontally within its parent. By default, all layout containers expand to fill 100% of the available width. Width modifiers provide a way to limit content width for better readability and visual hierarchy.
+The width modifier constrains the maximum width of a container. Below that width, the container fills its parent. By default, all layout containers expand to fill 100% of the available width. Width modifiers provide a way to limit content width for better readability and visual hierarchy.
+
+The width modifier doesn't center: `rl-center-self` centers the container horizontally within its parent. Most examples on this page use both.
 
 Width modifiers are well suited for constraining content areas, creating centered layouts, managing line length for text readability, and establishing visual hierarchy through size variation.
 
 ## Width values
 
-The width modifier comes in six sizes, each setting a `max-width` value and centering the container with `margin: 0 auto`:
+The width modifier comes in six sizes, each setting a `max-width` value, and `width: 100%` below it:
 
 - **`rl-width-xs`**: Maximum width of `20rem` (320px) - ideal for narrow columns, sidebars
 - **`rl-width-s`**: Maximum width of `30rem` (480px) - good for forms, short content
@@ -22,25 +24,48 @@ The width modifier comes in six sizes, each setting a `max-width` value and cent
 
 `rl-width-fill` isn't one of these limits: it makes an element take the remaining width in a row. See [Height, fill and scroll](/pages/docs/modifiers/height/).
 
+## Centering
+
+`rl-center-self` centers an element in its parent, with `margin-inline: auto`. It centers horizontally only, in any parent: a plain block, a column, a row or a grid cell. It goes on the element itself, unlike `rl-align-center` and `rl-justify-center`, which go on the parent and place all of its children.
+
+Without it, the parent places the element. A limited element sits at the start, or wherever the parent's `rl-align-*` or `rl-justify-*` puts it.
+
+```html preview
+<div class="rl-column rl-gap-m">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-xs">At the start</div>
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-xs rl-center-self">Centered with rl-center-self</div>
+</div>
+```
+
+```html preview
+<div class="rl-column rl-align-end rl-gap-m">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-xs">At the end, from the column's rl-align-end</div>
+</div>
+```
+
+On a Relayout element, both are attributes: `<rl-column rl-width-m rl-center-self>`.
+
+Before 0.3.0, `rl-width-*` also centered, and `rl-center-self` didn't exist. Markup with both classes lays out the same on either version.
+
 ## Width with column
 
 Width modifiers help constrain vertical content for better readability.
 
 ```html preview
-<div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-m">
+<div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-m rl-center-self">
     <div>This is a column with medium width constraint</div>
     <div>Perfect for text content and articles</div>
-    <div>Automatically centered horizontally</div>
+    <div>Centered horizontally with rl-center-self</div>
 </div>
 ```
 
 ```html preview
 <div class="rl-column rl-gap-m">
-    <div class="rl-border rl-padding-m rl-radius-m rl-width-xs">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-xs rl-center-self">
         <div>Extra small width</div>
         <div>Narrow column</div>
     </div>
-    <div class="rl-border rl-padding-m rl-radius-m rl-width-l">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-l rl-center-self">
         <div>Large width</div>
         <div>Wider content area</div>
     </div>
@@ -52,7 +77,7 @@ Width modifiers help constrain vertical content for better readability.
 Width modifiers constrain the wrapping behavior of rows by limiting the available space.
 
 ```html preview
-<div class="rl-row rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-s">
+<div class="rl-row rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-s rl-center-self">
     <div>Tag 1</div>
     <div>Tag 2</div>
     <div>Tag 3</div>
@@ -64,13 +89,13 @@ Width modifiers constrain the wrapping behavior of rows by limiting the availabl
 
 ```html preview
 <div class="rl-column rl-gap-m">
-    <div class="rl-row rl-gap-s rl-padding-m rl-border rl-radius-m rl-width-xs">
+    <div class="rl-row rl-gap-s rl-padding-m rl-border rl-radius-m rl-width-xs rl-center-self">
         <div>Narrow</div>
         <div>Row</div>
         <div>Wraps</div>
         <div>Early</div>
     </div>
-    <div class="rl-row rl-gap-s rl-padding-m rl-border rl-radius-m rl-width-xl">
+    <div class="rl-row rl-gap-s rl-padding-m rl-border rl-radius-m rl-width-xl rl-center-self">
         <div>Wide</div>
         <div>Row</div>
         <div>More</div>
@@ -86,7 +111,7 @@ Width modifiers constrain the wrapping behavior of rows by limiting the availabl
 Width modifiers constrain the overall grid container, affecting how many columns can fit.
 
 ```html preview
-<div class="rl-grid rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-l">
+<div class="rl-grid rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-l rl-center-self">
     <div>Card 1</div>
     <div>Card 2</div>
     <div>Card 3</div>
@@ -98,13 +123,13 @@ Width modifiers constrain the overall grid container, affecting how many columns
 
 ```html preview
 <div class="rl-column rl-gap-m">
-    <div class="rl-grid rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-s">
+    <div class="rl-grid rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-s rl-center-self">
         <div>A</div>
         <div>B</div>
         <div>C</div>
         <div>D</div>
     </div>
-    <div class="rl-grid rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-xl">
+    <div class="rl-grid rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-xl rl-center-self">
         <div>Item 1</div>
         <div>Item 2</div>
         <div>Item 3</div>
@@ -117,20 +142,20 @@ Width modifiers constrain the overall grid container, affecting how many columns
 
 ## Width with frame
 
-Width modifiers can constrain frame containers while maintaining centering behavior.
+Width modifiers can constrain frame containers, which still center their own content.
 
 ```html preview
-<div class="rl-frame rl-padding-l rl-border rl-radius-m rl-width-m" style="height: 12em;">
+<div class="rl-frame rl-padding-l rl-border rl-radius-m rl-width-m rl-center-self" style="height: 12em;">
     <div>Centered content in medium width frame</div>
 </div>
 ```
 
 ```html preview
 <div class="rl-column rl-gap-m">
-    <div class="rl-frame rl-padding-m rl-border rl-radius-m rl-width-xs" style="height: 10em;">
+    <div class="rl-frame rl-padding-m rl-border rl-radius-m rl-width-xs rl-center-self" style="height: 10em;">
         <div>Small frame</div>
     </div>
-    <div class="rl-frame rl-padding-m rl-border rl-radius-m rl-width-l" style="height: 10em;">
+    <div class="rl-frame rl-padding-m rl-border rl-radius-m rl-width-l rl-center-self" style="height: 10em;">
         <div>Large frame with more horizontal space</div>
     </div>
 </div>
@@ -142,22 +167,22 @@ All width sizes shown together for easy comparison:
 
 ```html preview
 <div class="rl-column rl-gap-m">
-    <div class="rl-border rl-padding-m rl-radius-m rl-width-xs">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-xs rl-center-self">
         <div>xs (20rem / 320px)</div>
     </div>
-    <div class="rl-border rl-padding-m rl-radius-m rl-width-s">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-s rl-center-self">
         <div>s (30rem / 480px)</div>
     </div>
-    <div class="rl-border rl-padding-m rl-radius-m rl-width-m">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-m rl-center-self">
         <div>m (40rem / 640px)</div>
     </div>
-    <div class="rl-border rl-padding-m rl-radius-m rl-width-l">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-l rl-center-self">
         <div>l (48rem / 768px)</div>
     </div>
-    <div class="rl-border rl-padding-m rl-radius-m rl-width-xl">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-xl rl-center-self">
         <div>xl (64rem / 1024px)</div>
     </div>
-    <div class="rl-border rl-padding-m rl-radius-m rl-width-2xl">
+    <div class="rl-border rl-padding-m rl-radius-m rl-width-2xl rl-center-self">
         <div>2xl (80rem / 1280px)</div>
     </div>
 </div>
@@ -168,12 +193,12 @@ All width sizes shown together for easy comparison:
 Demonstrate visual hierarchy through width variation:
 
 ```html preview
-<div class="rl-column rl-gap-l rl-padding-xl rl-border rl-radius-m rl-width-2xl">
-    <div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-xl">
+<div class="rl-column rl-gap-l rl-padding-xl rl-border rl-radius-m rl-width-2xl rl-center-self">
+    <div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-xl rl-center-self">
         <div>Extra large container (xl)</div>
-        <div class="rl-column rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-l">
+        <div class="rl-column rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-l rl-center-self">
             <div>Large container (l)</div>
-            <div class="rl-padding-m rl-border rl-radius-m rl-width-m">
+            <div class="rl-padding-m rl-border rl-radius-m rl-width-m rl-center-self">
                 Medium container (m)
             </div>
         </div>
@@ -183,14 +208,14 @@ Demonstrate visual hierarchy through width variation:
 
 ```html preview
 <div class="rl-column rl-gap-m">
-    <div class="rl-padding-m rl-border rl-radius-m rl-width-2xl">
+    <div class="rl-padding-m rl-border rl-radius-m rl-width-2xl rl-center-self">
         Full width header (2xl)
     </div>
-    <div class="rl-column rl-gap-m rl-width-l">
+    <div class="rl-column rl-gap-m rl-width-l rl-center-self">
         <div class="rl-padding-m rl-border rl-radius-m">
             Content area (l)
         </div>
-        <div class="rl-padding-m rl-border rl-radius-m rl-width-s">
+        <div class="rl-padding-m rl-border rl-radius-m rl-width-s rl-center-self">
             Sidebar (s)
         </div>
     </div>
@@ -203,7 +228,7 @@ Width modifiers create focused, readable layouts:
 
 ```html preview
 <div class="rl-column rl-gap-l">
-    <div class="rl-row rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-2xl">
+    <div class="rl-row rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-2xl rl-center-self">
         <div>Logo</div>
         <div class="rl-row rl-gap-m rl-width-fill">
             <div>Home</div>
@@ -211,12 +236,12 @@ Width modifiers create focused, readable layouts:
             <div>About</div>
         </div>
     </div>
-    <div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-l">
+    <div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-l rl-center-self">
         <div>Main Article Content</div>
         <div>Constrained to large width for readability</div>
         <div>Perfect for blog posts and documentation</div>
     </div>
-    <div class="rl-grid rl-gap-m rl-width-xl">
+    <div class="rl-grid rl-gap-m rl-width-xl rl-center-self">
         <div class="rl-padding-m rl-border rl-radius-m">Card 1</div>
         <div class="rl-padding-m rl-border rl-radius-m">Card 2</div>
         <div class="rl-padding-m rl-border rl-radius-m">Card 3</div>
@@ -229,7 +254,7 @@ Width modifiers create focused, readable layouts:
 Width modifiers help create focused, scannable forms:
 
 ```html preview
-<div class="rl-column rl-gap-l rl-padding-l rl-border rl-radius-m rl-width-s">
+<div class="rl-column rl-gap-l rl-padding-l rl-border rl-radius-m rl-width-s rl-center-self">
     <div class="rl-column rl-gap-s">
         <div>Email Address</div>
         <div class="rl-border rl-padding-m rl-radius-s">input field</div>
@@ -251,7 +276,7 @@ Width modifiers create visual structure for cards and content blocks:
 
 ```html preview
 <div class="rl-column rl-gap-m">
-    <div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-m">
+    <div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-m rl-center-self">
         <div style="font-weight: bold;">Featured Article</div>
         <div>This card uses medium width for article previews</div>
         <div class="rl-row rl-gap-s">
@@ -259,7 +284,7 @@ Width modifiers create visual structure for cards and content blocks:
             <div class="rl-border rl-padding-s rl-radius-s">Share</div>
         </div>
     </div>
-    <div class="rl-grid rl-gap-m rl-width-xl">
+    <div class="rl-grid rl-gap-m rl-width-xl rl-center-self">
         <div class="rl-column rl-gap-s rl-padding-m rl-border rl-radius-m">
             <div>Card 1</div>
             <div>Preview text</div>
@@ -282,7 +307,7 @@ Width modifiers organize complex dashboard layouts:
 
 ```html preview
 <div class="rl-column rl-gap-m">
-    <div class="rl-row rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-2xl">
+    <div class="rl-row rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-2xl rl-center-self">
         <div>Dashboard</div>
         <div class="rl-row rl-gap-m rl-width-fill">
             <div>Settings</div>
@@ -290,7 +315,7 @@ Width modifiers organize complex dashboard layouts:
             <div>Logout</div>
         </div>
     </div>
-    <div class="rl-column rl-gap-m rl-width-xl">
+    <div class="rl-column rl-gap-m rl-width-xl rl-center-self">
         <div class="rl-row rl-gap-m">
             <div class="rl-column rl-gap-s rl-padding-m rl-border rl-radius-m rl-width-fill">
                 <div>Total Users</div>
@@ -314,10 +339,10 @@ Width modifiers organize complex dashboard layouts:
 
 ## Usage notes
 
-The width modifier applies `max-width` and horizontal centering to containers:
+The width modifier applies `max-width` to containers:
 
-- **CSS properties**: Sets `max-width` to the specified value and `margin: 0 auto` for centering
-- **Centering behavior**: Containers are automatically centered horizontally within their parent
+- **CSS properties**: Sets `max-width` to the specified value, and `width: 100%` below it
+- **Centering behavior**: `rl-center-self` centers a container horizontally within its parent, with `margin-inline: auto`. Without it, the parent places the container, so `rl-align-*` and `rl-justify-*` apply to it
 - **Responsive behavior**: On screens narrower than the `max-width`, containers shrink to fit
 - **Default behavior**: Without width modifiers, containers expand to fill 100% of available width
 - **CSS variables**: Width values are defined as `--rl-width-xs` through `--rl-width-2xl`
@@ -330,7 +355,7 @@ The width modifier applies `max-width` and horizontal centering to containers:
 - **Combining modifiers**: Width works with all other modifiers (padding, border, radius, gap, etc.)
 - **Grid interaction**: With grids, width affects the total container size, changing how many columns fit
 
-Width modifiers are essential for creating focused, readable layouts and establishing visual hierarchy. They're particularly valuable for content-heavy sites where constraining line length improves readability, and for creating centered layouts without manual margin calculations.
+Width modifiers are essential for creating focused, readable layouts and establishing visual hierarchy. They're particularly valuable for content-heavy sites where constraining line length improves readability, and, with `rl-center-self`, for creating centered layouts without manual margin calculations.
 
 ## Customizing width values
 

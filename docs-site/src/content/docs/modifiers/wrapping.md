@@ -352,7 +352,7 @@ Wrapping modifiers work well with gap, padding, align, and justify.
 Combining wrapping with width constraints:
 
 ```html preview
-<div class="rl-row rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-l">
+<div class="rl-row rl-gap-m rl-padding-m rl-border rl-radius-m rl-width-l rl-center-self">
     <div class="rl-row rl-gap-s">
         <div class="rl-frame" style="height: 2em; width: 2em; background: #e0e0e0; border-radius: 0.25rem;"></div>
         <div style="font-weight: bold;">Brand</div>

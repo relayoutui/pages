@@ -322,7 +322,7 @@ For rounded borders by default, override `--rl-radius-default`:
 - **Padding**: Essential for spacing content from the border
 - **Radius**: Adds rounded corners to borders
 - **Gap**: Controls spacing between items inside the bordered container
-- **Width**: Constrains and centers bordered containers
+- **Width**: Constrains bordered containers, and `rl-center-self` centers them
 - **Dividers**: Creates internal separations within bordered containers
 
 **Technical details:**
