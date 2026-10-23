@@ -53,6 +53,27 @@ relayout-demo {
     display: block;
 }
 
+/* The presets are a made-up site, Acme, so they have an accent of their own: a blue, so the demo isn't a second copy
+   of the page's pink. Same three roles as brand.css, measured 2026-10-22 on the surfaces a preset uses (bg · bg-alt ·
+   bg-elev · bg-chrome), and on the 14% and 16% tints of the accent that the active link and the badge sit on:
+
+       --demo-accent       3:1 as a graphic: light 4.85 · 4.56 · 5.17 · 5.17, dark 4.45 · 4.74 · 4.13 · 4.98
+       --demo-accent-text  4.5:1 as text: light #1d4ed8 6.29 · 5.92 · 6.70 · 6.70, dark #6ea8fe 6.77 · 7.22 · 6.28 · 7.58
+       --demo-accent-on    4.5:1 against the fill: light #ffffff 5.17, dark #06142e 4.98
+
+   The hero's muted line sits on a wash of the accent: at its full 20%, light 5.59, dark 4.60. */
+relayout-demo {
+    --demo-accent: #2563eb;
+    --demo-accent-text: #1d4ed8;
+    --demo-accent-on: #ffffff;
+}
+
+[data-theme="dark"] relayout-demo {
+    --demo-accent: #3b82f6;
+    --demo-accent-text: #6ea8fe;
+    --demo-accent-on: #06142e;
+}
+
 /* ── The window ──
    Round the preview and the source, so the demo reads as a demo and not as part of the page: a title bar with
    window dots, the preset as a file name and a Live demo badge (pages-base.css's code window title bar and badge),

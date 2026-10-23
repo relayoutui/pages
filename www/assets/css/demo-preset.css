@@ -1,5 +1,6 @@
 /* Inside each preset's shadow root on the home page (assets/js/demo.js), after relayout.css. The page's tokens
-   (pages-base.css, brand.css) reach in as inherited custom properties, so a preset follows the theme.
+   (pages-base.css) and the demo's accent (--demo-accent, -text and -on, in home.css) reach in as inherited custom
+   properties, so a preset follows the theme. The examples are Acme's, so none of them draws in the brand's pink.
 
    Relayout's classes in a preset's markup do the layout. This file is the rest: the look of the plain elements, and
    of the few classes of the examples' own (logo, primary, hero, thumb, avatar, badge, stat, card, active), as a
@@ -8,8 +9,8 @@
 /* Relayout's default border is a mid grey; the page's hairline fits the surfaces */
 :host {
     --rl-border-default: solid 1px var(--border);
-    --demo-gradient-1: linear-gradient(135deg, #ec008c, #7c3aed);
-    --demo-gradient-2: linear-gradient(135deg, #f97316, #ec008c);
+    --demo-gradient-1: linear-gradient(135deg, #2563eb, #7c3aed);
+    --demo-gradient-2: linear-gradient(135deg, #f59e0b, #ea580c);
     --demo-gradient-3: linear-gradient(135deg, #06b6d4, #7c3aed);
     display: block;
     color: var(--text);
@@ -94,7 +95,7 @@ aside {
 }
 
 .hero {
-    background: radial-gradient(ellipse at 50% 0%, color-mix(in oklab, var(--brand) 20%, transparent), transparent 70%);
+    background: radial-gradient(ellipse at 50% 0%, color-mix(in oklab, var(--demo-accent) 20%, transparent), transparent 70%);
 }
 
 /* ── Text ── */
@@ -163,7 +164,7 @@ a {
 
 a:hover,
 a.active {
-    color: var(--brand-text);
+    color: var(--demo-accent-text);
 }
 
 aside a {
@@ -173,7 +174,7 @@ aside a {
 
 aside a:hover,
 aside a.active {
-    background: color-mix(in oklab, var(--brand) 14%, transparent);
+    background: color-mix(in oklab, var(--demo-accent) 14%, transparent);
 }
 
 aside strong {
@@ -195,9 +196,9 @@ button {
 }
 
 button.primary {
-    border-color: var(--brand);
-    background: var(--brand);
-    color: var(--brand-on);
+    border-color: var(--demo-accent);
+    background: var(--demo-accent);
+    color: var(--demo-accent-on);
 }
 
 /* ── Pictures: gradients in place of images, three in turn, counted among the pictures or among the articles
@@ -230,7 +231,7 @@ article:nth-child(3n) > .thumb {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    background: var(--demo-gradient-1);
     color: #ffffff;
     font-size: 0.875rem;
     font-weight: 700;
@@ -239,8 +240,8 @@ article:nth-child(3n) > .thumb {
 .badge {
     padding: 0.125rem 0.75rem;
     border-radius: 999px;
-    background: color-mix(in oklab, var(--brand) 16%, transparent);
-    color: var(--brand-text);
+    background: color-mix(in oklab, var(--demo-accent) 16%, transparent);
+    color: var(--demo-accent-text);
     font-size: 0.875rem;
     font-weight: 600;
     white-space: nowrap;
