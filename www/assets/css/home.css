@@ -14,21 +14,34 @@ body > footer {
     max-width: 46rem;
 }
 
+/* ── The hero's two tones ──
+   The icons are the focus, in the full text colour. The title, the four names and the line under them share one
+   step down, --hero-soft: the text colour mixed 60% with the page's background, so it steps down the same way in
+   light and in dark. Measured 2026-11-09 on the hero's wash: dark 5.3, light 4.9, both over the 4.5:1 that text
+   asks for (pages-base.css, the Accessibility target). The magenta stays on the Documentation button. */
+.section-hero {
+    --hero-soft: color-mix(in oklab, var(--text) 60%, var(--bg));
+}
+
+.section-hero .hero-title,
+.section-hero .section-body {
+    color: var(--hero-soft);
+}
+
 /* ── The four layouts ──
-   An icon over its name, both in the muted text colour (4.5:1 on the page, pages-base.css), so the hero's magenta
-   stays on the Documentation button. The list's own bullets and indent go; the rows and
-   columns are Relayout's classes. */
+   An icon over its name. The list's own bullets and indent go; the rows and columns are Relayout's classes. */
 .layout-icons {
     margin: 0;
     padding: 0;
     list-style: none;
-    color: var(--text-muted);
+    color: var(--hero-soft);
 }
 
 /* The icons shrink on a narrow screen so the four stay on one line */
 .layout-icons svg {
     width: min(4rem, 12vw);
     height: auto;
+    color: var(--text);
 }
 
 .layout-icons span {
