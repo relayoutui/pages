@@ -16,7 +16,7 @@ The website of [Relayout](https://github.com/relayoutui/relayout), served at htt
 | `css/relayout.css` | `dist/css/relayout.css` of the `@relayoutui/relayout` version the docs depend on | Copy it again from `docs-site/node_modules/@relayoutui/relayout` when the docs' dependency moves (see the docs' README, "Relayout version") |
 | `css/pages-base.css`, `fonts/JetBrainsMono-Variable.ttf` | The product sites' shared look, copied unedited from `codesense/portal/ui/pages` and `ui/assets/fonts` | Copy them again after a change there; never edit the copy |
 | `css/brand.css` | Relayout's tones for `pages-base.css`, with their measured contrast | |
-| `css/home.css`, `js/home.js` | The page's own rules, and its theme toggle and cycling word | |
+| `css/home.css`, `js/home.js` | The page's own rules, and its theme toggle | |
 | `js/demo.js`, `css/demo-preset.css` | The layout demo, `<relayout-demo>`: each preset is a `<template>` inside it in `index.html`, rendered in a shadow root with `relayout.css` and `demo-preset.css`, and shown as source from the same template. Add or change a preset in `index.html`: its `rl-` classes are the layout, and the few others (`logo`, `primary`, `thumb`…) its look, in `demo-preset.css`. The demo's height and shadow are `--demo-height` and `--demo-shadow` in `home.css`, and so is its accent, a blue of its own (`--demo-accent`, `--demo-accent-text` and `--demo-accent-on`), so the examples don't draw in the brand's pink | |
 | `images/relayout-mark.svg`, `favicon.ico` | From `codesense/logos/dist`, the same files as the docs' | |
 
