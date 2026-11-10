@@ -36,7 +36,7 @@ By default, items flow from left to right and wrap to the next line when needed.
 
 ## Utilities
 
-Utilities set the rest of the row:
+Utilities adjust the positioning of the row:
 
 - [Gap](/docs/utilities/gap/) spaces the elements. By default there is none.
 - [Align](/docs/utilities/align/) positions the elements vertically. The default is `center`.

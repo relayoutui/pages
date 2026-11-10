@@ -23,7 +23,7 @@ By default, items in the column are stretched, filling the available width.
 
 ## Utilities
 
-Utilities set the rest of the column:
+Utilities adjust the positioning of the column:
 
 - [Gap](/docs/utilities/gap/) spaces the elements. By default there is none.
 - [Align](/docs/utilities/align/) positions the elements horizontally. The default is `stretch`, which fills the width.

@@ -41,7 +41,7 @@ Frames can be nested to create complex centered layouts or to constrain content 
 
 ## Utilities
 
-Utilities set the rest of the frame:
+Utilities adjust the positioning of the frame:
 
 - [Gap](/docs/utilities/gap/) spaces the elements when the frame holds more than one.
 - [Align](/docs/utilities/align/) positions the content vertically. The default is `center`.

@@ -268,7 +268,7 @@ A grid needs a width from its parent to fit cells into. When its width comes fro
 
 ## Utilities
 
-Utilities set the rest of the grid:
+Utilities adjust the positioning of the grid:
 
 - [Gap](/docs/utilities/gap/) spaces the cells. By default there is none.
 - [Align](/docs/utilities/align/) positions each element vertically within its cell, and [justify](/docs/utilities/justify/) horizontally.

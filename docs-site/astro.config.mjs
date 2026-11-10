@@ -19,7 +19,7 @@ export default defineConfig({
     integrations: [
         starlight({
             title: 'Relayout Docs',
-            description: 'Relayout takes the simple parts of flexbox and grid and applies them in a simple, repeatable, predictable way: four layouts, utilities for the rest, no media queries.',
+            description: 'Four layouts set the direction. Utilities adjust the positioning. Optional extras add the fine touch. No media queries.',
             favicon: '/favicon.ico',
             head: umamiWebsiteId
                 ? [
