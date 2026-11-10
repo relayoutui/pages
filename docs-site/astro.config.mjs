@@ -47,6 +47,7 @@ export default defineConfig({
                     items: [
                         { slug: 'introduction', label: 'Introduction' },
                         { slug: 'install', label: 'Installation' },
+                        { slug: 'web-components', label: 'Web components' },
                         { slug: 'recipes', label: 'Recipes' },
                     ],
                 },

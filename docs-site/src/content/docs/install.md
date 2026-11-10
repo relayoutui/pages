@@ -75,3 +75,7 @@ You can update `package.json` file and add a `build-css` script to build your sc
 ```
 
 Now you can run `npm run build-css`.
+
+## Web components
+
+The elements `<rl-column>`, `<rl-row>` and the others load from a script, beside the css above. See [Web components](/pages/docs/web-components/).
