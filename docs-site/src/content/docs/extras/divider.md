@@ -148,7 +148,7 @@ Dividers are commonly used in menus and navigation components.
 
 ## Usage notes
 
-The divider is a simple layout element with specific characteristics:
+The divider has these characteristics:
 
 - Dividers are empty elements (no content should be placed inside them)
 - Horizontal dividers stretch to 100% width with zero height and a top border

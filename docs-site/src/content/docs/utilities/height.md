@@ -1,11 +1,11 @@
 ---
 title: "Height, fill and scroll"
-description: "By default, a layout container takes only the height its content needs, and the elements of a row take only the width they need. These modifiers make an element fill the space around it, and choose which area scrolls."
+description: "By default, a layout container takes only the height its content needs, and the elements of a row take only the width they need. These utilities make an element fill the space around it, and choose which area scrolls."
 ---
 
 Classes: `rl-height-full`, `rl-height-fill`, `rl-width-fill`, `rl-scroll`
 
-By default, a layout container takes only the height its content needs, and the elements of a row take only the width they need. These modifiers make an element fill the space around it, and choose which area scrolls.
+By default, a layout container takes only the height its content needs, and the elements of a row take only the width they need. These utilities make an element fill the space around it, and choose which area scrolls.
 
 - **`rl-height-full`** makes the element as tall as its parent (`height: 100%`). The parent needs a height.
 - **`rl-height-fill`** and **`rl-width-fill`** go on an element inside a column or a row, and make it take the space the other elements leave. What each one does depends on the parent's direction.
@@ -104,6 +104,8 @@ The fill element takes the width the other elements leave. In a row that wraps, 
 ```
 
 In a row with `rl-nowrap`, the fill element never wraps, and can get narrower than its content instead.
+
+Several fill elements share the remaining width equally. With `rl-nowrap`, they never wrap and stay the same width; use a [grid](/docs/layouts/grid/) instead when they should stack on narrow screens.
 
 ### `rl-height-fill`
 

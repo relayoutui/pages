@@ -1,11 +1,11 @@
 ---
 title: "Padding"
-description: "The padding modifier adds internal spacing around a container, creating space between the container's edges and its content. Padding is applied uniformly on all four sides (top, right, bottom, left) and works consistently across all layout types."
+description: "The padding utility adds internal spacing around a container, creating space between the container's edges and its content. Padding is applied uniformly on all four sides (top, right, bottom, left) and works consistently across all layout types."
 ---
 
 Class: `rl-padding-*`
 
-The padding modifier adds internal spacing around a container, creating space between the container's edges and its content. Padding is applied uniformly on all four sides (top, right, bottom, left) and works consistently across all layout types.
+The padding utility adds internal spacing around a container, creating space between the container's edges and its content. Padding is applied uniformly on all four sides (top, right, bottom, left) and works consistently across all layout types.
 
 Apply class `rl-padding-*` to a layout container, where `*` can be `0`, `xs`, `s`, `m`, `l`, `xl`, or `2xl`.
 
@@ -291,7 +291,7 @@ Padding is particularly useful for creating structured, bordered layouts with pr
 </div>
 ```
 
-## Responsive padding with nested layouts
+## Padding in nested layouts
 
 Padding can be applied at different levels to create complex spacing hierarchies.
 
@@ -311,7 +311,7 @@ Padding can be applied at different levels to create complex spacing hierarchies
 
 ## Usage notes
 
-The padding modifier creates internal spacing in layout containers:
+The padding utility creates internal spacing in layout containers:
 
 **What padding controls:**
 - Space between container edges and content on all four sides (top, right, bottom, left)
@@ -326,20 +326,6 @@ The padding modifier creates internal spacing in layout containers:
 - Use padding for "breathing room" around entire layouts
 - Use gap for spacing between individual items
 
-**Common use cases:**
-- Bordered containers that need internal spacing
-- Card layouts with content that shouldn't touch edges
-- Navigation bars and toolbars with appropriate spacing
-- Frame layouts where centered content needs margin from edges
-- Creating visual hierarchy with nested containers
-
-**Best practices:**
-- Combine with borders to see padding effect clearly
-- Use consistent padding sizes throughout your design system
-- Larger padding (l, xl, 2xl) for major containers and sections
-- Smaller padding (xs, s, m) for compact UI elements like buttons or chips
-- Remember padding adds to the total size of the container
-
 **Default padding:**
 By default, all layout containers have no padding (`--rl-padding-default: 0`). You can override this globally:
 
@@ -353,5 +339,6 @@ By default, all layout containers have no padding (`--rl-padding-default: 0`). Y
 - Padding uses CSS `padding` property
 - Size values come from CSS custom properties: `--rl-space-*`
 - Applied to the layout container itself, not individual items
-- Does not collapse like margins - padding is always additive
+- Does not collapse like margins
+- Included in the container's width and height (`box-sizing: border-box`)
 - Works with any display mode (flex, grid, etc.)

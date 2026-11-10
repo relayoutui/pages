@@ -1,11 +1,11 @@
 ---
 title: "Align"
-description: "The align modifier controls how elements are positioned along the cross axis in a layout container. The cross axis is perpendicular to the main axis - in horizontal layouts, align controls vertical positioning; in vertical layouts, it controls horizontal positioning."
+description: "The align utility controls how elements are positioned along the cross axis in a layout container. The cross axis is perpendicular to the main axis - in horizontal layouts, align controls vertical positioning; in vertical layouts, it controls horizontal positioning."
 ---
 
 Class: `rl-align-*`
 
-The align modifier controls how elements are positioned along the cross axis in a layout container. The cross axis is perpendicular to the main axis - in horizontal layouts, align controls vertical positioning; in vertical layouts, it controls horizontal positioning.
+The align utility controls how elements are positioned along the cross axis in a layout container. The cross axis is perpendicular to the main axis - in horizontal layouts, align controls vertical positioning; in vertical layouts, it controls horizontal positioning.
 
 Align classes work with all layout types and provide consistent cross-axis positioning across different layout patterns.
 
@@ -22,7 +22,7 @@ The behavior of each value depends on the layout type and its main axis directio
 
 ## Align with column layout
 
-In column layouts, the **cross axis is horizontal** (since the main axis is vertical). Align controls how items are positioned horizontally and also affects text alignment.
+In column layouts, the **cross axis is horizontal** (since the main axis is vertical). Align controls how items are positioned horizontally and also affects text alignment. Except for `stretch`, all values make the elements take only as much space as they need.
 
 ### `rl-align-start`
 
@@ -212,9 +212,9 @@ In frame layouts, align controls **vertical positioning** of the content within 
 </div>
 ```
 
-## Combining with other modifiers
+## Combining with other utilities
 
-Align works well with other layout modifiers for sophisticated designs:
+Align works well with other layout utilities for sophisticated designs:
 
 ```html preview
 <div class="rl-column rl-gap-l">
@@ -236,7 +236,7 @@ Align works well with other layout modifiers for sophisticated designs:
 
 ## Usage notes
 
-The align modifier uses CSS flexbox and grid `align-items` properties:
+The align utility uses CSS flexbox and grid `align-items` properties:
 
 - **Cross axis positioning**: Align always works perpendicular to the main layout direction
 - **Column specificity**: In columns, align also controls `text-align` for proper text positioning
@@ -246,7 +246,7 @@ The align modifier uses CSS flexbox and grid `align-items` properties:
 - **Frame layouts**: Align controls vertical positioning of centered content
 - **Default values**: Row defaults to `center`, column defaults to `stretch`
 - **Stretch behavior**: `stretch` makes elements fill the cross axis unless they have intrinsic dimensions
-- **Fill elements**: An element with `rl-width-fill` in a column, or `rl-height-fill` in a row, stretches across whatever the align value (see [Height, fill and scroll](/docs/modifiers/height/))
+- **Fill elements**: An element with `rl-width-fill` in a column, or `rl-height-fill` in a row, stretches across whatever the align value (see [Height, fill and scroll](/docs/utilities/height/))
 
 Key differences by layout:
 
@@ -254,7 +254,7 @@ Key differences by layout:
 |---------|-----------|------------|----------------|-----------|
 | Column  | Vertical  | Horizontal | Horizontal pos | `stretch` |
 | Row     | Horizontal| Vertical   | Vertical pos   | `center`  |
-| Grid    | N/A       | N/A        | Vertical in cell | None    |
-| Frame   | Both      | N/A        | Vertical pos   | `center`  |
+| Grid    | N/A       | N/A        | Vertical in cell | `stretch` |
+| Frame   | Horizontal| Vertical   | Vertical pos   | `center`  |
 
-Understanding the main and cross axes is crucial for effective use of align modifiers. The cross axis is always perpendicular to the direction elements flow in the layout.
+Understanding the main and cross axes is crucial for effective use of align utilities. The cross axis is always perpendicular to the direction elements flow in the layout.

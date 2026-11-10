@@ -27,141 +27,6 @@ The frame automatically handles images by maintaining their aspect ratio and fit
 </div>
 ```
 
-## Gap between elements
-
-When the frame contains multiple items, you can add spacing between them.
-
-Apply class `rl-gap-*` to the frame container, where `*` can be `xs`, `s`, `m`, `l`, `xl`, or `2xl`.
-
-### `rl-gap-l`
-
-```html preview debug
-<div class="rl-frame rl-gap-l" style="height: 15em; border: 1px solid #ccc;">
-    <div>Item 1</div>
-    <div>Item 2</div>
-</div>
-```
-
-## Aligning elements
-
-Aligning elements refers to positioning elements along the cross axis.
-
-In the frame layout, the default alignment is center, which positions content in the vertical center.
-
-Apply class `rl-align-*` to the frame container, where `*` can be `start`, `center`, `end`, or `stretch`.
-
-### `rl-align-start`
-
-```html preview debug
-<div class="rl-frame rl-align-start" style="height: 15em; border: 1px solid #ccc;">
-    <div>Content at top</div>
-</div>
-```
-
-### `rl-align-center` (default)
-
-```html preview debug
-<div class="rl-frame rl-align-center" style="height: 15em; border: 1px solid #ccc;">
-    <div>Content centered vertically</div>
-</div>
-```
-
-### `rl-align-end`
-
-```html preview debug
-<div class="rl-frame rl-align-end" style="height: 15em; border: 1px solid #ccc;">
-    <div>Content at bottom</div>
-</div>
-```
-
-### `rl-align-stretch`
-
-```html preview debug
-<div class="rl-frame rl-align-stretch" style="height: 15em; border: 1px solid #ccc;">
-    <div>Content stretched vertically</div>
-</div>
-```
-
-## Justifying elements
-
-Justifying elements refers to positioning elements along the main axis.
-
-In the frame layout, the default justification is space-around, which centers content horizontally.
-
-Apply class `rl-justify-*` to the frame container, where `*` can be `start`, `center`, or `end`.
-
-### `rl-justify-start`
-
-```html preview debug
-<div class="rl-frame rl-justify-start" style="height: 15em; border: 1px solid #ccc;">
-    <div>Content at left</div>
-</div>
-```
-
-### `rl-justify-center`
-
-```html preview debug
-<div class="rl-frame rl-justify-center" style="height: 15em; border: 1px solid #ccc;">
-    <div>Content centered horizontally</div>
-</div>
-```
-
-### `rl-justify-end`
-
-```html preview debug
-<div class="rl-frame rl-justify-end" style="height: 15em; border: 1px solid #ccc;">
-    <div>Content at right</div>
-</div>
-```
-
-## Padding around container
-
-By default, there is no padding around the frame container. The default padding is configurable by overriding variable `--rl-padding-default`.
-
-Apply class `rl-padding-*` to the frame container, where `*` can be `xs`, `s`, `m`, `l`, `xl`, or `2xl`.
-
-### `rl-padding-l`
-
-```html preview debug
-<div class="rl-frame rl-padding-l" style="height: 15em; border: 1px solid #ccc;">
-    <div>Content with padding around frame</div>
-</div>
-```
-
-## Border around container
-
-By default, there is no border around the frame container.
-
-Apply class `rl-border` to the frame container.
-
-### `rl-border`
-
-```html preview
-<div class="rl-frame rl-border rl-padding-l" style="height: 15em;">
-    <div>Content with border</div>
-</div>
-```
-
-## Border radius
-
-By default, the border does not have rounded corners. The default radius is configurable by overriding variable `--rl-radius-default`, which will apply only if a border is applied to the container.
-
-Apply class `rl-radius-*` to the frame container, where `*` can be `xs`, `s`, `m`, `l`, `xl`, or `2xl`.
-
-### `rl-radius-m`
-
-```html preview
-<div class="rl-frame rl-border rl-radius-m rl-padding-l" style="height: 15em;">
-    <div>Content with rounded corners</div>
-</div>
-```
-
-```html preview
-<div class="rl-frame rl-border rl-radius-l rl-padding-l" style="height: 15em;">
-    <img src="https://picsum.photos/300/200" alt="Image with rounded frame" />
-</div>
-```
-
 ## Nested frames
 
 Frames can be nested to create complex centered layouts or to constrain content at different levels.
@@ -173,6 +38,17 @@ Frames can be nested to create complex centered layouts or to constrain content 
     </div>
 </div>
 ```
+
+## Utilities
+
+Utilities set the rest of the frame:
+
+- [Gap](/docs/utilities/gap/) spaces the elements when the frame holds more than one.
+- [Align](/docs/utilities/align/) positions the content vertically. The default is `center`.
+- [Justify](/docs/utilities/justify/) positions the content horizontally. The default is `space-around`, which centers it.
+- [Padding](/docs/utilities/padding/) and [width](/docs/utilities/width/) shape the frame itself.
+
+Extras add the fine touch: [border](/docs/extras/border/) and [radius](/docs/extras/radius/).
 
 ## Usage notes
 

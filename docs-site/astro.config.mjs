@@ -19,7 +19,7 @@ export default defineConfig({
     integrations: [
         starlight({
             title: 'Relayout Docs',
-            description: 'Relayout is a lightweight, responsive layout system: compose interfaces from a few primitive layouts and modifiers, without media queries.',
+            description: 'Relayout takes the simple parts of flexbox and grid and applies them in a simple, repeatable, predictable way: four layouts, utilities for the rest, no media queries.',
             favicon: '/favicon.ico',
             head: umamiWebsiteId
                 ? [
@@ -47,8 +47,10 @@ export default defineConfig({
                     items: [
                         { slug: 'introduction', label: 'Introduction' },
                         { slug: 'install', label: 'Installation' },
+                        { slug: 'composition', label: 'Composition' },
                         { slug: 'web-components', label: 'Web components' },
                         { slug: 'recipes', label: 'Recipes' },
+                        { slug: 'changelog', label: 'Changelog' },
                     ],
                 },
                 {
@@ -58,21 +60,29 @@ export default defineConfig({
                         { slug: 'layouts/row', label: 'Row' },
                         { slug: 'layouts/grid', label: 'Grid' },
                         { slug: 'layouts/frame', label: 'Frame' },
-                        { slug: 'layouts/divider', label: 'Divider' },
                     ],
                 },
                 {
-                    label: 'Modifiers',
+                    label: 'Utilities',
                     items: [
-                        { slug: 'modifiers/gap', label: 'Gap' },
-                        { slug: 'modifiers/align', label: 'Align' },
-                        { slug: 'modifiers/justify', label: 'Justify' },
-                        { slug: 'modifiers/padding', label: 'Padding' },
-                        { slug: 'modifiers/wrapping', label: 'Wrapping' },
-                        { slug: 'modifiers/border', label: 'Border' },
-                        { slug: 'modifiers/radius', label: 'Radius' },
-                        { slug: 'modifiers/width', label: 'Width' },
-                        { slug: 'modifiers/height', label: 'Height, fill and scroll' },
+                        { slug: 'utilities/gap', label: 'Gap' },
+                        { slug: 'utilities/align', label: 'Align' },
+                        { slug: 'utilities/justify', label: 'Justify' },
+                        { slug: 'utilities/padding', label: 'Padding' },
+                        { slug: 'utilities/wrapping', label: 'Wrapping' },
+                        { slug: 'utilities/width', label: 'Width' },
+                        { slug: 'utilities/height', label: 'Height, fill and scroll' },
+                    ],
+                },
+                {
+                    label: 'Extras',
+                    items: [
+                        { slug: 'extras/border', label: 'Border' },
+                        { slug: 'extras/radius', label: 'Radius' },
+                        { slug: 'extras/divider', label: 'Divider' },
+                        { slug: 'extras/palette', label: 'Palette' },
+                        { slug: 'extras/fonts', label: 'Fonts' },
+                        { slug: 'extras/shadows', label: 'Shadows' },
                     ],
                 },
             ],

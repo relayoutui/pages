@@ -1,11 +1,11 @@
 ---
 title: "Border"
-description: "The border modifier adds a border around a layout container. The border uses the global --rl-border-default CSS variable, which can be customized to match your design system. By default, borders have square corners, but they respect any border-radius modifier applied."
+description: "The border utility adds a border around a layout container. The border uses the global --rl-border-default CSS variable, which can be customized to match your design system. By default, borders have square corners, but they respect any border-radius utility applied."
 ---
 
 Class: `rl-border`
 
-The border modifier adds a border around a layout container. The border uses the global `--rl-border-default` CSS variable, which can be customized to match your design system. By default, borders have square corners, but they respect any border-radius modifier applied.
+The border utility adds a border around a layout container. The border uses the global `--rl-border-default` CSS variable, which can be customized to match your design system. By default, borders have square corners, but they respect any border-radius utility applied.
 
 Apply class `rl-border` to a layout container to add a border around it.
 
@@ -98,7 +98,7 @@ Borders on frames create clear boundaries for centered content, useful for modal
 
 ## Combining border with radius
 
-Borders can be combined with border-radius modifiers to create rounded corners. The `--rl-radius-default` variable controls the default radius when `rl-border` is applied.
+Borders can be combined with border-radius utilities to create rounded corners. The `--rl-radius-default` variable controls the default radius when `rl-border` is applied.
 
 ```html preview
 <div class="rl-column rl-gap-m">
@@ -127,7 +127,7 @@ Borders can be combined with border-radius modifiers to create rounded corners. 
 
 ## Borders on individual items
 
-While the border modifier is typically applied to containers, individual items can also have borders for more complex designs.
+While the border utility is typically applied to containers, individual items can also have borders for more complex designs.
 
 ```html preview
 <div class="rl-column rl-gap-m">
@@ -176,7 +176,7 @@ Borders can be applied at multiple levels to create layered visual hierarchies.
 
 ## Complex bordered layouts
 
-Borders combine with other modifiers to create complete UI components.
+Borders combine with other utilities to create complete UI components.
 
 ```html preview
 <div class="rl-column rl-border rl-radius-m">
@@ -278,20 +278,13 @@ Borders and dividers work together to create well-structured layouts with clear 
 
 ## Usage notes
 
-The border modifier adds visual boundaries to layout containers:
+The border utility adds visual boundaries to layout containers:
 
 **What border controls:**
 - Adds a border around the entire container
 - Uses `--rl-border-default` CSS variable (default: `solid 1px hsl(0, 0%, 50%)`)
-- Automatically applies `--rl-radius-default` for border-radius when used with radius modifiers
+- Automatically applies `--rl-radius-default` for border-radius when used with radius utilities
 - Works identically across all layout types
-
-**Border best practices:**
-- Always combine borders with padding to prevent content from touching the border
-- Use radius modifiers to create rounded corners
-- Consider visual hierarchy when nesting bordered containers
-- Borders add to the total size of the container (not included in width/height)
-- Combine with dividers for internal separations
 
 **Customizing borders globally:**
 Override the `--rl-border-default` variable to change all borders:
@@ -310,15 +303,7 @@ For rounded borders by default, override `--rl-radius-default`:
 }
 ```
 
-**When to use borders:**
-- Creating cards and panels
-- Defining sections and containers
-- Navigation bars and toolbars
-- Form groups and input containers
-- Modal dialogs and overlays
-- Separating distinct content areas
-
-**Combining with other modifiers:**
+**Combining with other utilities:**
 - **Padding**: Essential for spacing content from the border
 - **Radius**: Adds rounded corners to borders
 - **Gap**: Controls spacing between items inside the bordered container
@@ -328,6 +313,5 @@ For rounded borders by default, override `--rl-radius-default`:
 **Technical details:**
 - The `rl-border` class applies both `border` and `border-radius` properties
 - Border uses CSS custom properties for easy global customization
-- Border width and style affect the container's visual size (box model)
-- Works with CSS `box-sizing: border-box` for predictable sizing
+- The border is included in the container's width and height (`box-sizing: border-box`)
 - Can be applied to any layout container or individual items
