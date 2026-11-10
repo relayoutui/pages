@@ -47,7 +47,7 @@ Utilities set the rest of the row:
 
 Extras add the fine touch: [border](/docs/extras/border/), [radius](/docs/extras/radius/) and the [divider](/docs/extras/divider/) between elements, vertical in a row.
 
-The [recipes](/docs/recipes/) show common patterns, such as a header, a sidebar and equal columns.
+The [recipes](/docs/composition/#recipes) show common patterns, such as a header, a sidebar and equal columns.
 
 ## Usage notes
 

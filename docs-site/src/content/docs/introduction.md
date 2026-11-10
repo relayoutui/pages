@@ -16,7 +16,7 @@ Most of layout is positioning: what sits beside what, what sits under what, how 
 - **[Grid](/docs/layouts/grid/)** places items in equal cells, as many per line as the width allows.
 - **[Frame](/docs/layouts/frame/)** centers its content in the space of its parent.
 
-An element takes one layout. You build the complex ones by nesting: a page is a column, its header is a row, its cards are a grid, and each card is a column. [Composition](/docs/composition/) builds up from one layout to a full page, and the [recipes](/docs/recipes/) show the common ones.
+An element takes one layout. You build the complex ones by nesting: a page is a column, its header is a row, its cards are a grid, and each card is a column. [Composition](/docs/composition/) builds up from one layout to a full page, and ends with [recipes](/docs/composition/#recipes) for the common ones.
 
 ## Utilities
 

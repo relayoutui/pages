@@ -79,3 +79,7 @@ Now you can run `npm run build-css`.
 ## Web components
 
 The elements `<rl-column>`, `<rl-row>` and the others load from a script, beside the CSS above. See [Web components](/docs/web-components/).
+
+## Existing projects
+
+Relayout loads beside Bootstrap, Tailwind or your own CSS. See [Using Relayout in an existing project](/docs/existing-projects/).
