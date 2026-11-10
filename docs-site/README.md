@@ -1,6 +1,6 @@
 # Relayout docs
 
-The docs for [Relayout](https://github.com/relayoutui/relayout), built as a static site with [Starlight](https://starlight.astro.build/) and served at https://relayoutui.github.io/pages/docs/, beside the home page in `../www`. The pages are written here, in `src/content/docs`.
+The docs for [Relayout](https://github.com/relayoutui/relayout), built as a static site with [Starlight](https://starlight.astro.build/) and served at https://relayout.net/docs/, beside the home page in `../www`. The pages are written here, in `src/content/docs`.
 
 ## Commands
 
@@ -10,17 +10,17 @@ Run from this folder, in PowerShell or any shell. The first time, install the de
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Dev server at http://localhost:4321/pages/docs/. Search says it is unavailable in dev |
+| `npm run dev` | Dev server at http://localhost:4321/docs/. Search says it is unavailable in dev |
 | `npm run build` | Builds the static site into `dist/`, with the search index and a sitemap |
-| `npm run preview` | Serves `dist/` at http://localhost:4321/pages/docs/, as it would be deployed |
+| `npm run preview` | Serves `dist/` at http://localhost:4321/docs/, as it would be deployed |
 
-**On relayout.local.** The Caddyfile in `_local` serves `dist/` at http://relayout.local/pages/docs, beside the home page (see the README one folder up). Run `npm run build`, then reload; there is no server to restart.
+**On relayout.local.** The Caddyfile in `_local` serves `dist/` at http://relayout.local/docs, beside the home page (see the README one folder up). Run `npm run build`, then reload; there is no server to restart.
 
 **Search works only after a build.** The index is built with the site, so use `npm run build`, then reload relayout.local or run `npm run preview`, and press Ctrl+K or click Search.
 
 ## Pages
 
-The pages are markdown in `src/content/docs`, and the sidebar is set in `astro.config.mjs`. `index.mdx` is the docs' landing page, a short intro and links, reached from the "Docs" label in the header; the long introduction is `introduction.md`. Links between pages include the base: `/pages/docs/layouts/row/`.
+The pages are markdown in `src/content/docs`, and the sidebar is set in `astro.config.mjs`. `index.mdx` is the docs' landing page, a short intro and links, reached from the "Docs" label in the header; the long introduction is `introduction.md`. Links between pages include the base: `/docs/layouts/row/`.
 
 A code block marked `preview` shows the snippet live, with its source in a closed "Source code" section under it:
 

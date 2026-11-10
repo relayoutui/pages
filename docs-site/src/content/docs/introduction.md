@@ -27,15 +27,15 @@ This approach offers flexibility, maintainability, and naturally responsive desi
 
 Each layout class does one thing well:
 
-- **[Column](/pages/docs/layouts/column/)** arranges items vertically
-- **[Row](/pages/docs/layouts/row/)** arranges items horizontally, and wraps them when they don't fit
-- **[Grid](/pages/docs/layouts/grid/)** places items in cells of equal width
-- **[Frame](/pages/docs/layouts/frame/)** centers content
-- **[Divider](/pages/docs/layouts/divider/)** adds visual separation
+- **[Column](/docs/layouts/column/)** arranges items vertically
+- **[Row](/docs/layouts/row/)** arranges items horizontally, and wraps them when they don't fit
+- **[Grid](/docs/layouts/grid/)** places items in cells of equal width
+- **[Frame](/docs/layouts/frame/)** centers content
+- **[Divider](/docs/layouts/divider/)** adds visual separation
 
-A layout sets the direction; modifiers do the rest. One element can [fill](/pages/docs/modifiers/height/) the space the others leave, a row can push its items apart with `rl-justify-between`, and `rl-scroll` picks the area that scrolls.
+A layout sets the direction; modifiers do the rest. One element can [fill](/docs/modifiers/height/) the space the others leave, a row can push its items apart with `rl-justify-between`, and `rl-scroll` picks the area that scrolls.
 
-By nesting these simple layouts and adding modifiers, you can build most interface patterns. The [recipes](/pages/docs/recipes/) show the common ones.
+By nesting these simple layouts and adding modifiers, you can build most interface patterns. The [recipes](/docs/recipes/) show the common ones.
 
 ## Building blocks
 

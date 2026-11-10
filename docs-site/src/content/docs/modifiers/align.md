@@ -246,7 +246,7 @@ The align modifier uses CSS flexbox and grid `align-items` properties:
 - **Frame layouts**: Align controls vertical positioning of centered content
 - **Default values**: Row defaults to `center`, column defaults to `stretch`
 - **Stretch behavior**: `stretch` makes elements fill the cross axis unless they have intrinsic dimensions
-- **Fill elements**: An element with `rl-width-fill` in a column, or `rl-height-fill` in a row, stretches across whatever the align value (see [Height, fill and scroll](/pages/docs/modifiers/height/))
+- **Fill elements**: An element with `rl-width-fill` in a column, or `rl-height-fill` in a row, stretches across whatever the align value (see [Height, fill and scroll](/docs/modifiers/height/))
 
 Key differences by layout:
 

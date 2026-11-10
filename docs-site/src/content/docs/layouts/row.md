@@ -163,7 +163,7 @@ The gap is the smallest space left between elements; `rl-justify-between` adds t
 </div>
 ```
 
-It usually has two elements. With three or more, each wrapped line is spaced on its own: a single element on a line sits at the start, and nothing lines up with the line above. Group the elements into two, as above, or use [grid](/pages/docs/layouts/grid/) when they should line up.
+It usually has two elements. With three or more, each wrapped line is spaced on its own: a single element on a line sits at the start, and nothing lines up with the line above. Group the elements into two, as above, or use [grid](/docs/layouts/grid/) when they should line up.
 
 ```html preview debug
 <div class="rl-row rl-justify-between rl-gap-m">
@@ -195,7 +195,7 @@ Apply class `rl-width-fill` to an element to make it grow and take the remaining
 </div>
 ```
 
-Several fill elements share the remaining width equally. With `rl-nowrap`, they never wrap and stay the same width; use [grid](/pages/docs/layouts/grid/) instead when they should stack on narrow screens.
+Several fill elements share the remaining width equally. With `rl-nowrap`, they never wrap and stay the same width; use [grid](/docs/layouts/grid/) instead when they should stack on narrow screens.
 
 ```html preview debug
 <div class="rl-row rl-nowrap rl-gap-m">
@@ -217,7 +217,7 @@ Apply class `rl-height-fill` to an element to stretch it to the row's height, ev
 </div>
 ```
 
-The [recipes](/pages/docs/recipes/) show the common patterns, such as a header, a sidebar, and equal columns.
+The [recipes](/docs/recipes/) show the common patterns, such as a header, a sidebar, and equal columns.
 ## Wrapping
 
 By default, row elements wrap to the next line when they don't fit in the available width.
@@ -310,7 +310,7 @@ By default, containers take up only the height needed for their content. Height 
 
 Apply class `rl-height-full` to make the container fill 100% of its parent's height. It doesn't scroll on its own: add `rl-scroll` if its content can be taller.
 
-Apply class `rl-height-fill` to make a row take the remaining height inside a column. See [Height, fill and scroll](/pages/docs/modifiers/height/).
+Apply class `rl-height-fill` to make a row take the remaining height inside a column. See [Height, fill and scroll](/docs/modifiers/height/).
 
 ### `rl-height-full`
 

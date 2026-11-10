@@ -7,7 +7,7 @@ Class: `rl-grid`
 
 The grid places elements in cells of equal width. Each cell has a minimum width, and as many cells fit side by side as the available width allows; the elements that don't fit continue on a new line. The cells widen to share the space that's left. A cell is never wider than the grid: in a grid narrower than one cell's minimum, the one column shrinks to fit.
 
-Grids are well suited for card layouts, image galleries, product listings, dashboard widgets, and any collection of similar items that should be displayed in a uniform grid structure. A grid is also the way to make equal columns that stack on narrow screens; for equal columns that never stack, use a [row](/pages/docs/layouts/row/) with `rl-nowrap` and `rl-width-fill` on each element.
+Grids are well suited for card layouts, image galleries, product listings, dashboard widgets, and any collection of similar items that should be displayed in a uniform grid structure. A grid is also the way to make equal columns that stack on narrow screens; for equal columns that never stack, use a [row](/docs/layouts/row/) with `rl-nowrap` and `rl-width-fill` on each element.
 
 ### `rl-grid`
 
@@ -467,7 +467,7 @@ By default, containers take up only the height needed for their content. Height 
 
 Apply class `rl-height-full` to make the container fill 100% of its parent's height. It doesn't scroll on its own: add `rl-scroll` if its content can be taller.
 
-Apply class `rl-height-fill` to make a grid take the remaining height inside a column. See [Height, fill and scroll](/pages/docs/modifiers/height/).
+Apply class `rl-height-fill` to make a grid take the remaining height inside a column. See [Height, fill and scroll](/docs/modifiers/height/).
 
 ### `rl-height-full`
 

@@ -1,4 +1,4 @@
-// The Relayout docs as a Starlight site, served at relayoutui.github.io/pages/docs, beside the home page in
+// The Relayout docs as a Starlight site, served at relayout.net/docs, beside the home page in
 // ../www. See README.md.
 
 import { defineConfig } from 'astro/config';
@@ -10,8 +10,8 @@ import { previewBlocks } from './src/plugins/preview-blocks.mjs';
 const umamiWebsiteId = process.env.UMAMI_WEBSITE_ID;
 
 export default defineConfig({
-    site: 'https://relayoutui.github.io',
-    base: '/pages/docs',
+    site: 'https://relayout.net',
+    base: '/docs',
     markdown: {
         // Starlight adds its own plugins to this processor
         processor: satteri({ mdastPlugins: [previewBlocks()] }),
