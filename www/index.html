@@ -16,11 +16,11 @@
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Relayout — Responsive layouts</title>
-    <meta name="description" content="Relayout is a lightweight, responsive layout system: compose interfaces from a few layouts and modifiers, without media queries." />
+    <title>Relayout — Rethink the layout</title>
+    <meta name="description" content="Relayout takes the simple parts of flexbox and grid and applies them in a simple, repeatable, predictable way: four layouts, utilities for the rest, no media queries." />
     <link rel="canonical" href="https://relayout.net/" />
-    <meta property="og:title" content="Relayout — Responsive layouts" />
-    <meta property="og:description" content="Relayout is a lightweight, responsive layout system: compose interfaces from a few layouts and modifiers, without media queries." />
+    <meta property="og:title" content="Relayout — Rethink the layout" />
+    <meta property="og:description" content="Relayout takes the simple parts of flexbox and grid and applies them in a simple, repeatable, predictable way: four layouts, utilities for the rest, no media queries." />
     <meta property="og:url" content="https://relayout.net/" />
     <meta property="og:type" content="website" />
     <link rel="icon" href="assets/favicon.ico" />
@@ -57,27 +57,23 @@
                     <h1 class="section-title section-title--hero">
                         <span class="hero-title">Rethink the layout</span>
                     </h1>
-                    <!-- The four layouts, in the order the docs teach them. The icons are drawn, the labels are the text. -->
+                    <!-- The four layouts, in the order the docs teach them. The icons are drawn, and each one names its layout for assistive technology. -->
                     <ul class="layout-icons rl-row rl-justify-center rl-gap-xl" aria-label="The four layouts">
-                        <li class="rl-column rl-align-center rl-gap-s">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,16v64H56V56Zm0,144H56V136H200v64Z"></path></svg>
-                            <span>Column</span>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" role="img" aria-label="Column"><path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,16v64H56V56Zm0,144H56V136H200v64Z"></path></svg>
                         </li>
-                        <li class="rl-column rl-align-center rl-gap-s">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40ZM56,56h64V200H56ZM200,200H136V56h64V200Z"></path></svg>
-                            <span>Row</span>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" role="img" aria-label="Row"><path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40ZM56,56h64V200H56ZM200,200H136V56h64V200Z"></path></svg>
                         </li>
-                        <li class="rl-column rl-align-center rl-gap-s">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,80H136V56h64ZM120,56v64H56V56ZM56,136h64v64H56Zm144,64H136V136h64v64Z"></path></svg>
-                            <span>Grid</span>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" role="img" aria-label="Grid"><path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,80H136V56h64ZM120,56v64H56V56ZM56,136h64v64H56Zm144,64H136V136h64v64Z"></path></svg>
                         </li>
-                        <li class="rl-column rl-align-center rl-gap-s">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H208V208ZM160,88H96a8,8,0,0,0-8,8v64a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V96A8,8,0,0,0,160,88Zm-8,64H104V104h48Z"></path></svg>
-                            <span>Frame</span>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" role="img" aria-label="Frame"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H208V208ZM160,88H96a8,8,0,0,0-8,8v64a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V96A8,8,0,0,0,160,88Zm-8,64H104V104h48Z"></path></svg>
                         </li>
                     </ul>
                     <div class="rl-column rl-align-center rl-gap-xl">
-                        <p class="section-body">Compose responsive interfaces from four layouts and a few modifiers, without media queries.</p>
+                        <p class="section-body">Compose responsive interfaces from four layouts and a few utilities, without media queries.</p>
                         <div class="rl-row rl-gap-m rl-justify-center">
                             <a href="docs/" class="btn btn-brand btn-lg">Documentation</a>
                         </div>
@@ -241,7 +237,7 @@
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
                         </div>
                         <p class="doc-card-title">Four layouts</p>
-                        <p class="doc-card-body">Column, row, grid and frame, plus a divider. Four names to learn, and modifiers for the rest: gap, alignment, padding and size.</p>
+                        <p class="doc-card-body">Column, row, grid and frame. Four names to learn, and utilities for the rest: gap, alignment, padding and size. Optional extras add the fine touch: color, fonts and shadows.</p>
                     </div>
                     <div class="doc-card">
                         <div class="doc-card-icon">
@@ -269,7 +265,7 @@
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
                         </div>
                         <p class="doc-card-title">Tokens to theme</p>
-                        <p class="doc-card-body">Spacing, text sizes, colours and shadows are CSS custom properties, with light and dark defaults. Override one on <code>:root</code> and everything that uses it follows.</p>
+                        <p class="doc-card-body">Spacing, text sizes, colors and shadows are CSS custom properties, and the colors have light and dark defaults. Override one on <code>:root</code> and everything that uses it follows.</p>
                     </div>
                     <div class="doc-card">
                         <div class="doc-card-icon">
@@ -311,7 +307,8 @@
                         <a href="docs/introduction/">Introduction</a>
                         <a href="docs/install/">Installation</a>
                         <a href="docs/layouts/column/">Layouts</a>
-                        <a href="docs/modifiers/gap/">Modifiers</a>
+                        <a href="docs/utilities/gap/">Utilities</a>
+                        <a href="docs/extras/border/">Extras</a>
                         <a href="docs/recipes/">Recipes</a>
                     </div>
                 </div>
