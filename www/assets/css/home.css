@@ -29,12 +29,11 @@ body > footer {
 }
 
 /* ── The four layouts ──
-   An icon over its name. The list's own bullets and indent go; the rows and columns are Relayout's classes. */
+   The icons. The list's own bullets and indent go; the row is Relayout's class. */
 .layout-icons {
     margin: 0;
     padding: 0;
     list-style: none;
-    color: var(--hero-soft);
 }
 
 /* The icons shrink on a narrow screen so the four stay on one line */
@@ -42,10 +41,6 @@ body > footer {
     width: min(4rem, 12vw);
     height: auto;
     color: var(--text);
-}
-
-.layout-icons span {
-    font-size: 1rem;
 }
 
 /* ── Layout demo ──

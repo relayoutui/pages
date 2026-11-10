@@ -1,11 +1,11 @@
 ---
 title: "Web components"
-description: "Every Relayout layout is also a web component: <rl-column>, <rl-row>, <rl-grid>, <rl-frame> and <rl-divider>, plus <rl-div> for a plain box. A modifier is an attribute with the class's name."
+description: "Relayout also comes as web components: <rl-column>, <rl-row>, <rl-grid>, <rl-frame> and <rl-divider>, plus <rl-div> for a plain box. A utility is an attribute with the class's name."
 ---
 
 Elements: `rl-column`, `rl-row`, `rl-grid`, `rl-frame`, `rl-divider`, `rl-div`
 
-Each layout is also a web component, and a modifier is an attribute with the class's name. `rl-gap-m` is a class in one form and an attribute in the other, and nothing else changes:
+Each layout is also a web component, and a utility is an attribute with the class's name. `rl-gap-m` is a class in one form and an attribute in the other, and nothing else changes:
 
 ```html
 <div class="rl-column rl-gap-m rl-border">...</div>
@@ -34,20 +34,22 @@ Loading the script registers the six elements. It includes everything it needs: 
 
 ## What each element takes
 
-Every element takes the modifiers of its layout as attributes. Some modifiers are for a container, and a plain box has no children to arrange, which is why `rl-div` takes fewer.
+Every element takes the utilities of its layout as attributes. Some utilities are for a container, and a plain box has no children to arrange, which is why `rl-div` takes fewer.
 
-- `rl-column`: [`rl-gap-*`](/docs/modifiers/gap/), [`rl-align-*`](/docs/modifiers/align/), [`rl-justify-*`](/docs/modifiers/justify/), [`rl-padding-*`](/docs/modifiers/padding/), [`rl-border`](/docs/modifiers/border/), [`rl-radius-*`](/docs/modifiers/radius/), [`rl-width-*` and `rl-center-self`](/docs/modifiers/width/), and [`rl-height-full` and `rl-scroll`](/docs/modifiers/height/)
-- `rl-row`: the same, and [`rl-nowrap`, `rl-nowrap-scroll` and `rl-wrap-reverse`](/docs/modifiers/wrapping/)
+- `rl-column`: [`rl-gap-*`](/docs/utilities/gap/), [`rl-align-*`](/docs/utilities/align/), [`rl-justify-*`](/docs/utilities/justify/), [`rl-padding-*`](/docs/utilities/padding/), [`rl-border`](/docs/extras/border/), [`rl-radius-*`](/docs/extras/radius/), [`rl-bg-*`, `rl-color-*` and `rl-gradient-*`](/docs/extras/palette/), [`rl-shadow-*`](/docs/extras/shadows/), [`rl-width-*` and `rl-center-self`](/docs/utilities/width/), and [`rl-height-full` and `rl-scroll`](/docs/utilities/height/)
+- `rl-row`: the same, and [`rl-nowrap`, `rl-nowrap-scroll` and `rl-wrap-reverse`](/docs/utilities/wrapping/)
 - `rl-grid`: the same as `rl-column`, and the `rl-grid-fit-*` and `rl-grid-fill-*` sizes of the [grid](/docs/layouts/grid/)
 - `rl-frame`: the same as `rl-column`
-- `rl-div`: `rl-padding-*`, `rl-border`, `rl-radius-*`, `rl-width-*`, `rl-center-self`, `rl-height-full` and `rl-scroll`
+- `rl-div`: `rl-padding-*`, `rl-border`, `rl-radius-*`, `rl-bg-*`, `rl-color-*`, `rl-gradient-*`, `rl-shadow-*`, `rl-width-*`, `rl-center-self`, `rl-height-full` and `rl-scroll`
 - `rl-divider`: none, except `vertical`, which makes it a vertical line
+
+The [font and text classes](/docs/extras/fonts/) have no attribute form: put them as classes on the element, or on one inside it.
 
 `rl-width-fill` and `rl-height-fill` go on the child, as they do with classes: on any element inside an `rl-column` or an `rl-row`, a plain `div` or an `rl-div`.
 
 ## `rl-div`
 
-`rl-div` is the Relayout flavor of the HTML `div`: a plain block with no layout of its own. It exists for the modifiers. On a web component they are styles of the element itself, so `rl-padding-m` or `rl-border` needed one of the layouts, and a padded box with a single child had to be a column around it.
+`rl-div` is the Relayout flavor of the HTML `div`: a plain block with no layout of its own. It exists for the utilities. On a web component they are styles of the element itself, so `rl-padding-m` or `rl-border` needed one of the layouts, and a padded box with a single child had to be a column around it.
 
 ```html preview
 <rl-column rl-gap-m>
@@ -103,6 +105,6 @@ A web component is an element of its own, so it can't be an `<article>`, a `<nav
 </article>
 ```
 
-## Before 0.4.0
+## Versions
 
-`rl-div` is new in 0.4.0. Before 0.4.0, `rl-column`, `rl-row`, `rl-grid` and `rl-frame` were `content-box`, so `rl-padding-*` or `rl-border` added to their `rl-width-*` and pushed them past their parent. They are `border-box` now, as the classes always were.
+Changes between versions, such as the arrival of `rl-div`, are in the [changelog](/docs/changelog/).

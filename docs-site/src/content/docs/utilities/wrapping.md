@@ -1,17 +1,17 @@
 ---
 title: "Wrapping"
-description: "The wrapping modifier controls how elements behave when they don't fit in the available space. By default, a row wraps its elements to the next line when they overflow. Wrapping modifiers allow you to prevent wrapping, add horizontal scrolling, or reverse the wrap direction."
+description: "The wrapping utility controls how elements behave when they don't fit in the available space. By default, a row wraps its elements to the next line when they overflow. Wrapping utilities allow you to prevent wrapping, add horizontal scrolling, or reverse the wrap direction."
 ---
 
 Classes: `rl-nowrap`, `rl-nowrap-scroll`, `rl-wrap-reverse`
 
-The wrapping modifier controls how elements behave when they don't fit in the available space. By default, a row wraps its elements to the next line when they overflow. Wrapping modifiers allow you to prevent wrapping, add horizontal scrolling, or reverse the wrap direction.
+The wrapping utility controls how elements behave when they don't fit in the available space. By default, a row wraps its elements to the next line when they overflow. Wrapping utilities allow you to prevent wrapping, add horizontal scrolling, or reverse the wrap direction.
 
-Wrapping modifiers are well suited for horizontal menus, tag lists, toolbars, and any layout where you need precise control over overflow and wrapping behavior.
+Wrapping utilities are well suited for horizontal menus, tag lists, toolbars, and any layout where you need precise control over overflow and wrapping behavior.
 
 ## Wrapping values
 
-The wrapping modifier comes in three variants:
+The wrapping utility comes in three variants:
 
 - **`rl-nowrap`**: Prevents wrapping with `flex-wrap: nowrap`, causing elements to overflow the container
 - **`rl-nowrap-scroll`**: Prevents wrapping and adds horizontal scrolling with `overflow-x: auto`, allowing users to scroll through overflowing content
@@ -19,7 +19,7 @@ The wrapping modifier comes in three variants:
 
 ## Default wrapping behavior
 
-Understanding the default wrapping behavior helps clarify when to use wrapping modifiers.
+Understanding the default wrapping behavior helps clarify when to use wrapping utilities.
 
 ```html preview debug
 <div class="rl-row rl-gap-m">
@@ -38,7 +38,7 @@ By default, a row wraps to new lines when its elements don't fit.
 
 ## Wrapping with column
 
-Column layouts don't wrap because they arrange elements vertically. Wrapping modifiers have no effect on columns.
+Column layouts don't wrap because they arrange elements vertically. Wrapping utilities have no effect on columns.
 
 ```html preview debug
 <div class="rl-column rl-gap-m rl-nowrap">
@@ -48,11 +48,11 @@ Column layouts don't wrap because they arrange elements vertically. Wrapping mod
 </div>
 ```
 
-Columns always display elements vertically regardless of wrapping modifiers.
+Columns always display elements vertically regardless of wrapping utilities.
 
 ## Wrapping with row
 
-Rows naturally wrap by default. Wrapping modifiers control this behavior.
+Rows naturally wrap by default. Wrapping utilities control this behavior.
 
 ### Default wrapping (wrap)
 
@@ -128,7 +128,7 @@ New lines appear above instead of below.
 
 ## Wrapping with grid
 
-Grid layouts don't use flex-wrap, so wrapping modifiers have no effect. Grids use their own column/row system.
+Grid layouts don't use flex-wrap, so wrapping utilities have no effect. Grids use their own column/row system.
 
 ```html preview debug
 <div class="rl-grid rl-gap-m rl-nowrap">
@@ -143,7 +143,7 @@ Grids always create new rows based on column configuration.
 
 ## Wrapping with frame
 
-Frames don't wrap content, so wrapping modifiers have no effect.
+Frames don't wrap content, so wrapping utilities have no effect.
 
 ```html preview debug
 <div class="rl-frame rl-nowrap" style="height: 10em; border: 1px solid #ccc;">
@@ -151,11 +151,11 @@ Frames don't wrap content, so wrapping modifiers have no effect.
 </div>
 ```
 
-Frames center content regardless of wrapping modifiers.
+Frames center content regardless of wrapping utilities.
 
 ## Horizontal navigation menus
 
-Wrapping modifiers create different navigation patterns.
+Wrapping utilities create different navigation patterns.
 
 ### Wrapping navigation (default)
 
@@ -327,9 +327,9 @@ Visual comparison of all three behaviors:
 </div>
 ```
 
-## Combining with other modifiers
+## Combining with other utilities
 
-Wrapping modifiers work well with gap, padding, align, and justify.
+Wrapping utilities work well with gap, padding, align, and justify.
 
 ```html preview
 <div class="rl-column rl-gap-m">
@@ -398,7 +398,7 @@ Horizontal scrolling card layouts:
 
 ## Usage notes
 
-The wrapping modifiers control flex-wrap behavior for horizontal layouts:
+The wrapping utilities control flex-wrap behavior for horizontal layouts:
 
 - **Applicable layouts**: Only affects row
 - **No effect on**: Column (vertical), grid (CSS grid), frame (centering)
@@ -429,22 +429,7 @@ The wrapping modifiers control flex-wrap behavior for horizontal layouts:
   - Elements naturally wrap to new lines when they don't fit
   - This is the most common and intuitive behavior
 
-- **Performance considerations**:
-  - `nowrap-scroll` is efficient for many items (no reflow on wrap)
-  - Scrollable containers work well on mobile with touch scrolling
-  - Consider viewport width when designing nowrap layouts
-
-- **Accessibility**:
-  - Ensure scrollable content is keyboard accessible
-  - Provide visual cues (shadows/gradients) for scrollable areas
-  - Consider adding scroll indicators for better UX
-
-- **Mobile considerations**:
-  - `nowrap-scroll` works excellently on mobile with swipe gestures
-  - Default wrapping may be preferable on narrow screens
-  - Test touch scrolling on actual devices
-
-## When to use each modifier
+## When to use each utility
 
 Choose the right wrapping strategy based on your use case:
 

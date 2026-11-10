@@ -1,19 +1,19 @@
 ---
 title: "Width"
-description: "The width modifier constrains the maximum width of a container, and rl-center-self centers it horizontally within its parent. By default, all layout containers expand to fill 100% of the available width. Width modifiers provide a way to limit content width for better readability and visual hierarchy."
+description: "The width utility constrains the maximum width of a container, and rl-center-self centers it horizontally within its parent. By default, all layout containers expand to fill 100% of the available width. Width utilities provide a way to limit content width for better readability and visual hierarchy."
 ---
 
 Classes: `rl-width-*`, `rl-center-self`
 
-The width modifier constrains the maximum width of a container. Below that width, the container fills its parent. By default, all layout containers expand to fill 100% of the available width. Width modifiers provide a way to limit content width for better readability and visual hierarchy.
+The width utility constrains the maximum width of a container. Below that width, the container fills its parent. By default, all layout containers expand to fill 100% of the available width. Width utilities provide a way to limit content width for better readability and visual hierarchy.
 
-The width modifier doesn't center: `rl-center-self` centers the container horizontally within its parent. Most examples on this page use both.
+The width utility doesn't center: `rl-center-self` centers the container horizontally within its parent. Most examples on this page use both.
 
-Width modifiers are well suited for constraining content areas, creating centered layouts, managing line length for text readability, and establishing visual hierarchy through size variation.
+Width utilities are well suited for constraining content areas, creating centered layouts, managing line length for text readability, and establishing visual hierarchy through size variation.
 
 ## Width values
 
-The width modifier comes in six sizes, each setting a `max-width` value, and `width: 100%` below it:
+The width utility comes in six sizes, each setting a `max-width` value, and `width: 100%` below it:
 
 - **`rl-width-xs`**: Maximum width of `20rem` (320px) - ideal for narrow columns, sidebars
 - **`rl-width-s`**: Maximum width of `30rem` (480px) - good for forms, short content
@@ -22,7 +22,7 @@ The width modifier comes in six sizes, each setting a `max-width` value, and `wi
 - **`rl-width-xl`**: Maximum width of `64rem` (1024px) - wide content areas, dashboards
 - **`rl-width-2xl`**: Maximum width of `80rem` (1280px) - maximum width for large layouts
 
-`rl-width-fill` isn't one of these limits: it makes an element take the remaining width in a row. See [Height, fill and scroll](/docs/modifiers/height/).
+`rl-width-fill` isn't one of these limits: it makes an element take the remaining width in a row. See [Height, fill and scroll](/docs/utilities/height/).
 
 ## Centering
 
@@ -45,11 +45,11 @@ Without it, the parent places the element. A limited element sits at the start, 
 
 On a Relayout element, both are attributes: `<rl-column rl-width-m rl-center-self>`.
 
-Before 0.3.0, `rl-width-*` also centered, and `rl-center-self` didn't exist. Markup with both classes lays out the same on either version.
+For how this differs before 0.3.0, see the [changelog](/docs/changelog/).
 
 ## Width with column
 
-Width modifiers help constrain vertical content for better readability.
+Width utilities help constrain vertical content for better readability.
 
 ```html preview
 <div class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-m rl-center-self">
@@ -74,7 +74,7 @@ Width modifiers help constrain vertical content for better readability.
 
 ## Width with row
 
-Width modifiers constrain the wrapping behavior of rows by limiting the available space.
+Width utilities constrain the wrapping behavior of rows by limiting the available space.
 
 ```html preview
 <div class="rl-row rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-s rl-center-self">
@@ -108,7 +108,7 @@ Width modifiers constrain the wrapping behavior of rows by limiting the availabl
 
 ## Width with grid
 
-Width modifiers constrain the overall grid container, affecting how many columns can fit.
+Width utilities constrain the overall grid container, affecting how many columns can fit.
 
 ```html preview
 <div class="rl-grid rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-l rl-center-self">
@@ -142,7 +142,7 @@ Width modifiers constrain the overall grid container, affecting how many columns
 
 ## Width with frame
 
-Width modifiers can constrain frame containers, which still center their own content.
+Width utilities can constrain frame containers, which still center their own content.
 
 ```html preview
 <div class="rl-frame rl-padding-l rl-border rl-radius-m rl-width-m rl-center-self" style="height: 12em;">
@@ -224,7 +224,7 @@ Demonstrate visual hierarchy through width variation:
 
 ## Complex layouts with width constraints
 
-Width modifiers create focused, readable layouts:
+Width utilities create focused, readable layouts:
 
 ```html preview
 <div class="rl-column rl-gap-l">
@@ -251,7 +251,7 @@ Width modifiers create focused, readable layouts:
 
 ## Form layouts with width constraints
 
-Width modifiers help create focused, scannable forms:
+Width utilities help create focused, scannable forms:
 
 ```html preview
 <div class="rl-column rl-gap-l rl-padding-l rl-border rl-radius-m rl-width-s rl-center-self">
@@ -272,7 +272,7 @@ Width modifiers help create focused, scannable forms:
 
 ## Card and content layouts
 
-Width modifiers create visual structure for cards and content blocks:
+Width utilities create visual structure for cards and content blocks:
 
 ```html preview
 <div class="rl-column rl-gap-m">
@@ -303,7 +303,7 @@ Width modifiers create visual structure for cards and content blocks:
 
 ## Dashboard and panel layouts
 
-Width modifiers organize complex dashboard layouts:
+Width utilities organize complex dashboard layouts:
 
 ```html preview
 <div class="rl-column rl-gap-m">
@@ -339,12 +339,12 @@ Width modifiers organize complex dashboard layouts:
 
 ## Usage notes
 
-The width modifier applies `max-width` to containers:
+The width utility applies `max-width` to containers:
 
 - **CSS properties**: Sets `max-width` to the specified value, and `width: 100%` below it
 - **Centering behavior**: `rl-center-self` centers a container horizontally within its parent, with `margin-inline: auto`. Without it, the parent places the container, so `rl-align-*` and `rl-justify-*` apply to it
 - **Responsive behavior**: On screens narrower than the `max-width`, containers shrink to fit
-- **Default behavior**: Without width modifiers, containers expand to fill 100% of available width
+- **Default behavior**: Without width utilities, containers expand to fill 100% of available width
 - **CSS variables**: Width values are defined as `--rl-width-xs` through `--rl-width-2xl`
 - **Size selection**: Choose based on content type:
   - **xs/s**: Forms, sidebars, narrow columns
@@ -352,10 +352,8 @@ The width modifier applies `max-width` to containers:
   - **xl/2xl**: Dashboards, wide layouts, full-width sections
 - **Nesting strategy**: Use progressively smaller widths for nested containers to create visual hierarchy
 - **Text readability**: For optimal line length in text content, use `m` (640px) or `l` (768px)
-- **Combining modifiers**: Width works with all other modifiers (padding, border, radius, gap, etc.)
+- **Combining utilities**: Width works with all other utilities (padding, border, radius, gap, etc.)
 - **Grid interaction**: With grids, width affects the total container size, changing how many columns fit
-
-Width modifiers are essential for creating focused, readable layouts and establishing visual hierarchy. They're particularly valuable for content-heavy sites where constraining line length improves readability, and, with `rl-center-self`, for creating centered layouts without manual margin calculations.
 
 ## Customizing width values
 

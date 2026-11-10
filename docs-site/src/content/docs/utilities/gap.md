@@ -1,11 +1,11 @@
 ---
 title: "Gap"
-description: "The gap modifier controls the spacing between child elements in a layout container. Gap provides consistent spacing without the need for margins on individual items. It works with all layout types that use flexbox or grid."
+description: "The gap utility controls the spacing between child elements in a layout container. Gap provides consistent spacing without the need for margins on individual items. It works with all layout types that use flexbox or grid."
 ---
 
 Class: `rl-gap-*`
 
-The gap modifier controls the spacing between child elements in a layout container. Gap provides consistent spacing without the need for margins on individual items. It works with all layout types that use flexbox or grid.
+The gap utility controls the spacing between child elements in a layout container. Gap provides consistent spacing without the need for margins on individual items. It works with all layout types that use flexbox or grid.
 
 Gap classes are well suited for creating consistent spacing between elements in columns, rows, grids, and frames.
 
@@ -153,9 +153,9 @@ In frame layouts, gap creates spacing between multiple items when the frame cont
 </div>
 ```
 
-## Responsive gap values
+## Gap with other utilities
 
-Gap values can be combined with other layout modifiers for sophisticated designs:
+Gap values can be combined with other layout utilities for sophisticated designs:
 
 ```html preview
 <div class="rl-column rl-gap-l">
@@ -179,7 +179,7 @@ Gap values can be combined with other layout modifiers for sophisticated designs
 
 ## Usage notes
 
-The gap modifier uses CSS flexbox and grid `gap` properties:
+The gap utility uses CSS flexbox and grid `gap` properties:
 
 - **Universal support**: Works with all layout types (column, row, grid, frame)
 - **Consistent spacing**: Creates uniform spacing between all direct children

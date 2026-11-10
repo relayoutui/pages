@@ -1,11 +1,11 @@
 ---
 title: "Justify"
-description: "The justify modifier controls how elements are positioned along the main axis of a layout. The main axis is the primary direction in which elements flow - vertical for columns, horizontal for rows."
+description: "The justify utility controls how elements are positioned along the main axis of a layout. The main axis is the primary direction in which elements flow - vertical for columns, horizontal for rows."
 ---
 
 Class: `rl-justify-*`
 
-The justify modifier controls how elements are positioned along the main axis of a layout. The main axis is the primary direction in which elements flow - vertical for columns, horizontal for rows.
+The justify utility controls how elements are positioned along the main axis of a layout. The main axis is the primary direction in which elements flow - vertical for columns, horizontal for rows.
 
 Apply class `rl-justify-*` to a layout container, where `*` can be `start`, `center`, `end`, or `between`.
 
@@ -99,7 +99,7 @@ In row layouts, the main axis is horizontal, so justify controls horizontal posi
 
 ### `rl-justify-between`
 
-Usually with two elements, such as two groups pushed to the ends of a header. With more, each wrapped line is spaced on its own.
+Usually with two elements, such as two groups pushed to the ends of a header. The gap is the smallest space left between elements; `rl-justify-between` adds the rest.
 
 ```html preview debug
 <div class="rl-row rl-justify-between rl-gap-m">
@@ -109,6 +109,16 @@ Usually with two elements, such as two groups pushed to the ends of a header. Wi
         <div>Tag 2</div>
         <div>Tag 3</div>
     </div>
+</div>
+```
+
+With three or more elements, each wrapped line is spaced on its own: a single element on a line sits at the start, and nothing lines up with the line above. Group the elements into two, as above, or use a [grid](/docs/layouts/grid/) when they should line up.
+
+```html preview debug
+<div class="rl-row rl-justify-between rl-gap-m">
+    <div>Left</div>
+    <div>Center</div>
+    <div>Right</div>
 </div>
 ```
 
@@ -188,7 +198,7 @@ In frame layouts, justify controls horizontal positioning of the centered conten
 
 ## Usage notes
 
-The justify modifier controls main-axis positioning, but its behavior varies significantly across layouts:
+The justify utility controls main-axis positioning, but its behavior varies significantly across layouts:
 
 **Column layouts** (vertical main axis):
 - Justify controls vertical positioning
@@ -218,4 +228,4 @@ The justify modifier controls main-axis positioning, but its behavior varies sig
 - In flexbox: `justify-content` controls main axis distribution
 - In grid: `justify-items` controls horizontal positioning within cells
 
-The justify modifier is most useful for columns (vertical positioning) and rows (horizontal positioning, and pushing elements apart with `between`).
+The justify utility is most useful for columns (vertical positioning) and rows (horizontal positioning, and pushing elements apart with `between`).
