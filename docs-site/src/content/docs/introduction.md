@@ -1,9 +1,11 @@
 ---
 title: "Rethink the layout"
-description: "Relayout takes the simple parts of flexbox and grid and applies them in a simple, repeatable, predictable way: four layouts, utilities for the rest, no media queries."
+description: "Four layouts set the direction. Utilities adjust the positioning. Optional extras add the fine touch. No media queries."
 ---
 
-Relayout takes the simple parts of flexbox and grid and applies them in a simple, repeatable, predictable way. Four layouts place everything. Utilities set the rest. No media queries.
+Relayout takes the parts of flexbox and grid that position elements and applies them in a simple, repeatable, predictable way.
+
+Four layouts set the direction. Utilities adjust the positioning: gap, padding, alignment, wrapping, scrolling and width. Optional extras add the fine touch. No media queries.
 
 ## The idea
 
@@ -20,7 +22,7 @@ An element takes one layout. You build the complex ones by nesting: a page is a 
 
 ## Utilities
 
-A layout sets the direction. Utilities set the rest: [gap](/docs/utilities/gap/), [align](/docs/utilities/align/) and [justify](/docs/utilities/justify/), [padding](/docs/utilities/padding/), [size](/docs/utilities/width/), [wrapping](/docs/utilities/wrapping/), and [fill and scroll](/docs/utilities/height/). Each utility has one job and one name. `rl-gap-m` is the same gap on every page.
+A layout sets the direction. Utilities adjust the positioning: [gap](/docs/utilities/gap/), [align](/docs/utilities/align/) and [justify](/docs/utilities/justify/), [padding](/docs/utilities/padding/), [size](/docs/utilities/width/), [wrapping](/docs/utilities/wrapping/), and [fill and scroll](/docs/utilities/height/). Each utility has one job and one name. `rl-gap-m` is the same gap on every page.
 
 Sizes come from a scale of named steps, `xs` to `2xl`. Gap, padding and radius share one spacing scale (which also has `0`), and width and grid cells each have their own. Every step is a CSS variable, so you change the scale once and every page follows.
 
