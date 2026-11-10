@@ -1,6 +1,6 @@
 ---
 // Replaces Starlight's site title with the lockup the other product docs use: the mark at 24px, the
-// word, then the section label. The lockup goes to Relayout's home page (../www, at /pages/), and the
+// word, then the section label. The lockup goes to Relayout's home page (../www, at /), and the
 // label to the docs home, so either is one click from any docs page.
 import mark from '../assets/relayout-mark.svg';
 
@@ -8,7 +8,7 @@ const { siteTitleHref } = Astro.locals.starlightRoute;
 ---
 
 <div class="brand">
-    <a href="/pages/" class="site-title">
+    <a href="/" class="site-title">
         <img src={mark.src} width={mark.width} height={mark.height} alt="" />
         <span class="word" translate="no">Relayout</span>
     </a>

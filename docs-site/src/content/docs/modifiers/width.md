@@ -22,7 +22,7 @@ The width modifier comes in six sizes, each setting a `max-width` value, and `wi
 - **`rl-width-xl`**: Maximum width of `64rem` (1024px) - wide content areas, dashboards
 - **`rl-width-2xl`**: Maximum width of `80rem` (1280px) - maximum width for large layouts
 
-`rl-width-fill` isn't one of these limits: it makes an element take the remaining width in a row. See [Height, fill and scroll](/pages/docs/modifiers/height/).
+`rl-width-fill` isn't one of these limits: it makes an element take the remaining width in a row. See [Height, fill and scroll](/docs/modifiers/height/).
 
 ## Centering
 

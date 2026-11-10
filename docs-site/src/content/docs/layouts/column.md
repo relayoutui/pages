@@ -318,7 +318,7 @@ Apply class `rl-height-fill` to make a column take the remaining height inside a
 </div>
 ```
 
-See [Height, fill and scroll](/pages/docs/modifiers/height/) for how the fill classes work in a column and in a row.
+See [Height, fill and scroll](/docs/modifiers/height/) for how the fill classes work in a column and in a row.
 
 ## Usage notes
 

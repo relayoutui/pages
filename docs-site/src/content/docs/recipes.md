@@ -3,7 +3,7 @@ title: "Recipes"
 description: "Relayout has four layouts, column, row, grid and frame, plus divider. Common patterns come from combining them with modifiers. Each recipe below is a starting point to copy and adjust."
 ---
 
-Relayout has four layouts, [column](/pages/docs/layouts/column/), [row](/pages/docs/layouts/row/), [grid](/pages/docs/layouts/grid/) and [frame](/pages/docs/layouts/frame/), plus [divider](/pages/docs/layouts/divider/). Common patterns come from combining them with modifiers. Each recipe below is a starting point to copy and adjust.
+Relayout has four layouts, [column](/docs/layouts/column/), [row](/docs/layouts/row/), [grid](/docs/layouts/grid/) and [frame](/docs/layouts/frame/), plus [divider](/docs/layouts/divider/). Common patterns come from combining them with modifiers. Each recipe below is a starting point to copy and adjust.
 
 The page recipes use a fixed height in the previews, so they fit on this page. On a real page, use `100vh` instead.
 

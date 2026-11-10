@@ -24,7 +24,7 @@ cp -a www/. "$out/"
 cp -a "$docs/." "$out/docs/"
 
 # GitHub Pages answers a missing path with the 404.html at the site's root. Until www has its own,
-# the docs' one serves: its links carry the full /pages/docs/ path, so it works from there too.
+# the docs' one serves: its links carry the full /docs/ path, so it works from there too.
 if [ ! -f "$out/404.html" ]; then
     cp "$docs/404.html" "$out/404.html"
 fi
