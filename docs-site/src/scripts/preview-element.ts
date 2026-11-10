@@ -1,6 +1,8 @@
 // <rl-preview>: renders a docs snippet in a shadow root with Relayout's CSS, so Starlight's styles stay
 // out and Relayout's stay in. The snippet is the <template> inside the element (src/plugins/preview-blocks.mjs).
 
+// Registers <rl-column> and the other elements, so a snippet written with them renders too
+import '@relayoutui/relayout';
 import relayoutCss from '@relayoutui/relayout/css?raw';
 import previewCss from '../styles/preview.css?raw';
 
