@@ -346,4 +346,4 @@ Fill elements nest: each panel column takes half the width, and inside it, the l
   - Sidebar next to content: `rl-width-fill` on the content
   - App shell: an `rl-row rl-nowrap rl-height-fill` inside the column, with `rl-height-fill rl-scroll` on each area that scrolls
 
-The [recipes](/docs/recipes/) put these together.
+The [recipes](/docs/composition/#recipes) put these together.

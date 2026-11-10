@@ -47,10 +47,9 @@ export default defineConfig({
                     items: [
                         { slug: 'introduction', label: 'Introduction' },
                         { slug: 'install', label: 'Installation' },
-                        { slug: 'composition', label: 'Composition' },
                         { slug: 'web-components', label: 'Web components' },
-                        { slug: 'recipes', label: 'Recipes' },
-                        { slug: 'changelog', label: 'Changelog' },
+                        { slug: 'composition', label: 'Composition' },
+                        { slug: 'existing-projects', label: 'Existing projects' },
                     ],
                 },
                 {
