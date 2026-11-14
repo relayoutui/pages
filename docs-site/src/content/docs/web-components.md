@@ -43,7 +43,7 @@ Every element takes the utilities of its layout as attributes. Some utilities ar
 - `rl-grid`: the same as `rl-column`, and the `rl-grid-fit-*` and `rl-grid-fill-*` sizes of the [grid](/docs/layouts/grid/)
 - `rl-frame`: the same as `rl-column`
 - `rl-div`: `rl-padding-*`, `rl-border`, `rl-radius-*`, `rl-bg-*`, `rl-color-*`, `rl-gradient-*`, `rl-shadow-*`, `rl-width-*`, `rl-center-self`, `rl-height-full` and `rl-scroll`
-- `rl-divider`: none, except `vertical`, which makes it a vertical line
+- `rl-divider`: none. It is a line across an `rl-column` and down an `rl-row`, as the [divider](/docs/extras/divider/) is
 
 The [font and text classes](/docs/extras/fonts/) have no attribute form: put them as classes on the element, or on one inside it.
 
@@ -86,12 +86,14 @@ An element that takes the space the others leave is marked on itself, whether it
 </rl-column>
 ```
 
-## A vertical divider
+## A divider
+
+The divider follows its layout: a vertical line down an `rl-row`, and a horizontal line across an `rl-column`. It has to be a direct child, and in an element layout it is the `<rl-divider>` element.
 
 ```html preview
 <rl-row rl-gap-m style="height: 3em;">
     <div>Navigation</div>
-    <rl-divider vertical></rl-divider>
+    <rl-divider></rl-divider>
     <div rl-width-fill>Content</div>
 </rl-row>
 ```
