@@ -265,12 +265,12 @@ Borders and dividers work together to create well-structured layouts with clear 
 ```html preview
 <div class="rl-row rl-border rl-radius-s rl-gap-m rl-padding-m">
     <div>Home</div>
-    <div class="rl-divider vertical"></div>
+    <div class="rl-divider"></div>
     <div class="rl-row rl-gap-m rl-width-fill">
         <div>Products</div>
-        <div class="rl-divider vertical"></div>
+        <div class="rl-divider"></div>
         <div>Services</div>
-        <div class="rl-divider vertical"></div>
+        <div class="rl-divider"></div>
         <div>About</div>
     </div>
 </div>
