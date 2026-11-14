@@ -1,11 +1,11 @@
 ---
 title: "Frame"
-description: "The frame centers content both horizontally and vertically within a container that fills 100% of its parent's width and height. Content inside the frame is automatically constrained to fit within the available space, with scrolling enabled if needed."
+description: "The frame centers its content in a container that fills its parent, and keeps each child inside it. A child that should scroll takes rl-scroll."
 ---
 
 Class: `rl-frame`
 
-The frame centers content both horizontally and vertically within a container that fills 100% of its parent's width and height. Content inside the frame is automatically constrained to fit within the available space, with scrolling enabled if needed.
+The frame centers content both horizontally and vertically within a container that fills 100% of its parent's width and height. Each child of the frame is kept inside it, and one that should scroll takes [`rl-scroll`](/docs/utilities/height/).
 
 Frames are well suited for image displays, hero sections, modal content, media viewers, and any situation where you need to center and constrain content within a defined area.
 
@@ -56,8 +56,21 @@ The frame layout is designed to fill 100% of its parent container's width and he
 
 - Ensure the parent container has a defined height (frames need a height context to center content vertically)
 - Content inside frames is automatically constrained with `max-width: 100%` and `max-height: 100%`
-- Overflowing content will scroll automatically
+- A child that is bigger than the frame doesn't scroll on its own, so a shadow or a focus ring on it isn't clipped. Put `rl-scroll` on the child that should scroll
 - Images are handled specially to maintain aspect ratio with `object-fit: contain`
+
+A child that takes `rl-scroll` scrolls inside the frame:
+
+```html preview
+<div class="rl-frame rl-border" style="height: 10em;">
+    <div class="rl-scroll rl-padding-m" style="width: 20em;">
+        <p>The frame keeps this box inside its height, and <code>rl-scroll</code> makes the box scroll.</p>
+        <p>Without it, the box would stay as tall as its content and spill out of the frame, with nothing clipped.</p>
+        <p>A third paragraph, so there is more than the frame can show.</p>
+        <p>And a fourth.</p>
+    </div>
+</div>
+```
 
 ```html preview
 <div class="rl-column rl-gap-m">

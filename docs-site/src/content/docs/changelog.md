@@ -8,6 +8,7 @@ Relayout is before 1.0, so a release can rename classes. This page lists the cha
 ## 0.6.0
 
 - The script that loads the web components from the CDN is `relayout.bundle.js`. `relayout.js` imports Lit, which a page with no bundler can't resolve, so a page that loads it from the CDN has to load the bundle. With `npm`, nothing changes in your code: Lit is now a dependency of the package, so npm installs it and your bundler includes one copy for your code and for Relayout. See [Web components](/docs/web-components/#loading).
+- The children of `rl-frame` no longer scroll on their own: they stay inside the frame, and a child that should scroll takes `rl-scroll`, as in the other layouts. A scrolling box clips shadows and focus rings, so a frame that centers a card or a button no longer cuts them off. A frame whose child relied on the scrolling needs `rl-scroll` on that child. See [Frame](/docs/layouts/frame/).
 - A page that loads the script twice, such as two versions of Relayout or two apps that each bring it, no longer throws: the elements stay as the first copy registered them.
 
 ## 0.4.0
