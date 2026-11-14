@@ -94,9 +94,8 @@ These classes style the text of the element they are on.
 | `rl-text-uppercase`, `rl-text-lowercase`, `rl-text-capitalize` | Letter case |
 | `rl-text-wrap`, `rl-text-nowrap` | Wrap the text, or keep it on one line |
 | `rl-text-truncate` | One line, with an ellipsis where it is cut off. The element needs a width |
-| `rl-text-muted` | Dims the whole element to half its opacity |
 
-`rl-text-muted` dims everything in the element. To give text a muted color instead, use `rl-color-text-muted` from the [palette](/docs/extras/palette/).
+For secondary text, use the color `rl-color-muted` from the [palette](/docs/extras/palette/).
 
 ```html preview
 <div class="rl-column rl-gap-s" style="width: 16em;">
@@ -106,7 +105,6 @@ These classes style the text of the element they are on.
     <div class="rl-text-center">Centered</div>
     <div class="rl-text-uppercase">Uppercase</div>
     <div class="rl-text-truncate">A long line that is cut off with an ellipsis where it no longer fits</div>
-    <div class="rl-text-muted">Muted</div>
 </div>
 ```
 
