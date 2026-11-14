@@ -19,7 +19,7 @@ export default defineConfig({
     integrations: [
         starlight({
             title: 'Relayout Docs',
-            description: 'Four layouts set the direction. Utilities adjust the positioning. Optional extras add the fine touch. No media queries.',
+            description: 'Four layouts set the direction. Utilities adjust the positioning. Optional extras add the fine touch. Layouts adapt to the space they have.',
             favicon: '/favicon.ico',
             head: umamiWebsiteId
                 ? [

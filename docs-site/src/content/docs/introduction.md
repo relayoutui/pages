@@ -1,11 +1,11 @@
 ---
 title: "Rethink the layout"
-description: "Four layouts set the direction. Utilities adjust the positioning. Optional extras add the fine touch. No media queries."
+description: "Four layouts set the direction. Utilities adjust the positioning. Optional extras add the fine touch. Layouts adapt to the space they have."
 ---
 
 Relayout takes the parts of flexbox and grid that position elements and applies them in a simple, repeatable, predictable way.
 
-Four layouts set the direction. Utilities adjust the positioning: gap, padding, alignment, wrapping, scrolling and width. Optional extras add the fine touch. No media queries.
+Four layouts set the direction. Utilities adjust the positioning: gap, padding, alignment, wrapping, scrolling and width. Optional extras add the fine touch. Layouts adapt to the space they have.
 
 ## The idea
 
