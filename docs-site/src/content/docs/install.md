@@ -23,6 +23,10 @@ Download the CSS file from the CDN, `https://cdn.jsdelivr.net/npm/@relayoutui/re
 <link rel="stylesheet" href="assets/vendors/relayout-0.4.0/relayout.css" />
 ```
 
+## Web components
+
+The [web components](/docs/web-components/) are a script that you load beside the CSS. From the CDN, `relayout.bundle.js` is one file with everything it needs, [Lit](https://lit.dev) included. With npm, the package depends on Lit and npm installs it with the package, so your bundler includes one copy of Lit for your code and for Relayout. [Web components](/docs/web-components/#loading) has the code to load it.
+
 ## npm installation
 
 To embed Relayout in your own CSS, use npm.
