@@ -38,11 +38,11 @@ Loading the script registers the six elements. A page can load it more than once
 
 Every element takes the utilities of its layout as attributes. Some utilities are for a container, and a plain box has no children to arrange, which is why `rl-div` takes fewer.
 
-- `rl-column`: [`rl-gap-*`](/docs/utilities/gap/), [`rl-align-*`](/docs/utilities/align/), [`rl-justify-*`](/docs/utilities/justify/), [`rl-padding-*`](/docs/utilities/padding/), [`rl-border`](/docs/extras/border/), [`rl-radius-*`](/docs/extras/radius/), [`rl-bg-*`, `rl-color-*` and `rl-gradient-*`](/docs/extras/palette/), [`rl-shadow-*`](/docs/extras/shadows/), [`rl-width-*` and `rl-center-self`](/docs/utilities/width/), and [`rl-height-full` and `rl-scroll`](/docs/utilities/height/)
+- `rl-column`: [`rl-gap-*`](/docs/utilities/gap/), [`rl-align-*`](/docs/utilities/align/), [`rl-justify-*`](/docs/utilities/justify/), [`rl-padding-*`](/docs/utilities/padding/), [`rl-border`](/docs/extras/border/), [`rl-radius-*`](/docs/extras/radius/), [`rl-bg-*`, `rl-color-*` and `rl-gradient-*`](/docs/extras/palette/), [`rl-shadow-*`](/docs/extras/shadows/), [`rl-outline-none`](/docs/extras/outline/), [`rl-width-*` and `rl-center-self`](/docs/utilities/width/), and [`rl-height-full` and `rl-scroll`](/docs/utilities/height/)
 - `rl-row`: the same, and [`rl-nowrap`, `rl-nowrap-scroll` and `rl-wrap-reverse`](/docs/utilities/wrapping/)
 - `rl-grid`: the same as `rl-column`, and the `rl-grid-fit-*` and `rl-grid-fill-*` sizes of the [grid](/docs/layouts/grid/)
 - `rl-frame`: the same as `rl-column`
-- `rl-div`: `rl-padding-*`, `rl-border`, `rl-radius-*`, `rl-bg-*`, `rl-color-*`, `rl-gradient-*`, `rl-shadow-*`, `rl-width-*`, `rl-center-self`, `rl-height-full` and `rl-scroll`
+- `rl-div`: `rl-padding-*`, `rl-border`, `rl-radius-*`, `rl-bg-*`, `rl-color-*`, `rl-gradient-*`, `rl-shadow-*`, `rl-outline-none`, `rl-width-*`, `rl-center-self`, `rl-height-full` and `rl-scroll`
 - `rl-divider`: none. It is a line across an `rl-column` and down an `rl-row`, as the [divider](/docs/extras/divider/) is
 
 The [font and text classes](/docs/extras/fonts/) have no attribute form: put them as classes on the element, or on one inside it.
