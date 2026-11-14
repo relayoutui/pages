@@ -467,6 +467,220 @@ The column is exactly as tall as the window. The row below the header takes the 
 </div>
 ```
 
+### Header links that collapse into a menu
+
+Wrapping moves a header's links below the logo when they don't fit. To fold them behind a button instead, put the links in a `<details>`. The `<summary>` is the button and the links sit inside it, so nothing points at anything by `id`, and no JavaScript is needed.
+
+This recipe needs a width, which Relayout's layouts don't ask for: whether to collapse is a choice, and a layout can't make it for you. It uses a container query, a CSS rule that reacts to the width of an element instead of the window, so the menu collapses when the area it sits in is narrow, whatever the window's width. Below `32em` the links are a menu under a ⋮ button, and from `32em` up they sit in the row. Pick your own width. Drag the corner of the preview to make it narrower and wider.
+
+```html preview
+<style>
+    .shell {
+        container-type: inline-size;
+    }
+
+    .menu {
+        position: relative;
+    }
+
+    .menu > summary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 2.25rem;
+        height: 2.25rem;
+        border: var(--rl-border-default);
+        border-radius: 0.5rem;
+        list-style: none;
+        cursor: pointer;
+    }
+
+    .menu > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    /* A layer over the page that belongs to the summary: a click outside the menu closes it */
+    .menu[open] > summary::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+    }
+
+    .menu > nav {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        right: 0;
+        z-index: 2;
+        width: max-content;
+        border: var(--rl-border-default);
+        border-radius: 0.5rem;
+        background: var(--rl-color-surface-alt);
+        box-shadow: var(--rl-shadow-m);
+    }
+
+    @container (min-width: 32em) {
+        /* The links show inline, whether the details is open or not */
+        .menu::details-content {
+            content-visibility: visible;
+        }
+
+        .menu > summary {
+            display: none;
+        }
+
+        /* The nav is a column in the menu and a row here: a class can't change with the width */
+        .menu > nav {
+            position: static;
+            flex-direction: row;
+            width: auto;
+            padding: 0;
+            border: 0;
+            background: none;
+            box-shadow: none;
+        }
+    }
+</style>
+
+<div class="shell" style="min-height: 13em;">
+    <header class="rl-row rl-nowrap rl-justify-between rl-gap-m rl-padding-m rl-border rl-radius-m">
+        <strong>Acme</strong>
+        <details class="menu">
+            <summary aria-label="Menu">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                    <circle cx="12" cy="5" r="2"/>
+                    <circle cx="12" cy="12" r="2"/>
+                    <circle cx="12" cy="19" r="2"/>
+                </svg>
+            </summary>
+            <nav class="rl-column rl-gap-l rl-padding-l">
+                <a href="#">Product</a>
+                <a href="#">Pricing</a>
+                <a href="#">Docs</a>
+            </nav>
+        </details>
+    </header>
+</div>
+```
+
+- `container-type: inline-size` makes the `.shell` the element the query measures: the menu collapses when the `.shell` is narrow. On a real page it can be the header or the wrapper around the page.
+- `position: relative` on the `<details>` puts the menu under its button.
+- The `::before` layer on the summary covers the page while the menu is open, so a click anywhere outside the menu is a click on the summary, which closes it.
+- `::details-content` is how a closed `<details>` shows its links on wide screens. It is a recent CSS feature, so check it against the browsers you support.
+- Nothing closes the menu on Esc.
+
+The Popover API is the other way to build this. Its `popover` attribute gives Esc to close and keyboard focus handling, and the button names the menu by its `id` in `popovertarget`. It has one catch: a popover that is open when the window becomes wide stays above the page, outside the layout, and only a script can close it.
+
+### Sidebar that collapses into a drawer
+
+The same `<details>` holds a sidebar. Below `32em` a button opens the sidebar as a drawer over the main area, under the header, and the rest of the main area is dimmed. From `32em` up the sidebar is a column of the row. The drawer is placed against the row that holds the sidebar and the main area, so it stays below the header without knowing its height. Drag the corner of the preview to make it narrower and wider.
+
+```html preview
+<style>
+    .body {
+        position: relative;
+        container-type: inline-size;
+    }
+
+    .drawer {
+        align-self: start;
+        padding: 0.5rem;
+    }
+
+    .drawer > summary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 2.25rem;
+        height: 2.25rem;
+        border: var(--rl-border-default);
+        border-radius: 0.5rem;
+        list-style: none;
+        cursor: pointer;
+    }
+
+    .drawer > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    /* A layer over the main area that belongs to the summary: a click on it closes the drawer */
+    .drawer[open] > summary::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: hsl(0 0% 0% / 0.5);
+    }
+
+    .drawer > aside {
+        position: absolute;
+        inset: 0 auto 0 0;
+        z-index: 2;
+        width: min(12rem, 85%);
+        overflow: auto;
+        border-right: var(--rl-border-default);
+        background: var(--rl-color-surface);
+        box-shadow: var(--rl-shadow-xl);
+    }
+
+    @container (min-width: 32em) {
+        .drawer::details-content {
+            content-visibility: visible;
+        }
+
+        .drawer > summary {
+            display: none;
+        }
+
+        .drawer {
+            align-self: stretch;
+            padding: 0;
+            border-right: var(--rl-border-default);
+        }
+
+        .drawer > aside {
+            position: static;
+            width: 12rem;
+            border-right: 0;
+            background: none;
+            box-shadow: none;
+        }
+    }
+</style>
+
+<div class="rl-column" style="height: 16em;">
+    <header class="rl-padding-m">Header</header>
+    <div class="body rl-row rl-nowrap rl-height-fill">
+        <details class="drawer">
+            <summary aria-label="Sections">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </summary>
+            <aside>
+                <nav class="rl-column rl-gap-m rl-padding-m">
+                    <a href="#">Overview</a>
+                    <a href="#">Layouts</a>
+                    <a href="#">Utilities</a>
+                    <a href="#">Extras</a>
+                    <a href="#">Recipes</a>
+                </nav>
+            </aside>
+        </details>
+        <main class="rl-column rl-gap-m rl-width-fill rl-height-fill rl-scroll rl-padding-m">
+            <div>The main area takes the width the sidebar leaves, and scrolls on its own.</div>
+            <div style="height: 20em;">Tall content</div>
+            <div>The end of the content</div>
+        </main>
+    </div>
+</div>
+```
+
+- Neither the `<details>` nor the `<aside>` is positioned, so the drawer and the dimming layer are placed against `.body`, which is also the element the container query measures.
+- Like the menu, the drawer closes on a click outside it and not on Esc, and it shows on wide screens through `::details-content`.
+
 ### Equal columns that stack on narrow screens
 
 A grid gives its cells the same width, and moves them to new lines when they no longer fit side by side. The `rl-grid-fit-*` classes set how narrow a cell can get.
