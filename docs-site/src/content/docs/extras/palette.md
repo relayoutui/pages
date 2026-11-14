@@ -21,7 +21,7 @@ Relayout names the common colors as roles, such as `primary`, `danger` and `surf
 | `surface` | The page or panel background | hsl(0, 0%, 100%) | hsl(0, 0%, 12%) |
 | `surface-alt` | A second background, for contrast | hsl(0, 0%, 96%) | hsl(0, 0%, 18%) |
 | `text` | Body text | hsl(0, 0%, 10%) | hsl(0, 0%, 95%) |
-| `text-muted` | Secondary text | hsl(0, 0%, 45%) | hsl(0, 0%, 65%) |
+| `muted` | Secondary text, and an icon that draws in the text color | hsl(0, 0%, 45%) | hsl(0, 0%, 65%) |
 
 ## Background
 
@@ -54,12 +54,12 @@ The class sets only the background, so the text color stays as it is. Pick it yo
 
 ### `rl-color-*`
 
-Apply class `rl-color-*` to set the text color, where `*` can be `primary`, `secondary`, `accent`, `success`, `warning`, `danger`, `info`, `text`, or `text-muted`.
+Apply class `rl-color-*` to set the text color, where `*` can be `primary`, `secondary`, `accent`, `success`, `warning`, `danger`, `info`, `text`, or `muted`.
 
 ```html preview
 <div class="rl-column rl-gap-s rl-bg-surface rl-border rl-padding-m rl-radius-s">
     <div class="rl-color-text">text</div>
-    <div class="rl-color-text-muted">text-muted</div>
+    <div class="rl-color-muted">muted</div>
     <div class="rl-color-primary">primary</div>
     <div class="rl-color-secondary">secondary</div>
     <div class="rl-color-accent">accent</div>
@@ -69,8 +69,6 @@ Apply class `rl-color-*` to set the text color, where `*` can be `primary`, `sec
     <div class="rl-color-info">info</div>
 </div>
 ```
-
-`rl-color-text-muted` sets a color. It isn't `rl-text-muted`, which dims the whole element: see [Fonts](/docs/extras/fonts/).
 
 ## Gradients
 
