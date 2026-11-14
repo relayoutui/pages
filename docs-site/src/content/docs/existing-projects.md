@@ -22,7 +22,7 @@ The row places the two buttons, and Bootstrap, in this example, draws them.
 
 - Classes that say where an element sits in its parent, such as `rl-center-self` and `rl-width-fill`, are fine on a component.
 - Padding, border, radius and shadow belong on your own wrappers and panels. A component already has its own.
-- An element with an `rl-` class gets `box-sizing: border-box`, so a component's width includes its padding and border. A layout container has no focus outline, and a link, button, field or `summary` keeps the browser's focus ring, so a component with `rl-width-fill` still shows where the keyboard is.
+- An element with an `rl-` class gets `box-sizing: border-box`, so a component's width includes its padding and border. A link, button, field, `summary` or a box that scrolls keeps the browser's focus ring, so a component with `rl-width-fill` still shows where the keyboard is, and a layout container the keyboard can't stop on has no outline. [Outline](/docs/extras/outline/) takes a ring off with `rl-outline-none`.
 
 ## One part of a page at a time
 

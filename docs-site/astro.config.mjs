@@ -82,6 +82,7 @@ export default defineConfig({
                         { slug: 'extras/palette', label: 'Palette' },
                         { slug: 'extras/fonts', label: 'Fonts' },
                         { slug: 'extras/shadows', label: 'Shadows' },
+                        { slug: 'extras/outline', label: 'Outline' },
                     ],
                 },
             ],
