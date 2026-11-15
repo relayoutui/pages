@@ -52,7 +52,7 @@ Every element takes the utilities of its layout as attributes. Some utilities ar
 - `rl-div`: `rl-padding-*`, `rl-border`, `rl-radius-*`, `rl-bg-*`, `rl-color-*`, `rl-gradient-*`, `rl-shadow-*`, `rl-outline-none`, `rl-width-*`, `rl-center-self`, `rl-height-full` and `rl-scroll`
 - `rl-divider`: none. It is a line across an `rl-column` and down an `rl-row`, as the [divider](/docs/extras/divider/) is
 
-`hidden` hides any of the elements, as it hides any element, and `hidden="until-found"` leaves the page's find to reach it.
+`hidden` hides any of the elements, as it hides any element, and an image inside `<rl-frame>`, and `hidden="until-found"` leaves the page's find to reach it.
 
 The [font and text classes](/docs/extras/fonts/) have no attribute form: put them as classes on the element, or on one inside it.
 
