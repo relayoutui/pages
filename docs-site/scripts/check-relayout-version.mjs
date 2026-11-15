@@ -66,16 +66,32 @@ async function pinsIn(file)
     return found;
 }
 
-let version;
-let dependency;
+let installedPackage;
 try
 {
-    version = JSON.parse(await fs.readFile(path.join(installed, 'package.json'), 'utf8')).version;
-    dependency = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8')).dependencies['@relayoutui/relayout'];
+    installedPackage = JSON.parse(await fs.readFile(path.join(installed, 'package.json'), 'utf8'));
 }
 catch
 {
     console.error('@relayoutui/relayout is not installed in docs-site: run `npm install` first');
+    process.exit(1);
+}
+const version = installedPackage.version;
+
+let ownPackage;
+try
+{
+    ownPackage = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8'));
+}
+catch (error)
+{
+    console.error(`docs-site/package.json can't be read: ${error.message}`);
+    process.exit(1);
+}
+const dependency = ownPackage.dependencies?.['@relayoutui/relayout'];
+if (!dependency)
+{
+    console.error('docs-site/package.json has no dependency on @relayoutui/relayout');
     process.exit(1);
 }
 
