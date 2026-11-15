@@ -12,6 +12,7 @@ Run from this folder, in PowerShell or any shell. The first time, install the de
 |---|---|
 | `npm run dev` | Dev server at http://localhost:4321/docs/. Search says it is unavailable in dev |
 | `npm run build` | Builds the static site into `dist/`, with the search index and a sitemap |
+| `npm run check` | After a build: fails if a page's title is over 60 characters or its description is outside 120 to 160, as search results show them (the docs and the home page) |
 | `npm run preview` | Serves `dist/` at http://localhost:4321/docs/, as it would be deployed |
 
 **On relayout.local.** The Caddyfile in `_local` serves `dist/` at http://relayout.local/docs, beside the home page (see the README one folder up). Run `npm run build`, then reload; there is no server to restart.
