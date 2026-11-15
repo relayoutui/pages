@@ -36,8 +36,9 @@ jobs:
         env:
           UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
 
-      # Titles of at most 60 characters and descriptions of 120 to 160, as the built pages have them
-      - name: Check the page titles and descriptions
+      # One Relayout version in the dependency, the examples and the home page's CSS. Titles of at most 60
+      # characters and descriptions of 120 to 160, as the built pages have them
+      - name: Check the Relayout version, and the page titles and descriptions
         run: npm run check
         working-directory: docs-site
 

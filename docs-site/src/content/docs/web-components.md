@@ -25,10 +25,10 @@ The two forms mix freely. A web component can sit in a layout made of classes, a
 
 The elements read their sizes from the css custom properties that `relayout.css` defines, so the css is loaded as in [Installation](/docs/install/), and the script beside it.
 
-From the CDN, where `0.6.0` is the version to load. The bundled file includes everything it needs, [Lit](https://lit.dev) too, so there is no other script to add:
+From the CDN, where `0.7.0` is the version to load. The bundled file includes everything it needs, [Lit](https://lit.dev) too, so there is no other script to add:
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.6.0/dist/js/relayout.bundle.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.7.0/dist/js/relayout.bundle.js"></script>
 ```
 
 With `npm`, import the package once, anywhere in your code:
