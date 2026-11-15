@@ -1,6 +1,13 @@
 ---
 title: "Gap"
-description: "The gap utility controls the spacing between child elements in a layout container. Gap provides consistent spacing without the need for margins on individual items. It works with all layout types that use flexbox or grid."
+description: "The gap utility sets the spacing between the children of a layout from a fixed scale, so items need no margins of their own. It works in every layout."
+head:
+  - tag: title
+    content: "Relayout gap: even spacing between the elements of a layout"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout gap: even spacing between the elements of a layout"
 ---
 
 Class: `rl-gap-*`

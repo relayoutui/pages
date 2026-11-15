@@ -1,6 +1,13 @@
 ---
 title: "Width"
-description: "The width utility constrains the maximum width of a container, and rl-center-self centers it horizontally within its parent. By default, all layout containers expand to fill 100% of the available width. Width utilities provide a way to limit content width for better readability and visual hierarchy."
+description: "The width utility sets the maximum width of a container, which fills its parent below that, and rl-center-self centers it in its parent."
+head:
+  - tag: title
+    content: "Relayout width: limit a container's width and center it"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout width: limit a container's width and center it"
 ---
 
 Classes: `rl-width-*`, `rl-center-self`

@@ -1,6 +1,13 @@
 ---
 title: "Height, fill and scroll"
-description: "By default, a layout container takes only the height its content needs, and the elements of a row take only the width they need. These utilities make an element fill the space around it, and choose which area scrolls."
+description: "Make an element fill the space around it with rl-height-full, rl-height-fill or rl-width-fill, and choose which area scrolls with rl-scroll."
+head:
+  - tag: title
+    content: "Relayout fill and scroll: take the space, pick what scrolls"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout fill and scroll: take the space, pick what scrolls"
 ---
 
 Classes: `rl-height-full`, `rl-height-fill`, `rl-width-fill`, `rl-scroll`
@@ -272,7 +279,7 @@ Fill elements nest: each panel column takes half the width, and inside it, the l
 
 ```html preview
 <div class="rl-frame" style="height: 25em; background: rgba(0,0,0,0.1);">
-    <div class="rl-column rl-border rl-radius-m" style="width: 25em; height: 18em; background: white;">
+    <div class="rl-column rl-border rl-radius-m rl-bg-surface rl-color-text" style="width: 25em; height: 18em;">
         <div class="rl-row rl-justify-between rl-gap-m rl-padding-m">
             <div style="font-weight: bold;">Dialog Title</div>
             <div>✕</div>

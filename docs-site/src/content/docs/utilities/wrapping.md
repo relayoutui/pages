@@ -1,6 +1,13 @@
 ---
 title: "Wrapping"
-description: "The wrapping utility controls how elements behave when they don't fit in the available space. By default, a row wraps its elements to the next line when they overflow. Wrapping utilities allow you to prevent wrapping, add horizontal scrolling, or reverse the wrap direction."
+description: "Wrapping utilities choose what a row does when its elements don't fit: stay on one line, scroll sideways, or wrap in reverse order. By default a row wraps."
+head:
+  - tag: title
+    content: "Relayout wrapping: no wrap, sideways scroll and reverse wrap"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout wrapping: no wrap, sideways scroll and reverse wrap"
 ---
 
 Classes: `rl-nowrap`, `rl-nowrap-scroll`, `rl-wrap-reverse`

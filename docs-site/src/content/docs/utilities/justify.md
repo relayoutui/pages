@@ -1,6 +1,13 @@
 ---
 title: "Justify"
-description: "The justify utility controls how elements are positioned along the main axis of a layout. The main axis is the primary direction in which elements flow - vertical for columns, horizontal for rows."
+description: "The justify utility places elements along the main axis of a layout: horizontally in a row, vertically in a column, with start, center, end and between."
+head:
+  - tag: title
+    content: "Relayout justify: position elements along the main axis"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout justify: position elements along the main axis"
 ---
 
 Class: `rl-justify-*`

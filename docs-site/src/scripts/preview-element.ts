@@ -18,8 +18,33 @@ function sheet(text: string): CSSStyleSheet
     return result;
 }
 
+/**
+ * Relayout's dark colors apply when the visitor's system prefers dark. The docs have a theme of their own, a toggle
+ * that can disagree with the system, and a preview that takes the system's colors beside the docs' text can't be read:
+ * light text on a white surface. So the dark values move from the media query to `:host([data-theme="dark"])`, and
+ * each preview takes its `data-theme` from the page's.
+ * @param css Relayout's stylesheet
+ * @returns the stylesheet with the dark values under the host's theme
+ */
+function followDocsTheme(css: string): string
+{
+    return css.replace(/@media\s*\(prefers-color-scheme:\s*dark\)\s*\{\s*:root\s*\{([^}]*)\}\s*\}/g, ':host([data-theme="dark"]){$1}');
+}
+
 // Relayout sets its tokens on :root, which a shadow root doesn't have
-const SHEETS = [sheet(relayoutCss.replace(/:root\b/g, ':host')), sheet(previewCss)];
+const SHEETS = [sheet(followDocsTheme(relayoutCss).replace(/:root\b/g, ':host')), sheet(previewCss)];
+
+/** The theme the docs are in, which src/components/theme-provider.astro sets before the first paint. */
+function docsTheme(): string
+{
+    return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+}
+
+// A toggle of the docs' theme changes every preview on the page
+new MutationObserver(() =>
+{
+    for (const preview of document.querySelectorAll('rl-preview')) preview.setAttribute('data-theme', docsTheme());
+}).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
 /** A live preview of the snippet in its template, with debug outlines when it has the `debug` attribute. */
 class RelayoutPreview extends HTMLElement
@@ -29,6 +54,7 @@ class RelayoutPreview extends HTMLElement
         const template = this.querySelector('template');
         if (this.shadowRoot || !template) return;
 
+        this.setAttribute('data-theme', docsTheme());
         const root = this.attachShadow({ mode: 'open' });
         root.adoptedStyleSheets = SHEETS;
 

@@ -1,6 +1,13 @@
 ---
 title: "Frame"
 description: "The frame centers its content in a container that fills its parent, and keeps each child inside it. A child that should scroll takes rl-scroll."
+head:
+  - tag: title
+    content: "Relayout frame: center content inside a container"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout frame: center content inside a container"
 ---
 
 Class: `rl-frame`
@@ -9,7 +16,7 @@ The frame centers content both horizontally and vertically within a container th
 
 Frames are well suited for image displays, hero sections, modal content, media viewers, and any situation where you need to center and constrain content within a defined area.
 
-### `rl-frame`
+## `rl-frame`
 
 By default, the frame centers its content and constrains it to fit within the frame boundaries.
 

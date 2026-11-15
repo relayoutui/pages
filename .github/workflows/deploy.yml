@@ -36,6 +36,11 @@ jobs:
         env:
           UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
 
+      # Titles of at most 60 characters and descriptions of 120 to 160, as the built pages have them
+      - name: Check the page titles and descriptions
+        run: npm run check
+        working-directory: docs-site
+
       - name: Assemble the site
         run: bash ./.github/assemble-site.sh _site
 

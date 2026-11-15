@@ -1,6 +1,13 @@
 ---
 title: "Palette"
-description: "Relayout names the common colors as roles, each with a light and a dark value, and has a background, a text color and a gradient class for them. They are optional: nothing changes on a page until you add a class."
+description: "Relayout names colors as roles, each with a light and a dark value, and has classes for backgrounds, text and gradients. Nothing changes until you add one."
+head:
+  - tag: title
+    content: "Relayout palette: color roles for light and dark themes"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout palette: color roles for light and dark themes"
 ---
 
 Classes: `rl-bg-*`, `rl-color-*`, `rl-gradient-*`
@@ -23,23 +30,25 @@ Relayout names the common colors as roles, such as `primary`, `danger` and `surf
 | `text` | Body text | hsl(0, 0%, 10%) | hsl(0, 0%, 95%) |
 | `muted` | Secondary text, and an icon that draws in the text color | hsl(0, 0%, 45%) | hsl(0, 0%, 65%) |
 
+As text on `surface`, every role reaches 4.5:1 in the dark theme. In the light theme `primary`, `secondary`, `danger`, `text` and `muted` do, and `accent` (2.7:1), `success` (4.1), `warning` (2.6) and `info` (3.6) don't: use those four for fills, borders and marks, and keep text in the others. The ratios on `surface-alt` are lower.
+
 ## Background
 
 ### `rl-bg-*`
 
 Apply class `rl-bg-*` to set the background color, where `*` can be `primary`, `secondary`, `accent`, `success`, `warning`, `danger`, `info`, `surface`, or `surface-alt`.
 
-The class sets only the background, so the text color stays as it is. Pick it yourself, for example with `rl-color-text` on a surface.
+The class sets only the background, so the text color stays as it is. Pick it yourself, for example with `rl-color-text` on a surface. The roles are mid-tones, and no one text color reads on all of them in both themes, so the examples put each name on a `surface` chip.
 
 ```html preview
 <div class="rl-row rl-gap-s">
-    <div class="rl-bg-primary rl-padding-m rl-radius-s" style="color: white;">primary</div>
-    <div class="rl-bg-secondary rl-padding-m rl-radius-s" style="color: white;">secondary</div>
-    <div class="rl-bg-accent rl-padding-m rl-radius-s" style="color: white;">accent</div>
-    <div class="rl-bg-success rl-padding-m rl-radius-s" style="color: white;">success</div>
-    <div class="rl-bg-warning rl-padding-m rl-radius-s" style="color: white;">warning</div>
-    <div class="rl-bg-danger rl-padding-m rl-radius-s" style="color: white;">danger</div>
-    <div class="rl-bg-info rl-padding-m rl-radius-s" style="color: white;">info</div>
+    <div class="rl-bg-primary rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">primary</span></div>
+    <div class="rl-bg-secondary rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">secondary</span></div>
+    <div class="rl-bg-accent rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">accent</span></div>
+    <div class="rl-bg-success rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">success</span></div>
+    <div class="rl-bg-warning rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">warning</span></div>
+    <div class="rl-bg-danger rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">danger</span></div>
+    <div class="rl-bg-info rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">info</span></div>
 </div>
 ```
 
@@ -80,11 +89,11 @@ Apply class `rl-gradient-*` to set a gradient as the background image, where `*`
 
 ```html preview
 <div class="rl-row rl-gap-s">
-    <div class="rl-gradient-primary rl-padding-m rl-radius-s" style="color: white;">primary</div>
-    <div class="rl-gradient-accent rl-padding-m rl-radius-s" style="color: white;">accent</div>
+    <div class="rl-gradient-primary rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">primary</span></div>
+    <div class="rl-gradient-accent rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">accent</span></div>
     <div class="rl-gradient-subtle rl-color-text rl-border rl-padding-m rl-radius-s">subtle</div>
-    <div class="rl-gradient-warm rl-padding-m rl-radius-s" style="color: white;">warm</div>
-    <div class="rl-gradient-cool rl-padding-m rl-radius-s" style="color: white;">cool</div>
+    <div class="rl-gradient-warm rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">warm</span></div>
+    <div class="rl-gradient-cool rl-padding-m rl-radius-s"><span class="rl-bg-surface rl-color-text rl-padding-xs rl-radius-xs">cool</span></div>
 </div>
 ```
 

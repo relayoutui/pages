@@ -21,8 +21,8 @@
      - Brand colour used as text goes through --brand-text. lpdf's legal-page links, FAQ links and
        footer hovers use --brand, a graphic colour held to 3:1, so they measure about 3.2 on light.
      - The code window's value, tag and comment tokens, and its filename (see the note there).
-   Still shared with lpdf, and still short of 4.5:1 in places: --text-subtle (dark: 3.67 to 4.42 across
-   the surfaces, against the 4.6 its comment claims; light: 4.13 on --bg-sunken).
+     - --text-subtle, which clears 4.5:1 on every surface in both themes: lpdf's measures 3.67 to 4.42 in the
+       dark theme and 4.13 on --bg-sunken in the light one.
 
    Until lpdf moves onto this file (the last phase of
    internal/Codesense/1.refine/Codesense-product-sites.md) it keeps its own copy of these rules, and the
@@ -49,9 +49,10 @@
    on AuthStack.
 
    The three text tiers are set by contrast against --bg, and the light and dark ramps are matched tier
-   for tier, so a page does not read louder in one theme than the other:
+   for tier, so a page does not read louder in one theme than the other. Subtle is held to 4.5:1 on the
+   lightest dark surface, --bg-elev, and on the darkest light one, --bg-sunken, so it does on every surface:
 
-       text 16:1 · muted 7:1 · subtle 4.6:1
+       text 16:1 · muted 6-7:1 · subtle 5-6:1 against --bg
 
    Three surfaces for content, and --bg-elev is the top one in both themes: elevation runs toward light
    whichever theme you are in. Sections alternate between --bg and --bg-alt. The header and footer are
@@ -72,7 +73,7 @@
     --border: #cdd1d7;
     --text: #141619;
     --text-muted: #4e5258;
-    --text-subtle: #6a6e74;
+    --text-subtle: #5f6368;
     --success: oklch(58% 0.12 155);
     --wordmark-font: var(--rl-font-sans);
     --nav-h: 3rem;
@@ -93,7 +94,7 @@
     --border: #2f3339;
     --text: #eceff3;
     --text-muted: #989da4;
-    --text-subtle: #797d83;
+    --text-subtle: #8c9198;
 }
 
 /* ── Base ── */
@@ -292,7 +293,7 @@ footer { background: var(--bg-chrome); border-top: 1px solid var(--border); }
 /* Language name leads its row; the repo and package links sit under it, a step quieter. */
 .footer-sdk { font-size: 0.875rem; color: var(--text-muted); transition: color .15s; }
 .footer-sdk:hover { color: var(--brand-text); }
-.footer-columns .footer-sdk-links a { font-size: 0.8125rem; color: var(--text-subtle); }
+.footer-columns .footer-sdk-links a { font-size: 0.8125rem; color: var(--text-subtle); min-height: 24px; }
 /* No rule above the copyright. The footer already has one — its own border-top — and a second
    inside a block that has no other dividers reads as two stacked footers rather than one. Space
    separates it instead, balanced against the 2rem the columns end on. */

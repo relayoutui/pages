@@ -1,6 +1,13 @@
 ---
 title: "Rethink the layout"
-description: "Four layouts set the direction. Utilities adjust the positioning. Optional extras add the fine touch. Layouts adapt to the space they have."
+description: "Relayout takes the parts of flexbox and grid that position elements and gives each a fixed name and behavior: four layouts, utilities for spacing, and extras."
+head:
+  - tag: title
+    content: "Relayout: a simple, predictable way to lay out a page in CSS"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout: a simple, predictable way to lay out a page in CSS"
 ---
 
 Relayout takes the parts of flexbox and grid that position elements and applies them in a simple, repeatable, predictable way.

@@ -1,6 +1,13 @@
 ---
 title: "Column"
-description: "The column arranges the elements vertically, with consistent spacing between them. The elements in a column can be aligned horizontally to the start, center, or end, or they can stretch and fill the horizontal space."
+description: "The column arranges elements vertically with consistent spacing between them. Align them to the start, center or end, or let them stretch and fill the width."
+head:
+  - tag: title
+    content: "Relayout column: stack elements vertically with even spacing"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout column: stack elements vertically with even spacing"
 ---
 
 Class: `rl-column`
@@ -9,7 +16,7 @@ The column arranges the elements vertically, with consistent spacing between the
 
 Columns are well suited for forms, text, and ensuring consistent spacing between elements in the document flow.
 
-### `rl-column`
+## `rl-column`
 
 By default, items in the column are stretched, filling the available width.
 

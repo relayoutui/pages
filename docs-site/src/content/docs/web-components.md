@@ -1,6 +1,13 @@
 ---
 title: "Web components"
-description: "Relayout also comes as web components: <rl-column>, <rl-row>, <rl-grid>, <rl-frame> and <rl-divider>, plus <rl-div> for a plain box. A utility is an attribute with the class's name."
+description: "Relayout also comes as web components: <rl-column>, <rl-row>, <rl-grid>, <rl-frame>, <rl-divider> and <rl-div>. A utility is an attribute with the class's name."
+head:
+  - tag: title
+    content: "Relayout web components: rl-column, rl-row, rl-grid and more"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout web components: rl-column, rl-row, rl-grid and more"
 ---
 
 Elements: `rl-column`, `rl-row`, `rl-grid`, `rl-frame`, `rl-divider`, `rl-div`

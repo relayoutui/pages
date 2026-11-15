@@ -1,6 +1,13 @@
 ---
 title: "Installation"
-description: "You can load Relayout from a CDN, as a local CSS file in your project, or with npm and a tool such as Sass that embeds Relayout in your own CSS."
+description: "Install Relayout from a CDN, as a local CSS file, or with npm and Sass, which embeds it in your own CSS. The web components load from a script beside the CSS."
+head:
+  - tag: title
+    content: "Install Relayout from a CDN, as a local file or with npm"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Install Relayout from a CDN, as a local file or with npm"
 ---
 
 You can load Relayout from a CDN, as a local CSS file in your project, or with `npm` and a tool such as Sass that embeds Relayout in your own CSS.
@@ -9,18 +16,18 @@ Relayout is before 1.0, so a release can rename classes. Each example below name
 
 ## CDN installation
 
-Add the following code to your page in the `<head>` section, where `0.4.0` is the version to load.
+Add the following code to your page in the `<head>` section, where `0.5.1` is the version to load.
 
 ```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.4.0/dist/css/relayout.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.5.1/dist/css/relayout.css" />
 ```
 
 ## Local installation
 
-Download the CSS file from the CDN, `https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.4.0/dist/css/relayout.css`, and link it in your project. Include it in the build.
+Download the CSS file from the CDN, `https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.5.1/dist/css/relayout.css`, and link it in your project. Include it in the build.
 
 ```
-<link rel="stylesheet" href="assets/vendors/relayout-0.4.0/relayout.css" />
+<link rel="stylesheet" href="assets/vendors/relayout-0.5.1/relayout.css" />
 ```
 
 ## Web components
@@ -71,8 +78,8 @@ Add a `build-css` script to your `package.json` to build your SCSS into CSS:
   "scripts": {
     "build-css": "sass --load-path=node_modules scss/app.scss assets/css/app.css"
   },
-  "dependencies": {
-    "@relayoutui/relayout": "^0.4.0",
+  "devDependencies": {
+    "@relayoutui/relayout": "^0.5.1",
     "sass": "^1.93.3"
   }
 }

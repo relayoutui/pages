@@ -1,6 +1,13 @@
 ---
 title: "Align"
-description: "The align utility controls how elements are positioned along the cross axis in a layout container. The cross axis is perpendicular to the main axis - in horizontal layouts, align controls vertical positioning; in vertical layouts, it controls horizontal positioning."
+description: "The align utility places elements along the cross axis of a layout: vertically in a row, horizontally in a column. It works with every layout type the same way."
+head:
+  - tag: title
+    content: "Relayout align: position elements along the cross axis"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout align: position elements along the cross axis"
 ---
 
 Class: `rl-align-*`

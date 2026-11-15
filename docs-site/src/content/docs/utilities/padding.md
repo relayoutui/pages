@@ -1,6 +1,13 @@
 ---
 title: "Padding"
-description: "The padding utility adds internal spacing around a container, creating space between the container's edges and its content. Padding is applied uniformly on all four sides (top, right, bottom, left) and works consistently across all layout types."
+description: "The padding utility adds space inside a container, on all four sides, from a fixed scale from extra small to 2xl that works the same in every layout."
+head:
+  - tag: title
+    content: "Relayout padding: space inside a container on every side"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout padding: space inside a container on every side"
 ---
 
 Class: `rl-padding-*`

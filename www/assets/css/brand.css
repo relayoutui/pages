@@ -7,9 +7,9 @@
        --brand-text   4.5:1 as text: light #d0057b 4.94 · 4.65 · 5.26 · 5.26, dark #fe3aa3 4.94 · 5.27 · 4.59 · 5.53
        --brand-on     4.5:1 against the --brand fill: #1f0012 4.63
 
-   Light --brand-text is the docs' tone. Dark is a step lighter along the mark's hue than the docs' #fd299a, which
-   is 4.31 on --bg-elev, a surface the docs don't have. White on the fill is 4.25, so the label on it is a dark tone
-   of the same hue. */
+   --brand-text is the docs' tone in both themes. Dark is a step lighter along the mark's hue than #fd299a, which was
+   4.31 on --bg-elev here and on the background of a child in a docs preview with `debug`; the docs took this tone
+   on 2026-11-14. White on the fill is 4.25, so the label on it is a dark tone of the same hue. */
 :root {
     --brand: #ec008c;
     --brand-text: #d0057b;

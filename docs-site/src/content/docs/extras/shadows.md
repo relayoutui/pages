@@ -1,6 +1,13 @@
 ---
 title: "Shadows"
-description: "Relayout names a scale of shadows, from extra small to extra large, plus an inner shadow and one to remove a shadow. They are optional: nothing changes on a page until you add a class."
+description: "Relayout names a scale of shadows from extra small to extra large, plus an inner shadow and one that removes a shadow. Nothing changes until you add a class."
+head:
+  - tag: title
+    content: "Relayout shadows: a scale of shadows from xs to xl"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout shadows: a scale of shadows from xs to xl"
 ---
 
 Class: `rl-shadow-*`
