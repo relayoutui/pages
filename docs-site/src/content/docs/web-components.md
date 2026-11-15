@@ -19,7 +19,7 @@ Each layout is also a web component, and a utility is an attribute with the clas
 <rl-column rl-gap-m rl-border>...</rl-column>
 ```
 
-The two forms mix freely. A web component can sit in a layout made of classes, and the other way round. That holds for what a layout sets on its children too: a child with `rl-width-fill`, `rl-height-fill` or `rl-scroll`, as a class or as an attribute, and a divider, as a class or as `<rl-divider>`, work in a layout of either form.
+The two forms mix freely. A web component can sit in a layout made of classes, and the other way round. That holds for what a layout sets on its children too: `rl-width-fill` and `rl-height-fill` in a row or a column, `rl-scroll` in a row, a column, a grid or a frame, as a class or as an attribute, and a divider in a row or a column, as a class or as `<rl-divider>`, work in a layout of either form.
 
 ## Loading
 

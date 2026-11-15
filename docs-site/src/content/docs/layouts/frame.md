@@ -28,6 +28,8 @@ By default, the frame centers its content and constrains it to fit within the fr
 
 The frame automatically handles images by maintaining their aspect ratio and fitting them within the available space.
 
+The images in the examples on this page are on this site: use your own `src`.
+
 ```html preview
 <div class="rl-frame" style="height: 15em; border: 1px solid #ccc;">
     <img src="/docs/frame-landscape.svg" alt="Sample image" />
