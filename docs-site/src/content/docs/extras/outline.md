@@ -12,17 +12,15 @@ head:
 
 Class: `rl-outline-none`
 
-The focus ring is the outline a browser draws around what has the keyboard, so a user who tabs through a page can see where they are. Relayout leaves it where the keyboard can stop, and gives you one class to take it off.
+The focus ring is the outline a browser draws around what has the keyboard, so a user who tabs through a page can see where they are. Relayout leaves it alone, and gives you one class to take it off.
 
 ## What keeps its ring
 
-An element with an `rl-` class keeps the browser's focus ring when the keyboard can stop on it:
+Relayout never touches the outline. An element keeps the focus ring its browser gives it, with an `rl-` class or without: a link, a button, a field, a `summary`, an element with `tabindex` or `contenteditable`, a video with controls, and a box that scrolls where the browser lets the keyboard reach it, so the arrow keys scroll it (Chrome does). A page's own `outline` stays too.
 
-- a link, a button, an `input`, a `select`, a `textarea` and a `summary`
-- an element with `tabindex` (any value) or `contenteditable`
-- a box that scrolls, with `rl-scroll` or `rl-nowrap-scroll`, which Chrome lets the keyboard reach so the arrow keys scroll it
+So `<input class="rl-width-fill">` shows where the keyboard is, and so does `<div class="rl-column rl-scroll">`. The same holds for the elements: `<rl-column rl-scroll>` shows its ring, as the class does. An element the keyboard can't reach never draws a ring.
 
-So `<input class="rl-width-fill">` shows where the keyboard is, and so does `<div class="rl-column rl-scroll">`. The same holds for the elements: `<rl-column rl-scroll>` shows its ring, as the class does. A layout container the keyboard can't stop on has no outline.
+An element with an `rl-` class gets `box-sizing: border-box`, and nothing else from the base rule.
 
 ## Taking a ring off
 

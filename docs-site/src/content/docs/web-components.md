@@ -19,7 +19,7 @@ Each layout is also a web component, and a utility is an attribute with the clas
 <rl-column rl-gap-m rl-border>...</rl-column>
 ```
 
-The two forms mix freely. A web component can sit in a layout made of classes, and the other way round.
+The two forms mix freely. A web component can sit in a layout made of classes, and the other way round. That holds for what a layout sets on its children too: a child with `rl-width-fill`, `rl-height-fill` or `rl-scroll`, as a class or as an attribute, and a divider, as a class or as `<rl-divider>`, work in a layout of either form.
 
 ## Loading
 
@@ -52,6 +52,8 @@ Every element takes the utilities of its layout as attributes. Some utilities ar
 - `rl-div`: `rl-padding-*`, `rl-border`, `rl-radius-*`, `rl-bg-*`, `rl-color-*`, `rl-gradient-*`, `rl-shadow-*`, `rl-outline-none`, `rl-width-*`, `rl-center-self`, `rl-height-full` and `rl-scroll`
 - `rl-divider`: none. It is a line across an `rl-column` and down an `rl-row`, as the [divider](/docs/extras/divider/) is
 
+`hidden` hides any of the elements, as it hides any element, and `hidden="until-found"` leaves the page's find to reach it.
+
 The [font and text classes](/docs/extras/fonts/) have no attribute form: put them as classes on the element, or on one inside it.
 
 `rl-width-fill` and `rl-height-fill` go on the child, as they do with classes: on any element inside an `rl-column` or an `rl-row`, a plain `div` or an `rl-div`.
@@ -71,7 +73,7 @@ It has no class form, because a `div` is already a block and the classes go on a
 
 ## Fill and scroll
 
-An element that takes the space the others leave is marked on itself, whether it is a web component or a plain `div`:
+An element that takes the space the others leave is marked on itself, as an attribute or as a class, whether it is a web component or a plain `div`, in a layout of either form:
 
 ```html preview
 <rl-row rl-gap-m rl-padding-m rl-border rl-radius-m>
@@ -95,7 +97,7 @@ An element that takes the space the others leave is marked on itself, whether it
 
 ## A divider
 
-The divider follows its layout: a vertical line down an `rl-row`, and a horizontal line across an `rl-column`. It has to be a direct child, and in an element layout it is the `<rl-divider>` element.
+The divider follows its layout: a vertical line down an `rl-row`, and a horizontal line across an `rl-column`. It has to be a direct child. In a layout of either form it is the class `rl-divider` or the `<rl-divider>` element.
 
 ```html preview
 <rl-row rl-gap-m style="height: 3em;">
