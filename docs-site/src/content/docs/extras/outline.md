@@ -16,7 +16,7 @@ The focus ring is the outline a browser draws around what has the keyboard, so a
 
 ## What keeps its ring
 
-Relayout never touches the outline. An element keeps the focus ring its browser gives it, with an `rl-` class or without: a link, a button, a field, a `summary`, an element with `tabindex` or `contenteditable`, a video with controls, and a box that scrolls where the browser lets the keyboard reach it, so the arrow keys scroll it (Chrome does). A page's own `outline` stays too.
+Relayout never touches the outline. An element keeps the focus ring its browser gives it, with an `rl-` class or without: a link, a button, a field, a `summary`, an element with `tabindex` or `contenteditable`, a video with controls, and a box that scrolls where the browser lets the keyboard reach it, so the arrow keys scroll it (Chrome and Firefox do, Safari doesn't). A page's own `outline` stays too.
 
 So `<input class="rl-width-fill">` shows where the keyboard is, and so does `<div class="rl-column rl-scroll">`. The same holds for the elements: `<rl-column rl-scroll>` shows its ring, as the class does. An element the keyboard can't reach never draws a ring.
 

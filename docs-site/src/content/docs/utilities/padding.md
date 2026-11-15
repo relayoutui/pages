@@ -32,7 +32,7 @@ The sizes are the spacing scale, `--rl-space-*`, which gap and radius use too. P
 
 ## Default padding
 
-`--rl-padding-default` pads a column, a row, a grid and a frame. It isn't set until you set it, and until then a layout keeps the padding its element has: none on a `div`, and the browser's own on a `ul` (its indent), a `button` or a `fieldset` that carries a layout class. Set it on `:root` to pad every layout the same, the nested ones included. A layout then takes that padding, the browser's own included:
+`--rl-padding-default` pads a column, a row, a grid and a frame. It isn't set until you set it, and until then a layout keeps the padding its element has: none on a `div`, and the browser's own on a `ul` (its indent), a `button` or a `fieldset` that carries a layout class. Set it on `:root` to pad every layout the same, the nested ones included. A layout then takes that padding, in place of the browser's own:
 
 ```css
 :root {
