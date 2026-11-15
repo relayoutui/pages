@@ -30,7 +30,7 @@ The frame automatically handles images by maintaining their aspect ratio and fit
 
 ```html preview
 <div class="rl-frame" style="height: 15em; border: 1px solid #ccc;">
-    <img src="https://picsum.photos/400/300" alt="Sample image" />
+    <img src="/docs/frame-landscape.svg" alt="Sample image" />
 </div>
 ```
 
@@ -88,7 +88,7 @@ A child that takes `rl-scroll` scrolls inside the frame:
         </div>
     </div>
     <div class="rl-frame rl-border rl-radius-m" style="height: 12em;">
-        <img src="https://picsum.photos/500/300" alt="Responsive image" />
+        <img src="/docs/frame-wide.svg" alt="Responsive image" />
     </div>
 </div>
 ```

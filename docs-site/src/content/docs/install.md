@@ -14,6 +14,10 @@ You can load Relayout from a CDN, as a local CSS file in your project, or with `
 
 Relayout is before 1.0, so a release can rename classes. Each example below names a version: use the one your project was written for, and move to a newer one on purpose. The [changelog](/docs/changelog/) lists the changes.
 
+## Browsers
+
+Relayout supports the current versions of Chrome, Edge, Firefox and Safari. Its tests run in Chrome, Firefox and WebKit, the engine of Safari, on every change.
+
 ## CDN installation
 
 Add the following code to your page in the `<head>` section, where `0.5.1` is the version to load.
@@ -36,15 +40,17 @@ The [web components](/docs/web-components/) are a script that you load beside th
 
 ## npm installation
 
-To embed Relayout in your own CSS, use npm.
+To embed Relayout in your own CSS, or to import it from your code, use npm.
 
 If your project does not have a `package.json` file, you can create one using `npm init`.
 
-Install Relayout as a dev dependency.
+Embedding the CSS with Sass needs Relayout only when you build, so install it as a dev dependency.
 
 ```
 npm install @relayoutui/relayout --save-dev
 ```
+
+A project that imports the [web components](/docs/web-components/), whose script runs in the browser, installs it as a dependency instead: `npm install @relayoutui/relayout`.
 
 Create the file which will import Relayout (e.g. `scss/app.scss`):
 
@@ -55,6 +61,20 @@ Create the file which will import Relayout (e.g. `scss/app.scss`):
 ```
 
 The package ships its compiled CSS in `dist/css/relayout.css`, which Sass loads from `node_modules`, as in the command below.
+
+### With a bundler
+
+A bundler such as Vite or webpack can load the CSS from your code. The package exports it as `@relayoutui/relayout/css`:
+
+```js
+import '@relayoutui/relayout/css';
+```
+
+Import the web components the same way, once, anywhere in your code:
+
+```js
+import '@relayoutui/relayout';
+```
 
 ### Using `sass` to build CSS
 
@@ -86,10 +106,6 @@ Add a `build-css` script to your `package.json` to build your SCSS into CSS:
 ```
 
 Now you can run `npm run build-css`.
-
-## Web components
-
-The elements `<rl-column>`, `<rl-row>` and the others load from a script, beside the CSS above. See [Web components](/docs/web-components/).
 
 ## Existing projects
 

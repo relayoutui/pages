@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="300" viewBox="0 0 500 300" role="img" aria-label="A wide landscape">
+    <defs>
+        <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#4b4f9e"/>
+            <stop offset="1" stop-color="#e9a77c"/>
+        </linearGradient>
+    </defs>
+    <rect width="500" height="300" fill="url(#dusk)"/>
+    <circle cx="140" cy="170" r="40" fill="#ffe7b8"/>
+    <path d="M0 230 L120 160 L210 215 L330 130 L430 200 L500 170 V300 H0 Z" fill="#35406f"/>
+    <path d="M0 265 L140 225 L260 260 L380 230 L500 262 V300 H0 Z" fill="#232b52"/>
+</svg>
