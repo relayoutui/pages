@@ -12,20 +12,25 @@ head:
 
 Class: `rl-align-*`
 
-The align utility controls how elements are positioned along the cross axis in a layout container. The cross axis is perpendicular to the main axis - in horizontal layouts, align controls vertical positioning; in vertical layouts, it controls horizontal positioning.
+The align utility places the elements of a layout along its cross axis, the one across the direction the elements flow: vertically in a row, horizontally in a column.
 
-Align classes work with all layout types and provide consistent cross-axis positioning across different layout patterns.
+## Values
 
-## Align values
+| Class | Places the elements |
+|---|---|
+| `rl-align-start` | at the start of the cross axis |
+| `rl-align-center` | in the middle of it |
+| `rl-align-end` | at the end of it |
+| `rl-align-stretch` | across all of it, unless an element has a size of its own |
 
-Apply class `rl-align-*` to any layout container, where `*` can be:
+| Layout | Cross axis | Default |
+|---|---|---|
+| Column | Horizontal | `stretch` |
+| Row | Vertical | `center` |
+| Grid | Vertical, within each cell | `stretch` |
+| Frame | Vertical | `center` |
 
-- `start` - Aligns items to the start of the cross axis
-- `center` - Centers items along the cross axis
-- `end` - Aligns items to the end of the cross axis
-- `stretch` - Stretches items to fill the cross axis
-
-The behavior of each value depends on the layout type and its main axis direction.
+In a column, `start`, `center` and `end` also set the text alignment, and make each element only as wide as it needs. An element with `rl-width-fill` in a column, or `rl-height-fill` in a row, stretches whatever the value ([Fill and scroll](/docs/utilities/height/)). [Justify](/docs/utilities/justify/) places the elements along the main axis.
 
 ## Align with column layout
 
@@ -241,27 +246,10 @@ Align works well with other layout utilities for sophisticated designs:
 </div>
 ```
 
-## Usage notes
+## Web components
 
-The align utility uses CSS flexbox and grid `align-items` properties:
+`rl-align-*` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>` and `<rl-frame>`:
 
-- **Cross axis positioning**: Align always works perpendicular to the main layout direction
-- **Column specificity**: In columns, align also controls `text-align` for proper text positioning
-- **Vertical layouts** (column): Cross axis is horizontal, align controls horizontal positioning
-- **Horizontal layouts** (row): Cross axis is vertical, align controls vertical positioning
-- **Grid layouts**: Align positions items within their individual grid cells vertically
-- **Frame layouts**: Align controls vertical positioning of centered content
-- **Default values**: Row defaults to `center`, column defaults to `stretch`
-- **Stretch behavior**: `stretch` makes elements fill the cross axis unless they have intrinsic dimensions
-- **Fill elements**: An element with `rl-width-fill` in a column, or `rl-height-fill` in a row, stretches across whatever the align value (see [Height, fill and scroll](/docs/utilities/height/))
-
-Key differences by layout:
-
-| Layout  | Main Axis | Cross Axis | Align Controls | Default   |
-|---------|-----------|------------|----------------|-----------|
-| Column  | Vertical  | Horizontal | Horizontal pos | `stretch` |
-| Row     | Horizontal| Vertical   | Vertical pos   | `center`  |
-| Grid    | N/A       | N/A        | Vertical in cell | `stretch` |
-| Frame   | Horizontal| Vertical   | Vertical pos   | `center`  |
-
-Understanding the main and cross axes is crucial for effective use of align utilities. The cross axis is always perpendicular to the direction elements flow in the layout.
+```html
+<rl-row rl-align-start>...</rl-row>
+```

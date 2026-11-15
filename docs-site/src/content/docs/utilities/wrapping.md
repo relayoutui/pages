@@ -12,50 +12,13 @@ head:
 
 Classes: `rl-nowrap`, `rl-nowrap-scroll`, `rl-wrap-reverse`
 
-The wrapping utility controls how elements behave when they don't fit in the available space. By default, a row wraps its elements to the next line when they overflow. Wrapping utilities allow you to prevent wrapping, add horizontal scrolling, or reverse the wrap direction.
+A row wraps its elements onto the next line when they don't fit. These classes change what it does instead:
 
-Wrapping utilities are well suited for horizontal menus, tag lists, toolbars, and any layout where you need precise control over overflow and wrapping behavior.
+- `rl-nowrap` keeps the elements on one line (`flex-wrap: nowrap`). They shrink down to their content, and overflow the row beyond that. An element with `rl-width-fill` can get narrower than its content.
+- `rl-nowrap-scroll` keeps the elements on one line and scrolls the row sideways (`overflow-x: auto`). Each element keeps its width, and anything that overflows the row vertically is hidden (`overflow-y: hidden`).
+- `rl-wrap-reverse` wraps in reverse: a new line goes above the first, not below.
 
-## Wrapping values
-
-The wrapping utility comes in three variants:
-
-- **`rl-nowrap`**: Prevents wrapping with `flex-wrap: nowrap`, causing elements to overflow the container
-- **`rl-nowrap-scroll`**: Prevents wrapping and adds horizontal scrolling with `overflow-x: auto`, allowing users to scroll through overflowing content
-- **`rl-wrap-reverse`**: Reverses wrap direction with `flex-wrap: wrap-reverse`, making new lines appear above instead of below
-
-## Default wrapping behavior
-
-Understanding the default wrapping behavior helps clarify when to use wrapping utilities.
-
-```html preview debug
-<div class="rl-row rl-gap-m">
-    <div>Item 1</div>
-    <div>Item 2</div>
-    <div>Item 3</div>
-    <div>Item 4</div>
-    <div>Item 5</div>
-    <div>Item 6</div>
-    <div>Item 7</div>
-    <div>Item 8</div>
-</div>
-```
-
-By default, a row wraps to new lines when its elements don't fit.
-
-## Wrapping with column
-
-Column layouts don't wrap because they arrange elements vertically. Wrapping utilities have no effect on columns.
-
-```html preview debug
-<div class="rl-column rl-gap-m rl-nowrap">
-    <div>Column item 1</div>
-    <div>Column item 2</div>
-    <div>Column item 3</div>
-</div>
-```
-
-Columns always display elements vertically regardless of wrapping utilities.
+They are for a row. A row with `rl-nowrap-scroll` is a box that scrolls, so it keeps the browser's focus ring where the browser lets the keyboard reach it ([Outline](/docs/extras/outline/)).
 
 ## Wrapping with row
 
@@ -132,33 +95,6 @@ Wraps in reverse order (bottom to top):
 ```
 
 New lines appear above instead of below.
-
-## Wrapping with grid
-
-Grid layouts don't use flex-wrap, so wrapping utilities have no effect. Grids use their own column/row system.
-
-```html preview debug
-<div class="rl-grid rl-gap-m rl-nowrap">
-    <div>Card 1</div>
-    <div>Card 2</div>
-    <div>Card 3</div>
-    <div>Card 4</div>
-</div>
-```
-
-Grids always create new rows based on column configuration.
-
-## Wrapping with frame
-
-Frames don't wrap content, so wrapping utilities have no effect.
-
-```html preview debug
-<div class="rl-frame rl-nowrap" style="height: 10em; border: 1px solid #ccc;">
-    <div>Centered content</div>
-</div>
-```
-
-Frames center content regardless of wrapping utilities.
 
 ## Horizontal navigation menus
 
@@ -403,63 +339,17 @@ Horizontal scrolling card layouts:
 </div>
 ```
 
-## Usage notes
+## Choosing
 
-The wrapping utilities control flex-wrap behavior for horizontal layouts:
+- The default, wrapping, suits links and tags, which should all stay visible.
+- `rl-nowrap` suits a toolbar that must stay on one line, with `rl-width-fill` on the element that gives way.
+- `rl-nowrap-scroll` suits tabs, long toolbars and carousels, which the user scrolls.
+- `rl-wrap-reverse` suits a layout that grows upward, such as one anchored to the bottom.
 
-- **Applicable layouts**: Only affects row
-- **No effect on**: Column (vertical), grid (CSS grid), frame (centering)
+## Web components
 
-- **`rl-nowrap`**:
-  - Sets `flex-wrap: nowrap`
-  - Elements stay on one line and may overflow
-  - An `rl-width-fill` element can get narrower than its content instead of overflowing
-  - Use when: You want to prevent wrapping and don't mind overflow
-  - Best for: Compact toolbars, single-line menus
+`rl-nowrap`, `rl-nowrap-scroll` and `rl-wrap-reverse` are attributes of `<rl-row>`:
 
-- **`rl-nowrap-scroll`**:
-  - Sets `flex-wrap: nowrap` with `overflow-x: auto`
-  - Enables horizontal scrolling for overflowing content
-  - Child elements get `flex-shrink: 0` to prevent compression
-  - Use when: You have many items and want horizontal scrolling
-  - Best for: Tab navigation, tag lists, card carousels, long toolbars
-  - Provides smooth scrolling on touch devices
-
-- **`rl-wrap-reverse`**:
-  - Sets `flex-wrap: wrap-reverse`
-  - New lines appear above instead of below
-  - Use when: You want reversed visual order
-  - Best for: Special UI patterns, bottom-anchored wrapping
-
-- **Default behavior**:
-  - Row uses `flex-wrap: wrap` by default
-  - Elements naturally wrap to new lines when they don't fit
-  - This is the most common and intuitive behavior
-
-## When to use each utility
-
-Choose the right wrapping strategy based on your use case:
-
-**Use default wrapping when:**
-- Content naturally fits in available space
-- Wrapping to multiple lines is acceptable
-- Mobile-friendly responsive behavior is needed
-- Tag/chip lists with varying content
-
-**Use `rl-nowrap` when:**
-- Items must stay on one line
-- Overflow is acceptable or desired
-- Working with fixed-width containers
-- Compact, single-line layouts
-
-**Use `rl-nowrap-scroll` when:**
-- Many items need to be accessible
-- Horizontal scrolling is preferred over wrapping
-- Creating carousel-like interfaces
-- Tab navigation with many tabs
-- Mobile-friendly swipeable content
-
-**Use `rl-wrap-reverse` when:**
-- Creating specialized UI patterns
-- Items should column upward instead of downward
-- Working with bottom-anchored layouts
+```html
+<rl-row rl-nowrap-scroll rl-gap-s>...</rl-row>
+```

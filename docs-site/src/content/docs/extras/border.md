@@ -12,9 +12,9 @@ head:
 
 Class: `rl-border`
 
-The border utility adds a border around a layout container. The border uses the global `--rl-border-default` CSS variable, which can be customized to match your design system. By default, borders have square corners, but they respect any border-radius utility applied.
+The border utility adds a border around an element, drawn from `--rl-border-default`: a solid 1px line, `hsl(0, 0%, 50%)`, on all four sides. The border is inside the element's width (`box-sizing: border-box`). It goes on any element, a layout or an item inside one.
 
-Apply class `rl-border` to a layout container to add a border around it.
+`rl-border` also rounds the corners by `--rl-radius-default`, which is 0, so the corners are square until you set it or add [`rl-radius-*`](/docs/extras/radius/).
 
 ## Border with column
 
@@ -215,7 +215,7 @@ Borders combine with other utilities to create complete UI components.
 
 ## Cards and panels
 
-Borders are essential for creating card-based layouts and panels.
+Borders on cards and panels.
 
 ```html preview
 <div class="rl-column rl-border rl-radius-l rl-gap-m rl-padding-l">
@@ -283,18 +283,9 @@ Borders and dividers work together to create well-structured layouts with clear 
 </div>
 ```
 
-## Usage notes
+## Customizing
 
-The border utility adds visual boundaries to layout containers:
-
-**What border controls:**
-- Adds a border around the entire container
-- Uses `--rl-border-default` CSS variable (default: `solid 1px hsl(0, 0%, 50%)`)
-- Automatically applies `--rl-radius-default` for border-radius when used with radius utilities
-- Works identically across all layout types
-
-**Customizing borders globally:**
-Override the `--rl-border-default` variable to change all borders:
+`--rl-border-default` is a whole `border` value, style, width and color, so one change restyles every `rl-border`:
 
 ```css
 :root {
@@ -302,7 +293,7 @@ Override the `--rl-border-default` variable to change all borders:
 }
 ```
 
-For rounded borders by default, override `--rl-radius-default`:
+To round every bordered element, set `--rl-radius-default`:
 
 ```css
 :root {
@@ -310,15 +301,10 @@ For rounded borders by default, override `--rl-radius-default`:
 }
 ```
 
-**Combining with other utilities:**
-- **Padding**: Essential for spacing content from the border
-- **Radius**: Adds rounded corners to borders
-- **Gap**: Controls spacing between items inside the bordered container
-- **Width**: Constrains bordered containers, and `rl-center-self` centers them
-- **Dividers**: Creates internal separations within bordered containers
+## Web components
 
-**Technical details:**
-- The `rl-border` class applies both `border` and `border-radius` properties
-- Border uses CSS custom properties for easy global customization
-- The border is included in the container's width and height (`box-sizing: border-box`)
-- Can be applied to any layout container or individual items
+`rl-border` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`:
+
+```html
+<rl-div rl-border rl-padding-m>...</rl-div>
+```

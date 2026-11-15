@@ -12,30 +12,26 @@ head:
 
 Classes: `rl-width-*`, `rl-center-self`
 
-The width utility constrains the maximum width of a container. Below that width, the container fills its parent. By default, all layout containers expand to fill 100% of the available width. Width utilities provide a way to limit content width for better readability and visual hierarchy.
+`rl-width-*` limits an element's width: it sets a `max-width` from the scale, and `width: 100%` below it. The element is as wide as its parent until the parent is wider than the limit. It doesn't center: a limited element sits at the start of its parent, or where the parent's `rl-align-*` and `rl-justify-*` put it. `rl-center-self` centers it.
 
-The width utility doesn't center: `rl-center-self` centers the container horizontally within its parent. Most examples on this page use both.
+`rl-width-fill` is not one of the limits: it makes an element take the width a row leaves ([Fill and scroll](/docs/utilities/height/)).
 
-Width utilities are well suited for constraining content areas, creating centered layouts, managing line length for text readability, and establishing visual hierarchy through size variation.
+## Sizes
 
-## Width values
+| Class | Size |
+|---|---|
+| `rl-width-xs` | 20rem (320px) |
+| `rl-width-s` | 30rem (480px) |
+| `rl-width-m` | 40rem (640px) |
+| `rl-width-l` | 48rem (768px) |
+| `rl-width-xl` | 64rem (1024px) |
+| `rl-width-2xl` | 80rem (1280px) |
 
-The width utility comes in six sizes, each setting a `max-width` value, and `width: 100%` below it:
-
-- **`rl-width-xs`**: Maximum width of `20rem` (320px) - ideal for narrow columns, sidebars
-- **`rl-width-s`**: Maximum width of `30rem` (480px) - good for forms, short content
-- **`rl-width-m`**: Maximum width of `40rem` (640px) - suitable for text content, articles
-- **`rl-width-l`**: Maximum width of `48rem` (768px) - comfortable for most content types
-- **`rl-width-xl`**: Maximum width of `64rem` (1024px) - wide content areas, dashboards
-- **`rl-width-2xl`**: Maximum width of `80rem` (1280px) - maximum width for large layouts
-
-`rl-width-fill` isn't one of these limits: it makes an element take the remaining width in a row. See [Height, fill and scroll](/docs/utilities/height/).
+Each size is the variable `--rl-width-*`.
 
 ## Centering
 
-`rl-center-self` centers an element in its parent, with `margin-inline: auto`. It centers horizontally only, in any parent: a plain block, a column, a row or a grid cell. It goes on the element itself, unlike `rl-align-center` and `rl-justify-center`, which go on the parent and place all of its children.
-
-Without it, the parent places the element. A limited element sits at the start, or wherever the parent's `rl-align-*` or `rl-justify-*` puts it.
+`rl-center-self` centers an element in its parent horizontally, with `margin-inline: auto`. It works in any parent: a plain block, a column, a row or a grid cell. It goes on the element itself, unlike `rl-align-center` and `rl-justify-center`, which go on the parent and place all of its children. Most previews on this page use both. For how this differs before 0.3.0, see the [changelog](/docs/changelog/).
 
 ```html preview
 <div class="rl-column rl-gap-m">
@@ -49,10 +45,6 @@ Without it, the parent places the element. A limited element sits at the start, 
     <div class="rl-border rl-padding-m rl-radius-m rl-width-xs">At the end, from the column's rl-align-end</div>
 </div>
 ```
-
-On a Relayout element, both are attributes: `<rl-column rl-width-m rl-center-self>`.
-
-For how this differs before 0.3.0, see the [changelog](/docs/changelog/).
 
 ## Width with column
 
@@ -344,27 +336,17 @@ Width utilities organize complex dashboard layouts:
 </div>
 ```
 
-## Usage notes
+## Web components
 
-The width utility applies `max-width` to containers:
+`rl-width-*` and `rl-center-self` are attributes of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`:
 
-- **CSS properties**: Sets `max-width` to the specified value, and `width: 100%` below it
-- **Centering behavior**: `rl-center-self` centers a container horizontally within its parent, with `margin-inline: auto`. Without it, the parent places the container, so `rl-align-*` and `rl-justify-*` apply to it
-- **Responsive behavior**: On screens narrower than the `max-width`, containers shrink to fit
-- **Default behavior**: Without width utilities, containers expand to fill 100% of available width
-- **CSS variables**: Width values are defined as `--rl-width-xs` through `--rl-width-2xl`
-- **Size selection**: Choose based on content type:
-  - **xs/s**: Forms, sidebars, narrow columns
-  - **m/l**: Articles, blog posts, primary content
-  - **xl/2xl**: Dashboards, wide layouts, full-width sections
-- **Nesting strategy**: Use progressively smaller widths for nested containers to create visual hierarchy
-- **Text readability**: For optimal line length in text content, use `m` (640px) or `l` (768px)
-- **Combining utilities**: Width works with all other utilities (padding, border, radius, gap, etc.)
-- **Grid interaction**: With grids, width affects the total container size, changing how many columns fit
+```html
+<rl-column rl-width-m rl-center-self>...</rl-column>
+```
 
-## Customizing width values
+## Customizing
 
-Override the CSS variables to customize width values globally:
+Override the variables on `:root` to change a size everywhere:
 
 ```css
 :root {

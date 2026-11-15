@@ -10,21 +10,37 @@ head:
       content: "Relayout padding: space inside a container on every side"
 ---
 
-Class: `rl-padding-*`
+Classes: `rl-padding-*`, `rl-padding-x-*`, `rl-padding-y-*`
 
-The padding utility adds internal spacing around a container, creating space between the container's edges and its content. Padding is applied uniformly on all four sides (top, right, bottom, left) and works consistently across all layout types.
+The padding utility adds space inside an element, between its edge and its content. `rl-padding-*` pads all four sides, `rl-padding-x-*` the left and right, and `rl-padding-y-*` the top and bottom. It goes on any element, a layout or a plain `div`. The padding is inside the element's width (`box-sizing: border-box`), so a padded element is no wider than its parent.
 
-Apply class `rl-padding-*` to a layout container, where `*` can be `0`, `xs`, `s`, `m`, `l`, `xl`, or `2xl`.
+## Sizes
 
-## Padding sizes
+`rl-padding-x-*` and `rl-padding-y-*` take the same sizes:
 
-- **`rl-padding-0`** - No padding (0)
-- **`rl-padding-xs`** - Extra small padding (0.125rem / 2px)
-- **`rl-padding-s`** - Small padding (0.25rem / 4px)
-- **`rl-padding-m`** - Medium padding (0.5rem / 8px)
-- **`rl-padding-l`** - Large padding (1rem / 16px)
-- **`rl-padding-xl`** - Extra large padding (1.5rem / 24px)
-- **`rl-padding-2xl`** - Double extra large padding (2.25rem / 36px)
+| Class | Size |
+|---|---|
+| `rl-padding-0` | 0 |
+| `rl-padding-xs` | 0.125rem (2px) |
+| `rl-padding-s` | 0.25rem (4px) |
+| `rl-padding-m` | 0.5rem (8px) |
+| `rl-padding-l` | 1rem (16px) |
+| `rl-padding-xl` | 1.5rem (24px) |
+| `rl-padding-2xl` | 2.25rem (36px) |
+
+The sizes are the spacing scale, `--rl-space-*`, which gap and radius use too. Padding is the space around the content, and [gap](/docs/utilities/gap/) is the space between the elements: they work independently and combine.
+
+## Default padding
+
+`--rl-padding-default` pads a column, a row, a grid and a frame. It isn't set until you set it, and until then a layout keeps the padding its element has: none on a `div`, and the browser's own on a `ul` (its indent), a `button` or a `fieldset` that carries a layout class. Set it on `:root` to pad every layout the same, the nested ones included. A layout then takes that padding, in place of the browser's own:
+
+```css
+:root {
+  --rl-padding-default: var(--rl-space-m);
+}
+```
+
+In a layout written as a class, the default is in a cascade layer, `rl-defaults`, so a rule of the page's own wins over it, whatever its weight and the order of the style sheets, unless the page keeps that rule in a cascade layer that comes before Relayout's. In an element, the default is a `:host` rule, which a rule of the page's own always beats. A reset such as `* { padding: 0 }` wins too, so it keeps a layout without padding even when the variable is set. `rl-padding-*` wins as well. `rl-div` and `rl-divider` have no default padding.
 
 ## Padding with column
 
@@ -316,36 +332,10 @@ Padding can be applied at different levels to create complex spacing hierarchies
 </div>
 ```
 
-## Usage notes
+## Web components
 
-The padding utility creates internal spacing in layout containers:
+`rl-padding-*`, `rl-padding-x-*` and `rl-padding-y-*` are attributes of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`:
 
-**What padding controls:**
-- Space between container edges and content on all four sides (top, right, bottom, left)
-- Applied uniformly in all directions
-- Works identically across all layout types
-- Does not affect spacing between items (that's what gap does)
-
-**Padding vs Gap:**
-- **Padding**: Creates space between container edge and content
-- **Gap**: Creates space between items inside the container
-- They work independently and can be combined
-- Use padding for "breathing room" around entire layouts
-- Use gap for spacing between individual items
-
-**Default padding:**
-By default, all layout containers have no padding (`--rl-padding-default: 0`). You can override this globally:
-
-```css
-:root {
-  --rl-padding-default: var(--rl-space-m);
-}
+```html
+<rl-column rl-padding-l>...</rl-column>
 ```
-
-**Technical details:**
-- Padding uses CSS `padding` property
-- Size values come from CSS custom properties: `--rl-space-*`
-- Applied to the layout container itself, not individual items
-- Does not collapse like margins
-- Included in the container's width and height (`box-sizing: border-box`)
-- Works with any display mode (flex, grid, etc.)

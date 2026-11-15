@@ -161,7 +161,7 @@ The divider has these characteristics:
 - In a column, and anywhere that isn't a row, the divider stretches to 100% width with zero height and a top border
 - In a row, the divider stretches to the height of the row with zero width and a left border
 - The divider has to be a direct child of the column or the row, as `rl-width-fill` has to be. To put a horizontal line between the items of a row, wrap them in a column
-- The divider follows a layout written the same way: the `rl-divider` class in a class layout, and the `<rl-divider>` element in an element layout. In a layout of the other form it stays a horizontal line
+- The divider follows the layout it is in, whatever form the layout and the divider are written in: the `rl-divider` class and `<rl-divider>` both work in a row written as a class or as `<rl-row>`
 - Dividers use the `--rl-border-default` CSS variable for styling
 - Dividers automatically align themselves using `align-self: stretch`
 - They work best when paired with gap or padding classes for proper spacing
