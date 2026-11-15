@@ -12,7 +12,7 @@ Run from this folder, in PowerShell or any shell. The first time, install the de
 |---|---|
 | `npm run dev` | Dev server at http://localhost:4321/docs/. Search says it is unavailable in dev |
 | `npm run build` | Builds the static site into `dist/`, with the search index and a sitemap |
-| `npm run check` | After a build: fails if a page's title is over 60 characters or its description is outside 120 to 160, as search results show them (the docs and the home page) |
+| `npm run check` | Fails if a page names another Relayout version than the one installed (*Relayout version*), and, after a build, if a page's title is over 60 characters or its description is outside 120 to 160, as search results show them (the docs and the home page) |
 | `npm run preview` | Serves `dist/` at http://localhost:4321/docs/, as it would be deployed |
 
 **On relayout.local.** The Caddyfile in `_local` serves `dist/` at http://relayout.local/docs, beside the home page (see the README one folder up). Run `npm run build`, then reload; there is no server to restart.
@@ -40,7 +40,14 @@ Astro caches the rendered markdown, and a change to the plugin doesn't clear tha
 
 ## Relayout version
 
-The previews use the CSS of the `@relayoutui/relayout` version in `package.json`, so the docs describe a released version. After a Relayout release, update the dependency and the pages that change with it, in one pull request. `src/content/docs/install.md` names the version in its CDN, local file and npm examples (`0.4.0` at the time of writing): move it with the dependency. So does the home page's copy of the CSS, `../www/assets/css/relayout.css`: copy it again from `node_modules/@relayoutui/relayout/dist/css/`.
+The previews use the CSS of the `@relayoutui/relayout` version in `package.json`, so the docs describe a released version. After a Relayout release, move everything that names the version, in one pull request:
+
+1. `npm install @relayoutui/relayout@^<version>` in this folder, which changes `package.json` and the lockfile.
+2. The examples in `src/content/docs/install.md` (CDN, local file and npm) and `src/content/docs/web-components.md` name the version, written by hand: write the new one.
+3. The home page's copy of the CSS, `../www/assets/css/relayout.css`: copy it again from `node_modules/@relayoutui/relayout/dist/css/`.
+4. The pages the release changes, with its entry in `src/content/docs/changelog.md`.
+
+`npm run check` finds what was missed. It lists each example, by file and line, that names another version than the installed one, a dependency that isn't the installed version, and a copy of the CSS on the home page that is another version or differs from the package's file, and CI runs it before the build is deployed. The changelog is left out, since it names the versions that changed things. The check can't see the README of the Relayout repo, which names the version in its CDN example too: change it there.
 
 ## Deploy
 
