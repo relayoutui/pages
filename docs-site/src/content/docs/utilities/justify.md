@@ -12,16 +12,25 @@ head:
 
 Class: `rl-justify-*`
 
-The justify utility controls how elements are positioned along the main axis of a layout. The main axis is the primary direction in which elements flow - vertical for columns, horizontal for rows.
+The justify utility places the elements of a layout along its main axis, the direction they flow: horizontally in a row, vertically in a column.
 
-Apply class `rl-justify-*` to a layout container, where `*` can be `start`, `center`, `end`, or `between`.
+## Values
 
-## Justify values
+| Class | Places the elements |
+|---|---|
+| `rl-justify-start` | at the start of the main axis |
+| `rl-justify-center` | in the middle of it |
+| `rl-justify-end` | at the end of it |
+| `rl-justify-between` | the first at the start and the last at the end, with the free space shared between the elements |
 
-- **`rl-justify-start`** - Positions elements at the start of the main axis
-- **`rl-justify-center`** - Positions elements at the center of the main axis
-- **`rl-justify-end`** - Positions elements at the end of the main axis
-- **`rl-justify-between`** - Places the first element at the start and the last at the end, with the space shared between the elements
+| Layout | Main axis | Default | Shows |
+|---|---|---|---|
+| Column | Vertical | `start` | Only when the column is taller than its elements |
+| Row | Horizontal | `start` | On each wrapped line; there is no free space next to an element with `rl-width-fill` |
+| Grid | | | Never: the cells share the whole width |
+| Frame | Horizontal | `space-around` | Centers one element, and spaces several |
+
+[Align](/docs/utilities/align/) places the elements across the main axis.
 
 ## Justify with column
 
@@ -131,40 +140,7 @@ With three or more elements, each wrapped line is spaced on its own: a single el
 
 ## Justify with grid
 
-In grid layouts, justify controls how items are positioned horizontally within their individual grid cells. This is most visible when grid items are narrower than their cells.
-
-### `rl-justify-start`
-
-```html preview debug
-<div class="rl-grid rl-grid-fit-l rl-justify-start rl-gap-m">
-    <div>A</div>
-    <div>Item B</div>
-    <div>C</div>
-    <div>Item D</div>
-</div>
-```
-
-### `rl-justify-center`
-
-```html preview debug
-<div class="rl-grid rl-grid-fit-l rl-justify-center rl-gap-m">
-    <div>A</div>
-    <div>Item B</div>
-    <div>C</div>
-    <div>Item D</div>
-</div>
-```
-
-### `rl-justify-end`
-
-```html preview debug
-<div class="rl-grid rl-grid-fit-l rl-justify-end rl-gap-m">
-    <div>A</div>
-    <div>Item B</div>
-    <div>C</div>
-    <div>Item D</div>
-</div>
-```
+Justify does nothing in a grid. The cells share the whole width, so there is no free space to place them in. To place an element within its cell, limit its width with [`rl-width-*`](/docs/utilities/width/) and center it with `rl-center-self`, and use [`rl-align-*`](/docs/utilities/align/) for the vertical position.
 
 ## Justify with frame
 
@@ -194,45 +170,10 @@ In frame layouts, justify controls horizontal positioning of the centered conten
 </div>
 ```
 
-## Justify behavior comparison
+## Web components
 
-| Layout | Main Axis | What Justify Controls | Default | Notes |
-|--------|-----------|----------------------|---------|-------|
-| **Column** | Vertical | Vertical positioning of all items | `start` | Only visible when container height > content height |
-| **Row** | Horizontal | Horizontal positioning of each wrapped line | `start` | `between` pushes the first and last elements to the ends |
-| **Grid** | N/A | Horizontal positioning within cells | `stretch` | Uses `justify-items` property |
-| **Frame** | Horizontal | Horizontal positioning of content | `space-around` | Centers content by default |
+`rl-justify-*` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>` and `<rl-frame>`:
 
-## Usage notes
-
-The justify utility controls main-axis positioning, but its behavior varies significantly across layouts:
-
-**Column layouts** (vertical main axis):
-- Justify controls vertical positioning
-- Only visible when the column has explicit height greater than content
-- Values: `start` (top), `center` (middle), `end` (bottom), `between` (first at the top, last at the bottom)
-
-**Row layouts** (horizontal main axis):
-- Justify controls horizontal positioning of the entire row
-- Affects each line when content wraps
-- Values: `start` (left), `center`, `end` (right), `between` (first at the left, last at the right)
-- No effect when an element has `rl-width-fill`, since it takes all the free space
-
-**Grid layouts**:
-- Justify controls horizontal positioning within individual cells
-- Uses `justify-items` property (not `justify-content`)
-- Most visible when items are narrower than their cells
-
-**Frame layouts**:
-- Justify controls horizontal positioning of centered content
-- Default `space-around` centers content horizontally
-- Values: `start` (left), `center`, `end` (right)
-
-**Understanding main axis vs cross axis:**
-- Main axis: The primary direction elements flow (vertical for column, horizontal for others)
-- Cross axis: Perpendicular to main axis (controlled by `align`)
-- Justify always controls the main axis
-- In flexbox: `justify-content` controls main axis distribution
-- In grid: `justify-items` controls horizontal positioning within cells
-
-The justify utility is most useful for columns (vertical positioning) and rows (horizontal positioning, and pushing elements apart with `between`).
+```html
+<rl-row rl-justify-between>...</rl-row>
+```

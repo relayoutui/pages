@@ -12,19 +12,33 @@ head:
 
 Class: `rl-radius-*`
 
-The radius utility rounds the corners of bordered elements. Radius only has a visible effect when combined with the border utility or when an element has a border or background applied through other means. The radius values use the same spacing scale as gap and padding.
+The radius utility rounds the corners of an element, all four by the same amount. It shows where the element has something at its corners: a border, a background, a gradient or a shadow.
 
-Apply class `rl-radius-*` to a layout container or element with a border, where `*` can be `0`, `xs`, `s`, `m`, `l`, `xl`, or `2xl`.
+## Sizes
 
-## Radius sizes
+| Class | Size |
+|---|---|
+| `rl-radius-0` | 0 (square corners) |
+| `rl-radius-xs` | 0.125rem (2px) |
+| `rl-radius-s` | 0.25rem (4px) |
+| `rl-radius-m` | 0.5rem (8px) |
+| `rl-radius-l` | 1rem (16px) |
+| `rl-radius-xl` | 1.5rem (24px) |
+| `rl-radius-2xl` | 2.25rem (36px) |
 
-- **`rl-radius-0`** - No rounding (0) - square corners
-- **`rl-radius-xs`** - Extra small radius (0.125rem / 2px)
-- **`rl-radius-s`** - Small radius (0.25rem / 4px)
-- **`rl-radius-m`** - Medium radius (0.5rem / 8px)
-- **`rl-radius-l`** - Large radius (1rem / 16px)
-- **`rl-radius-xl`** - Extra large radius (1.5rem / 24px)
-- **`rl-radius-2xl`** - Double extra large radius (2.25rem / 36px)
+The sizes are the spacing scale, `--rl-space-*`, which gap and padding use too.
+
+## Default radius
+
+`rl-border` rounds its corners by `--rl-radius-default`, which is 0, so they are square. Set it on `:root` to round every bordered element the same:
+
+```css
+:root {
+  --rl-radius-default: var(--rl-space-m); /* 0.5rem */
+}
+```
+
+`rl-radius-*` wins over the default, and so does a page's own `border-radius`, whatever the order of the style sheets.
 
 ## Radius with column
 
@@ -295,7 +309,7 @@ Radius combined with other utilities creates polished UI components.
 
 ## Card layouts with radius
 
-Radius is essential for creating modern card-based designs.
+Rounded corners on the cards of a grid.
 
 ```html preview
 <div class="rl-grid rl-gap-m">
@@ -421,50 +435,10 @@ Different radius sizes for different component types:
 </div>
 ```
 
-## Usage notes
+## Web components
 
-The border-radius utility rounds the corners of bordered elements:
+`rl-radius-*` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`:
 
-**What radius controls:**
-- Rounds all four corners of an element equally
-- Only visible when element has a border (via `rl-border` or custom CSS)
-- Uses the same spacing scale as gap and padding utilities
-- Applied via CSS `border-radius` property
-
-**Radius requirements:**
-- **Must be combined with borders** - Radius has no visible effect without a border
-- The `rl-border` class automatically applies `--rl-radius-default` if set
-- Radius can be applied to containers or individual items
-- Works identically across all layout types
-
-**Choosing radius sizes:**
-- **xs/s (0.125-0.25rem)**: Subtle rounding for compact UI, minimal styling
-- **m (0.5rem)**: Balanced, general-purpose rounding for most components
-- **l (1rem)**: Prominent rounding for cards, panels, featured content
-- **xl/2xl (1.5-2.25rem)**: Bold rounding for emphasis, pill shapes, hero sections
-
-**Default radius:**
-By default, `--rl-radius-default` is set to `0` (square corners). Override it globally:
-
-```css
-:root {
-  --rl-radius-default: var(--rl-space-m); /* 0.5rem */
-}
+```html
+<rl-div rl-border rl-radius-m>...</rl-div>
 ```
-
-When `--rl-radius-default` is set, all `rl-border` classes automatically apply that radius.
-
-**Common patterns:**
-- **Cards**: `rl-radius-m` or `rl-radius-l` for standard cards
-- **Buttons**: `rl-radius-s` for subtle, `rl-radius-xl` for pill buttons
-- **Tags/Chips**: `rl-radius-s` for subtle, `rl-radius-l` for prominent
-- **Modals/Panels**: `rl-radius-l` or `rl-radius-xl` for emphasis
-- **Navigation**: `rl-radius-s` or `rl-radius-m` for headers/menus
-- **Subtle UI**: `rl-radius-xs` or `rl-radius-s` for minimal styling
-
-**Technical details:**
-- Radius uses CSS custom properties: `--rl-space-*`
-- Applied equally to all four corners
-- Does not affect layout or spacing calculations
-- Works with CSS `box-sizing: border-box` for predictable sizing
-- Can be overridden with custom CSS for specific corners if needed

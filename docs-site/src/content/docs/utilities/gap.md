@@ -12,25 +12,25 @@ head:
 
 Class: `rl-gap-*`
 
-The gap utility controls the spacing between child elements in a layout container. Gap provides consistent spacing without the need for margins on individual items. It works with all layout types that use flexbox or grid.
+The gap utility puts space between the elements of a layout. The space is between the elements only, none before the first or after the last, so no element needs a margin. It works in a column, a row, a grid and a frame.
 
-Gap classes are well suited for creating consistent spacing between elements in columns, rows, grids, and frames.
+## Sizes
 
-## Gap sizes
+Apply `rl-gap-*` to a layout:
 
-By default, there is no gap between elements (`--rl-gap-default` is set to 0). You can apply gap classes to add consistent spacing.
+| Class | Size |
+|---|---|
+| `rl-gap-0` | 0 |
+| `rl-gap-xs` | 0.125rem (2px) |
+| `rl-gap-s` | 0.25rem (4px) |
+| `rl-gap-m` | 0.5rem (8px) |
+| `rl-gap-l` | 1rem (16px) |
+| `rl-gap-xl` | 1.5rem (24px) |
+| `rl-gap-2xl` | 2.25rem (36px) |
 
-Apply class `rl-gap-*` to any layout container, where `*` can be:
+The sizes are the spacing scale, `--rl-space-*`, which padding and radius use too.
 
-- `0` - 0 (no gap)
-- `xs` - 0.125rem (2px)
-- `s` - 0.25rem (4px)
-- `m` - 0.5rem (8px)
-- `l` - 1rem (16px)
-- `xl` - 1.5rem (24px)
-- `2xl` - 2.25rem (36px)
-
-The default gap value can be customized by overriding the `--rl-gap-default` CSS variable.
+A column, a row and a grid have the gap `--rl-gap-default` until a class sets one. It is 0. A frame has no default gap.
 
 ## Gap with column layout
 
@@ -184,24 +184,17 @@ Gap values can be combined with other layout utilities for sophisticated designs
 </div>
 ```
 
-## Usage notes
+## Web components
 
-The gap utility uses CSS flexbox and grid `gap` properties:
+`rl-gap-*` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>` and `<rl-frame>`:
 
-- **Universal support**: Works with all layout types (column, row, grid, frame)
-- **Consistent spacing**: Creates uniform spacing between all direct children
-- **No margin conflicts**: Gap doesn't collapse like margins and doesn't require negative margins
-- **Bidirectional**: In wrapping layouts (row, grid), gap applies to both axes
-- **Default value**: `--rl-gap-default` is set to 0; override to change the baseline
-- **Custom values**: Override CSS variables to customize gap sizes globally
+```html
+<rl-column rl-gap-m>...</rl-column>
+```
 
-Gap is particularly useful compared to traditional margins because:
-- It only creates space between items (not before the first or after the last)
-- It's easier to maintain and reason about
-- It automatically adjusts when items wrap
-- No need to use selectors like `:not(:last-child)` or negative margins
+## Customizing
 
-To customize gap values globally, override the space CSS variables:
+Set the default, or a step of the scale, on `:root`. A step changes gap, padding and radius together:
 
 ```css
 :root {
