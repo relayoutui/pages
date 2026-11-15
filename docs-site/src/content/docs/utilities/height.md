@@ -279,7 +279,7 @@ Fill elements nest: each panel column takes half the width, and inside it, the l
 
 ```html preview
 <div class="rl-frame" style="height: 25em; background: rgba(0,0,0,0.1);">
-    <div class="rl-column rl-border rl-radius-m" style="width: 25em; height: 18em; background: white;">
+    <div class="rl-column rl-border rl-radius-m rl-bg-surface rl-color-text" style="width: 25em; height: 18em;">
         <div class="rl-row rl-justify-between rl-gap-m rl-padding-m">
             <div style="font-weight: bold;">Dialog Title</div>
             <div>✕</div>

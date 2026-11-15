@@ -232,14 +232,16 @@ mobile-starlight-toc nav {
    --brand is the colour of the mark (codesense/logos/src/relayout-mark.svg), 3:1 as a graphic
    on every surface: dark 4.31 · 4.11 · 3.85, light 4.25 · 3.75 · 3.98 (header · sidebar · main).
    Text uses --brand-text, a tone along the mark's hue at 4.5:1 on every surface of each theme:
-   dark #fd299a 5.20 · 4.95 · 4.64, light #d0057b 5.26 · 4.65 · 4.94. Measured 2026-10-15. */
+   dark #fe3aa3 5.53 · 5.27 · 4.94, light #d0057b 5.26 · 4.65 · 4.94. The dark one is also 4.59 on #23262b,
+   the background of a child in a preview with `debug`, where the earlier #fd299a was 4.31 (the home page's
+   dark --brand-text, which it needed for its own --bg-elev, is the same tone). Measured 2026-11-14. */
 :root {
     --brand: #ec008c;
     --brand-text: #d0057b;
 }
 
 :root[data-theme='dark'] {
-    --brand-text: #fd299a;
+    --brand-text: #fe3aa3;
 }
 
 .sidebar-content a[aria-current='page'],
