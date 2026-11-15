@@ -1,6 +1,13 @@
 ---
 title: "Palette"
-description: "Relayout names the common colors as roles, each with a light and a dark value, and has a background, a text color and a gradient class for them. They are optional: nothing changes on a page until you add a class."
+description: "Relayout names colors as roles, each with a light and a dark value, and has classes for backgrounds, text and gradients. Nothing changes until you add one."
+head:
+  - tag: title
+    content: "Relayout palette: color roles for light and dark themes"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout palette: color roles for light and dark themes"
 ---
 
 Classes: `rl-bg-*`, `rl-color-*`, `rl-gradient-*`

@@ -1,6 +1,13 @@
 ---
 title: "Using Relayout in an existing project"
 description: "Add Relayout to a page that already has a CSS framework or your own styles: Relayout places the elements, and your styles decide how they look."
+head:
+  - tag: title
+    content: "Use Relayout beside Bootstrap, Tailwind or your own CSS"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Use Relayout beside Bootstrap, Tailwind or your own CSS"
 ---
 
 Relayout adds to a page. `relayout.css` styles nothing until a class is added, and every class starts with `rl-` and every custom property with `--rl-`. You can load it beside Bootstrap, Tailwind or your own CSS, and use it for one part of one page.

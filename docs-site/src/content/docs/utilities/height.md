@@ -1,6 +1,13 @@
 ---
 title: "Height, fill and scroll"
-description: "By default, a layout container takes only the height its content needs, and the elements of a row take only the width they need. These utilities make an element fill the space around it, and choose which area scrolls."
+description: "Make an element fill the space around it with rl-height-full, rl-height-fill or rl-width-fill, and choose which area scrolls with rl-scroll."
+head:
+  - tag: title
+    content: "Relayout fill and scroll: take the space, pick what scrolls"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout fill and scroll: take the space, pick what scrolls"
 ---
 
 Classes: `rl-height-full`, `rl-height-fill`, `rl-width-fill`, `rl-scroll`

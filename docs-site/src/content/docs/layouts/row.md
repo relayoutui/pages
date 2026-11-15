@@ -1,6 +1,13 @@
 ---
 title: "Row"
-description: "The row arranges elements horizontally. A row wraps by default: when the elements don't fit in the available width, they continue on the next line. Apply rl-nowrap to keep them on one line."
+description: "The row arranges elements side by side and wraps them onto the next line when they don't fit. Apply rl-nowrap to keep them on one line."
+head:
+  - tag: title
+    content: "Relayout row: elements side by side that wrap to fit"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout row: elements side by side that wrap to fit"
 ---
 
 Class: `rl-row`
@@ -9,7 +16,7 @@ The row arranges elements horizontally. **A row wraps by default**: when the ele
 
 Rows are well suited for headers, toolbars, navigation, button groups, tags, and any group of elements placed side by side. With the fill and justify utilities, a row also makes sidebars and elements pushed to opposite ends.
 
-### `rl-row`
+## `rl-row`
 
 By default, items flow from left to right and wrap to the next line when needed.
 

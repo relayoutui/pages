@@ -1,6 +1,13 @@
 ---
 title: "Fonts"
-description: "Relayout names the common font families, weights, sizes and line heights, and has classes for the usual text styles. They are optional: nothing changes on a page until you add a class."
+description: "Relayout names common font families, weights, sizes and line heights, and has classes for text styles. Nothing changes on a page until you add a class."
+head:
+  - tag: title
+    content: "Relayout fonts: families, sizes and text style classes"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout fonts: families, sizes and text style classes"
 ---
 
 Classes: `rl-font-*`, `rl-text-*`, `rl-textline-*`

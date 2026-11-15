@@ -1,6 +1,13 @@
 ---
 title: "Changelog"
-description: "Changes between Relayout versions that affect markup written for an earlier version."
+description: "Changes between Relayout versions that affect markup written for an earlier version: renamed classes, removed attributes and changed behavior."
+head:
+  - tag: title
+    content: "Relayout changelog: changes that affect your markup"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout changelog: changes that affect your markup"
 ---
 
 Relayout is before 1.0, so a release can rename classes. This page lists the changes that affect markup written for an earlier version.
@@ -15,6 +22,10 @@ Relayout is before 1.0, so a release can rename classes. This page lists the cha
 - An element with an `rl-` class keeps its focus ring where the keyboard can stop. Before 0.6.0 every element with an `rl-` class had `outline: none`, so `<input class="rl-width-fill">`, `<a class="rl-padding-m">` and `<button class="rl-row">` showed no focus ring when a keyboard user tabbed to them, and a box that scrolled with `rl-scroll` showed none either, though the same box as an element did. Now a link, button, `input`, `select`, `textarea`, `summary`, an element with `tabindex` or `contenteditable`, and a box that scrolls with `rl-scroll` or `rl-nowrap-scroll` keep the browser's focus ring, as classes and as elements, and a layout container the keyboard can't stop on has none. `box-sizing: border-box` is unchanged. See [Outline](/docs/extras/outline/).
 - `rl-outline-none` is new: a class, and an attribute of the elements, that takes the focus ring off. A page that relied on the missing ring puts it on the element, and draws its own sign of where the keyboard is. See [Outline](/docs/extras/outline/).
 - A page that loads the script twice, such as two versions of Relayout or two apps that each bring it, no longer throws: the elements stay as the first copy registered them.
+
+## 0.5.0
+
+- The base rule, which gives every element with an `rl-` class `box-sizing: border-box`, matches only class names that start with `rl-`. Before 0.5.0 it matched any class that contained `rl-`, so an element with a class such as `girl-card` or `pearl-button` got `box-sizing: border-box` and lost its focus outline too. An element that relied on that sets `box-sizing: border-box` itself.
 
 ## 0.4.0
 

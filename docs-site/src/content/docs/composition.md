@@ -1,6 +1,13 @@
 ---
 title: "Composition"
 description: "Build interfaces step by step by nesting layouts and adding utilities, from one column to a full page, with the common patterns, recipes and practices."
+head:
+  - tag: title
+    content: "Build a page with Relayout: nesting, recipes and patterns"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Build a page with Relayout: nesting, recipes and patterns"
 ---
 
 This page builds interfaces step by step, from one layout to a full page, and ends with recipes for the common needs.

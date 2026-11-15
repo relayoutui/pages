@@ -1,6 +1,13 @@
 ---
 title: "Grid"
-description: "The grid places elements in cells of equal width. Each cell has a minimum width, and as many cells fit side by side as the available width allows; the elements that don't fit continue on a new line. The cells widen to share the space that's left."
+description: "The grid places elements in cells of equal width: as many fit on a line as the width allows, and the cells widen to share what is left over."
+head:
+  - tag: title
+    content: "Relayout grid: equal cells that fill the width and wrap"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout grid: equal cells that fill the width and wrap"
 ---
 
 Class: `rl-grid`
@@ -9,7 +16,7 @@ The grid places elements in cells of equal width. Each cell has a minimum width,
 
 Grids are well suited for card layouts, image galleries, product listings, dashboard widgets, and any collection of similar items that should be displayed in a uniform grid structure. A grid is also the way to make equal columns that stack on narrow screens; for equal columns that never stack, use a [row](/docs/layouts/row/) with `rl-nowrap` and `rl-width-fill` on each element.
 
-### `rl-grid`
+## `rl-grid`
 
 By default, the grid uses `auto-fit` behavior with cells that have a minimum width of `6.25rem` (100px). Cells expand to fill available space.
 

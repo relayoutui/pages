@@ -1,6 +1,13 @@
 ---
 title: "Divider"
 description: "The divider is a separator line between elements. It runs across a column and down a row, so it takes its direction from the layout it is in."
+head:
+  - tag: title
+    content: "Relayout divider: a line that follows its layout's direction"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout divider: a line that follows its layout's direction"
 ---
 
 Class: `rl-divider`
@@ -9,7 +16,7 @@ The divider creates a visual separator line between elements. It takes its direc
 
 Dividers are well suited for separating list items, sections of content, menu items, and creating visual distinction between groups of elements.
 
-### `rl-divider`
+## `rl-divider`
 
 In a column, the divider is a horizontal line that stretches across the full width of the column.
 

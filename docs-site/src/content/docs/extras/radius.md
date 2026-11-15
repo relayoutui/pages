@@ -1,6 +1,13 @@
 ---
 title: "Radius"
-description: "The radius utility rounds the corners of bordered elements. Radius only has a visible effect when combined with the border utility or when an element has a border or background applied through other means. The radius values use the same spacing scale as gap and padding."
+description: "The radius utility rounds the corners of an element that has a border or a background, on the same scale as gap and padding, from extra small to 2xl."
+head:
+  - tag: title
+    content: "Relayout radius: round the corners on a fixed scale"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout radius: round the corners on a fixed scale"
 ---
 
 Class: `rl-radius-*`

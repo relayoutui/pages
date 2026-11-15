@@ -1,6 +1,13 @@
 ---
 title: "Border"
-description: "The border utility adds a border around a layout container. The border uses the global --rl-border-default CSS variable, which can be customized to match your design system. By default, borders have square corners, but they respect any border-radius utility applied."
+description: "The border utility adds a border to a layout container, drawn from the --rl-border-default variable you can change. Corners stay square unless a radius is set."
+head:
+  - tag: title
+    content: "Relayout border: add a border to a layout container"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout border: add a border to a layout container"
 ---
 
 Class: `rl-border`

@@ -1,6 +1,13 @@
 ---
 title: "Outline"
-description: "Relayout leaves the browser's focus ring on what a keyboard can reach, and rl-outline-none takes a ring off on purpose."
+description: "Relayout leaves the browser's focus ring on what a keyboard can reach, a box that scrolls included, and rl-outline-none takes it off where a page draws its own."
+head:
+  - tag: title
+    content: "Relayout outline: keep the focus ring, or take it off"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "Relayout outline: keep the focus ring, or take it off"
 ---
 
 Class: `rl-outline-none`
