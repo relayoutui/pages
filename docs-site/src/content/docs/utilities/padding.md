@@ -40,7 +40,7 @@ The sizes are the spacing scale, `--rl-space-*`, which gap and radius use too. P
 }
 ```
 
-A page's own `padding` on a layout wins over the default, whatever the order of the style sheets, and so does `rl-padding-*`. `rl-div` and `rl-divider` have no default padding.
+The default is in a cascade layer, `rl-defaults`, so a rule of the page's own wins over it, whatever its weight and the order of the style sheets, unless the page keeps that rule in a cascade layer that comes before Relayout's. A reset such as `* { padding: 0 }` wins too, so it keeps a layout without padding even when the variable is set. `rl-padding-*` wins as well. `rl-div` and `rl-divider` have no default padding.
 
 ## Padding with column
 

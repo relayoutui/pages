@@ -38,7 +38,7 @@ The sizes are the spacing scale, `--rl-space-*`, which gap and padding use too.
 }
 ```
 
-`rl-radius-*` wins over the default, and so does a page's own `border-radius`, whatever the order of the style sheets.
+The default is in a cascade layer, `rl-defaults`, so a rule of the page's own wins over it, whatever its weight and the order of the style sheets, unless the page keeps that rule in a cascade layer that comes before Relayout's. `rl-radius-*` wins as well.
 
 ## Radius with column
 
