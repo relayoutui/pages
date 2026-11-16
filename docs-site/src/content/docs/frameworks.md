@@ -20,7 +20,7 @@ An app whose markup is in the page needs only the classes. [`rl-div`](/docs/web-
 
 ### React
 
-React renders a custom element's props as attributes, so `rl-div` takes `class`, not `className`:
+On `rl-div`, write `class`, which works in every version of React. React 19 turns `className` into `class` on a custom element too, but React 18 writes it as an attribute named `classname`, which does nothing:
 
 ```jsx
 import '@relayoutui/relayout';

@@ -40,7 +40,7 @@ The sizes are the spacing scale, `--rl-space-*`, which gap and radius use too. P
 }
 ```
 
-In a layout written as a class, the default is in a cascade layer, `rl-defaults`, so a rule of the page's own wins over it, whatever its weight and the order of the style sheets, unless the page keeps that rule in a cascade layer that comes before Relayout's. In an element, the default is a `:host` rule, which a rule of the page's own always beats. A reset such as `* { padding: 0 }` wins too, so it keeps a layout without padding even when the variable is set. `rl-padding-*` wins as well. `rl-div` and `rl-divider` have no default padding.
+The default is in a cascade layer, `rl-defaults`, so a rule of the page's own wins over it, whatever its weight and the order of the style sheets, unless the page keeps that rule in a cascade layer that comes before Relayout's. Inside a shadow root, a rule of the component's own beats the default of an [`rl-div`](/docs/web-components/), from a cascade layer too. A reset such as `* { padding: 0 }` wins too, so it keeps a layout without padding even when the variable is set. `rl-padding-*` wins as well. Only the four layouts take the default, on a `div` or an `rl-div`: a plain `rl-div` and the divider have none.
 
 ## Padding with column
 
