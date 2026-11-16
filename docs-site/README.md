@@ -11,8 +11,8 @@ Run from this folder, in PowerShell or any shell. The first time, install the de
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server at http://localhost:4321/docs/. Search says it is unavailable in dev |
-| `npm run build` | Builds the static site into `dist/`, with the search index and a sitemap |
-| `npm run check` | Fails if a page names another Relayout version than the one installed (*Relayout version*), and, after a build, if a page's title is over 60 characters or its description is outside 120 to 160, as search results show them (the docs and the home page) |
+| `npm run build` | Writes the header's version and revision (*Version in the header*), then builds the static site into `dist/`, with the search index and a sitemap |
+| `npm run check` | Fails if a page names another Relayout version than the one installed (*Relayout version*), and, after a build, if a page's header stamp isn't that version, or if a page's title is over 60 characters or its description is outside 120 to 160, as search results show them (the docs and the home page) |
 | `npm run preview` | Serves `dist/` at http://localhost:4321/docs/, as it would be deployed |
 
 **On relayout.local.** The Caddyfile in `_local` serves `dist/` at http://relayout.local/docs, beside the home page (see the README one folder up). Run `npm run build`, then reload; there is no server to restart.
@@ -49,9 +49,25 @@ The previews use the CSS of the `@relayoutui/relayout` version in `package.json`
 
 `npm run check` finds what was missed. It lists each example, by file and line, that names another version than the installed one, a dependency that isn't the installed version, and a copy of the CSS on the home page that is another version or differs from the package's file, and CI runs it before the build is deployed. The changelog is left out, since it names the versions that changed things. The check can't see the README of the Relayout repo, which names the version in its CDN example too: change it there.
 
+## Version in the header
+
+The header shows `v0.7.0-r1116.2` after the "Docs" label: the version of Relayout the previews run, and the revision of the build. Hovering over it says both in words. It is hidden below 64rem, where it would crowd the search box.
+
+- The version is the installed `@relayoutui/relayout`, which `npm run check` holds equal to the dependency, the examples and the home page's CSS.
+- The revision is `r<mmdd>.<n>`: the date of the latest commit and its place among that day's commits. The same commit gets the same revision on any machine, and re-running a workflow doesn't change it. It needs the whole history, so a shallow clone shows the version only, and CI, which checks out with `fetch-depth: 0`, fails the check without a revision. `DOCS_REVISION` sets it by hand.
+- `scripts/build-info.mjs` writes both to `src/build-info.json`, which isn't committed. `npm run dev` and `npm run build` run it first.
+
 ## Deploy
 
-The repo's workflow builds this site and deploys it with the home page; see the README one folder up. The Umami script is added only when the build has `UMAMI_WEBSITE_ID` set, from the repository variable of that name.
+The workflow, `.github/workflows/deploy.yml`, builds the site once and ships the same files to two places: pre at https://pre.relayout.net, and prod at https://relayout.net. What was looked at on pre is what ships.
+
+1. A pull request builds the site, checks it for both stages and deploys nothing. Its `Build the site` job is the check the ruleset on `main` requires.
+2. A push to `main` deploys to pre at once. Pre is the GitHub Pages site of the `relayoutui/pages-pre` repository, from its `gh-pages` branch, which the workflow pushes with a deploy key (the `PAGES_PRE_DEPLOY_KEY` secret).
+3. Prod deploys after pre has, and waits for the `production` approval. Look at pre first, and compare the revision in its header with the one in the name of the run's jobs.
+
+The pages say `https://relayout.net` on both stages, in their canonical addresses and the sitemap. The stages differ only in what `.github/set-stage.sh <dir> pre|prod` puts beside the pages: pre gets a `CNAME` and a `robots.txt` that disallows everything, so it stays out of search results, and prod keeps `www/robots.txt`. The script checks what it wrote, and fails the build if prod names the pre host. To look at a stage locally, run `npm run build` here, then `bash .github/assemble-site.sh <dir>` and `bash .github/set-stage.sh <dir> pre` at the top of the repo.
+
+The Umami script is added only when the build has `UMAMI_WEBSITE_ID` set, from the repository variable of that name. It counts visits to relayout.net only (`data-domains`), so pre isn't counted.
 
 ## Other files
 
@@ -60,6 +76,6 @@ The look is the other product docs' (lpdf.io, authstack.id), copied from authsta
 - `src/styles/docs.css`: the neutral surfaces and greys, the accent tones and the brand magenta, with their measured contrast.
 - `src/components/page-frame.astro`: with a mouse, the content scrolls in Starlight's own `.main-frame`, below the header, not in the window (see "Scrolling" in `docs.css`), so the header never shifts between pages that scroll and pages that don't. This component gives the frame keyboard focus on load and keeps a clicked tab in place. A touch screen scrolls the window.
 - `src/components/header.astro`: Starlight's header with the pre-release notice as a second, full-width row under it. Its height is `--docs-notice-height` in `docs.css`. Remove the component, its entry in `astro.config.mjs` and that variable at v1.0.
-- `src/components/site-title.astro`: the header lockup: the mark at 24px (`codesense/logos/dist/relayout-mark.svg`) and the word, which go to the home page, and a "Docs" label, which goes to the docs home.
+- `src/components/site-title.astro`: the header lockup: the mark at 24px (`codesense/logos/dist/relayout-mark.svg`) and the word, which go to the home page, a "Docs" label, which goes to the docs home, and the version stamp (*Version in the header*).
 - `src/components/theme-toggle.astro` and `theme-provider.astro`: the half-circle theme toggle in place of Starlight's three-way picker. Dark by default, stored the way the other product sites store it (`src/theme.ts`, key `cs-theme`).
 - `src/components/head.astro`: Starlight's head, plus the script that defines `<rl-preview>`.
