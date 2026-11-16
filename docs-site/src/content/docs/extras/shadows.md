@@ -32,12 +32,12 @@ Apply class `rl-shadow-*` to an element, where `*` can be `xs`, `s`, `m`, `l`, `
 
 ```html preview
 <div class="rl-row rl-gap-l rl-padding-l rl-bg-surface-alt rl-radius-s">
-    <div class="rl-shadow-xs rl-bg-surface rl-color-text rl-padding-m rl-radius-s">xs</div>
-    <div class="rl-shadow-s rl-bg-surface rl-color-text rl-padding-m rl-radius-s">s</div>
-    <div class="rl-shadow-m rl-bg-surface rl-color-text rl-padding-m rl-radius-s">m</div>
-    <div class="rl-shadow-l rl-bg-surface rl-color-text rl-padding-m rl-radius-s">l</div>
-    <div class="rl-shadow-xl rl-bg-surface rl-color-text rl-padding-m rl-radius-s">xl</div>
-    <div class="rl-shadow-inner rl-bg-surface rl-color-text rl-padding-m rl-radius-s">inner</div>
+    <div class="rl-shadow-xs rl-bg-surface rl-color-primary rl-padding-m rl-radius-s">xs</div>
+    <div class="rl-shadow-s rl-bg-surface rl-color-primary rl-padding-m rl-radius-s">s</div>
+    <div class="rl-shadow-m rl-bg-surface rl-color-primary rl-padding-m rl-radius-s">m</div>
+    <div class="rl-shadow-l rl-bg-surface rl-color-primary rl-padding-m rl-radius-s">l</div>
+    <div class="rl-shadow-xl rl-bg-surface rl-color-primary rl-padding-m rl-radius-s">xl</div>
+    <div class="rl-shadow-inner rl-bg-surface rl-color-primary rl-padding-m rl-radius-s">inner</div>
 </div>
 ```
 
