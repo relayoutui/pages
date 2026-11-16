@@ -33,7 +33,7 @@ The names differ by one letter, and the two do different things next to other el
 | `rl-height-fill` | 300px, what the header and the footer leave | 400px, the bottom of the parent |
 
 ```html preview debug
-<div class="rl-row rl-align-start rl-gap-l" style="min-height: 520px;">
+<div class="rl-row rl-nowrap rl-align-start rl-gap-l" style="min-height: 520px;">
     <div class="rl-column rl-width-fill" style="height: 400px;">
         <div style="height: 50px;">Header</div>
         <div class="rl-height-full">rl-height-full</div>

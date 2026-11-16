@@ -314,7 +314,7 @@ The gray line is a placeholder. `--rl-border-default` holds the whole border, it
 
 ```css
 :root {
-  --rl-border-default: solid 1px #e0e0e0;
+    --rl-border-default: solid 1px #e0e0e0;
 }
 ```
 
@@ -322,11 +322,11 @@ Set it on a section to change the borders inside it only. With `light-dark()` in
 
 ```css
 :root {
-  --rl-border-default: solid 1px light-dark(#ddd, #333);
+    --rl-border-default: solid 1px light-dark(#ddd, #333);
 }
 
 .callout {
-  --rl-border-default: solid 3px var(--rl-color-accent);
+    --rl-border-default: solid 3px var(--rl-color-accent);
 }
 ```
 
@@ -334,7 +334,7 @@ To round every bordered element, set `--rl-radius-default`:
 
 ```css
 :root {
-  --rl-radius-default: 0.5rem;
+    --rl-radius-default: 0.5rem;
 }
 ```
 

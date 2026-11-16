@@ -24,6 +24,8 @@ The roles are light until the page sets a `color-scheme`. To follow the system's
 }
 ```
 
+The same line tells the browser that the page has a dark theme, so in dark mode it draws its own colors dark too: the background of a page that sets none, the default text, form controls and scrollbars. Give the page its colors from the roles, such as `rl-bg-surface rl-color-primary` on `body`, so they match.
+
 A role takes its dark value wherever the element that uses it has a dark `color-scheme`, so the same property makes a theme switch or a single dark panel:
 
 - **A theme switch:** set `color-scheme` on `html`, which wins over the system. From a toggle, `document.documentElement.style.colorScheme = 'dark'`, or `'light'`, or `''` to follow the system again.
@@ -42,7 +44,7 @@ A role takes its dark value wherever the element that uses it has a dark `color-
 </div>
 ```
 
-Relayout never sets `color-scheme` itself, so it doesn't change the browser's own colors: the page's background and text, its form controls and its scrollbars keep what the page gives them.
+Relayout never sets `color-scheme` itself. On a page that sets none, it changes none of the browser's own colors: the page's background and text, its form controls and its scrollbars stay as they were.
 
 The roles get their two values from `light-dark()`, which browsers have had since 2024: Chrome and Edge 123, Firefox 120, Safari 17.5. An older browser shows the light values.
 
@@ -88,7 +90,9 @@ The `surface` text on each fill, measured:
 | `danger` | 4.9:1 | 5.0:1 |
 | `info` | 3.6:1 | 7.1:1 |
 
-Text needs 4.5:1. In the light theme the text on `success` and `info` is below it, and on `accent` and `warning` below 3:1, so give text on those fills a dark color, such as `rl-color-primary`, or set lighter values for them. White text stays readable on a fill only up to a lightness that depends on its hue: for 4.5:1, about 61% for a purple, 52% for a red, 46% for a blue, 38% for an orange, 30% for a green and 26% for a yellow. A site whose brand color is light, such as a yellow, a light green or a cyan, puts a dark text color on its fill. Check the ratios of the values your site sets.
+Text needs 4.5:1. In the light theme the text on `success` and `info` is below it, and on `accent` and `warning` below 3:1. For text on those fills, give it a color that stays dark in both themes, in your own CSS: `hsl(0, 0%, 10%)` reads at 6.5:1 on `accent`, 6.8 on `warning` and 4.8 on `info` in the light theme, and above 7:1 on every fill in the dark one. `rl-color-primary` doesn't do it: it turns light in the dark theme, where the fills are light too, and reads below 2.1:1 there. On `success` neither reaches 4.5:1 in the light theme, 4.1 for white and 4.2 for dark text, so set a darker light value for it: white text reaches 4.5:1 at `hsl(142, 60%, 33%)` ([Customizing](#customizing)).
+
+White text stays readable on a fill only up to a lightness that depends on its hue: for 4.5:1, about 61% for a purple, 52% for a red, 46% for a blue, 38% for an orange, 30% for a green and 26% for a yellow. A site whose brand color is lighter, such as a yellow, a light green or a cyan, puts dark text on its fill. Check the ratios of the values your site sets.
 
 The roles are mid-tones, so the swatches below put each name on a `surface` chip:
 
