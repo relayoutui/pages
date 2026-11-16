@@ -338,10 +338,10 @@ Width utilities organize complex dashboard layouts:
 
 ## Web components
 
-`rl-width-*` and `rl-center-self` are attributes of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`:
+Inside a shadow root, where the page's CSS doesn't reach, `rl-width-*` and `rl-center-self` go on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
 
 ```html
-<rl-column rl-width-m rl-center-self>...</rl-column>
+<rl-div class="rl-column rl-width-m rl-center-self">...</rl-div>
 ```
 
 ## Customizing

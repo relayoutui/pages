@@ -1,6 +1,6 @@
 ---
 title: "Installation"
-description: "Install Relayout from a CDN, as a local CSS file, or with npm and Sass, which embeds it in your own CSS. The web components load from a script beside the CSS."
+description: "Install Relayout from a CDN, as a local CSS file, or with npm and Sass, which embeds it in your own CSS. rl-div loads from a script beside the CSS."
 head:
   - tag: title
     content: "Install Relayout from a CDN, as a local file or with npm"
@@ -36,7 +36,7 @@ Download the CSS file from the CDN, `https://cdn.jsdelivr.net/npm/@relayoutui/re
 
 ## Web components
 
-The [web components](/docs/web-components/) are a script that you load beside the CSS. From the CDN, `relayout.bundle.js` is one file with everything it needs, [Lit](https://lit.dev) included. With npm, the package depends on Lit and npm installs it with the package, so your bundler includes one copy of Lit for your code and for Relayout. [Web components](/docs/web-components/#loading) has the code to load it.
+[`rl-div`](/docs/web-components/), the element for markup inside a shadow root, is a script that you load beside the CSS. From the CDN, `relayout.bundle.js` is one file with everything it needs, [Lit](https://lit.dev) included. With npm, the package depends on Lit and npm installs it with the package, so your bundler includes one copy of Lit for your code and for Relayout. [Web components](/docs/web-components/#loading) has the code to load it.
 
 ## npm installation
 
@@ -50,7 +50,7 @@ Embedding the CSS with Sass needs Relayout only when you build, so install it as
 npm install @relayoutui/relayout --save-dev
 ```
 
-A project that imports the [web components](/docs/web-components/), whose script runs in the browser, installs it as a dependency instead: `npm install @relayoutui/relayout`.
+A project that imports [`rl-div`](/docs/web-components/), whose script runs in the browser, installs it as a dependency instead: `npm install @relayoutui/relayout`.
 
 Create the file which will import Relayout (e.g. `scss/app.scss`):
 
@@ -70,7 +70,7 @@ A bundler such as Vite or webpack can load the CSS from your code. The package e
 import '@relayoutui/relayout/css';
 ```
 
-Import the web components the same way, once, anywhere in your code:
+Import `rl-div` the same way, once, anywhere in your code:
 
 ```js
 import '@relayoutui/relayout';

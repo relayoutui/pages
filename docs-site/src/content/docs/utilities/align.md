@@ -248,8 +248,8 @@ Align works well with other layout utilities for sophisticated designs:
 
 ## Web components
 
-`rl-align-*` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>` and `<rl-frame>`:
+Inside a shadow root, where the page's CSS doesn't reach, `rl-align-*` goes on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
 
 ```html
-<rl-row rl-align-start>...</rl-row>
+<rl-div class="rl-row rl-align-start">...</rl-div>
 ```

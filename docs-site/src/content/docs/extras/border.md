@@ -303,8 +303,8 @@ To round every bordered element, set `--rl-radius-default`:
 
 ## Web components
 
-`rl-border` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`:
+Inside a shadow root, where the page's CSS doesn't reach, `rl-border` goes on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
 
 ```html
-<rl-div rl-border rl-padding-m>...</rl-div>
+<rl-div class="rl-border rl-padding-m">...</rl-div>
 ```

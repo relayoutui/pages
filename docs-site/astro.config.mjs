@@ -48,6 +48,7 @@ export default defineConfig({
                         { slug: 'introduction', label: 'Introduction' },
                         { slug: 'install', label: 'Installation' },
                         { slug: 'web-components', label: 'Web components' },
+                        { slug: 'frameworks', label: 'Frameworks' },
                         { slug: 'composition', label: 'Composition' },
                         { slug: 'existing-projects', label: 'Existing projects' },
                     ],

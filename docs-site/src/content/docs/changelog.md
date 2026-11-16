@@ -12,6 +12,14 @@ head:
 
 Relayout is before 1.0, so a release can rename classes. This page lists the changes that affect markup written for an earlier version.
 
+## 0.8.0
+
+- The web components are one element, `rl-div`, which takes the classes through `class`: `<rl-row rl-gap-m>` is now `<rl-div class="rl-row rl-gap-m">`. The `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-divider>` elements are gone, with no alias, and so is every attribute form of a class: `rl-gap-m`, `rl-width-fill` or `rl-scroll` as an attribute does nothing, on an element or on a `div`. Write `rl-div` for each element, with the old tag as its first class (`<rl-divider>` is `<rl-div class="rl-divider">`), and move each attribute into `class`. `rl-div` takes every class, the font and text classes too, which had no attribute form. See [Web components](/docs/web-components/).
+- `rl-div` is for markup inside a shadow root, where the page's CSS doesn't reach. In the page, a `div` with the classes does the same. There, `relayout.css` gives an `rl-div` its layout before the script runs, so the page no longer jumps when the script loads.
+- An `rl-div` with no `rl-` class is `content-box`, as a `div` is. Before 0.8.0 it was always `border-box`. With an `rl-` class it is `border-box`, as before.
+- The package exports no classes. `Column`, `Row`, `Grid`, `Frame`, `Divider` and `Div` are gone. Importing the package registers `rl-div`, as before, and `document.createElement('rl-div')` is still typed.
+- React and Vue get type declarations for `rl-div`, at `@relayoutui/relayout/types/react` and `@relayoutui/relayout/types/vue`, and the package ships `custom-elements.json` for editors. See [Frameworks](/docs/frameworks/).
+
 ## 0.7.0
 
 - `hidden` hides a layout. Before 0.7.0 `<div class="rl-row" hidden>`, a column, a grid, a frame and `<rl-row hidden>` stayed on the page, because a layout's `display` beats the `display: none` the browser gives `hidden`. Now an element with a layout class, each of the elements, and an image inside a frame are hidden as any other element is. `hidden="until-found"` is left to the browser, so the page's find reaches it. See [Web components](/docs/web-components/).

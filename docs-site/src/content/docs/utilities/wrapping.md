@@ -348,8 +348,8 @@ Horizontal scrolling card layouts:
 
 ## Web components
 
-`rl-nowrap`, `rl-nowrap-scroll` and `rl-wrap-reverse` are attributes of `<rl-row>`:
+Inside a shadow root, where the page's CSS doesn't reach, `rl-nowrap`, `rl-nowrap-scroll` and `rl-wrap-reverse` go on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
 
 ```html
-<rl-row rl-nowrap-scroll rl-gap-s>...</rl-row>
+<rl-div class="rl-row rl-nowrap-scroll rl-gap-s">...</rl-div>
 ```
