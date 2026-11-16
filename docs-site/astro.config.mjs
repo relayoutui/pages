@@ -93,6 +93,7 @@ export default defineConfig({
                         { slug: 'extras/outline', label: 'Outline' },
                     ],
                 },
+                { slug: 'reference', label: 'Reference' },
             ],
         }),
     ],
