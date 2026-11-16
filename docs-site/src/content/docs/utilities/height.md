@@ -169,7 +169,7 @@ A smaller value keeps the fill element beside the others longer, and `0px` keeps
 
 Content wider than the fill element, such as a long line of code or a wide table, doesn't widen it: it shows past the element. Put `rl-scroll` on that content, and it scrolls inside the element while the page doesn't.
 
-A fill element needs a row whose width comes from its parent, as a page section or a header has. A row as wide as its content has no space to fill: a row inside a column with `rl-align-center`, `rl-align-start` or `rl-align-end`, in a popover or an absolutely positioned menu, or in an inline-block. There the minimum is the row's whole width, so the fill element moves below the others. Leave `rl-width-fill` off in such a row, or set `--rl-fill-min: 0px` on it.
+A fill element needs a row whose width comes from its parent, as a page section or a header has. A row as wide as its content has no space to fill: a row inside a column with `rl-align-center`, `rl-align-start` or `rl-align-end`, in a popover or an absolutely positioned menu, or in an inline-block. The browser sizes such a row as if the minimum were 0, so the space beside the others is only the fill element's content, and a fill element whose content is narrower than the minimum moves below them. Leave `rl-width-fill` off in such a row, or set `--rl-fill-min: 0px` on it.
 
 ### `rl-height-fill`
 
