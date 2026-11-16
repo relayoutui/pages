@@ -73,13 +73,15 @@ jobs:
               bash ./.github/set-stage.sh "$RUNNER_TEMP/site-$stage" "$stage"
           done
 
+      # Kept for 30 days, the longest a deployment can wait for its approval: the approval is often given only
+      # when a release is out, and prod downloads this artifact once it is given
       - uses: actions/upload-artifact@v6
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         with:
           name: site
           path: _site
           if-no-files-found: error
-          retention-days: 1
+          retention-days: 30
 
   # No approval: pre is where the site is looked at before the production approval is given. It is the
   # GitHub Pages site of relayoutui/pages-pre, from its gh-pages branch, which this job pushes with a deploy

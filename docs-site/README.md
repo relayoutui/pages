@@ -15,7 +15,7 @@ Run from this folder, in PowerShell or any shell. The first time, install the de
 | `npm run check` | Fails if a page names another Relayout version than the one installed (*Relayout version*), and, after a build, if a page's header stamp isn't that version, or if a page's title is over 60 characters or its description is outside 120 to 160, as search results show them (the docs and the home page) |
 | `npm run preview` | Serves `dist/` at http://localhost:4321/docs/, as it would be deployed |
 
-**On relayout.local.** The Caddyfile in `_local` serves `dist/` at http://relayout.local/docs, beside the home page (see the README one folder up). Run `npm run build`, then reload; there is no server to restart.
+**On relayout.local.** The Caddyfile in `_local` serves `dist/` at http://relayout.local/docs, beside the home page. Run `npm run build`, then reload; there is no server to restart.
 
 **Search works only after a build.** The index is built with the site, so use `npm run build`, then reload relayout.local or run `npm run preview`, and press Ctrl+K or click Search.
 
@@ -51,7 +51,7 @@ The previews use the CSS of the `@relayoutui/relayout` version in `package.json`
 
 ## Version in the header
 
-The header shows `v0.7.0-r1116.2` after the "Docs" label: the version of Relayout the previews run, and the revision of the build. Hovering over it says both in words. It is hidden below 64rem, where it would crowd the search box.
+The header shows `v0.7.0-r1116.2` after the "Docs" label: the version of Relayout the previews run, and the revision of the build. Hovering over it says both in words. It is hidden at 64rem and below, where it would crowd the search box.
 
 - The version is the installed `@relayoutui/relayout`, which `npm run check` holds equal to the dependency, the examples and the home page's CSS.
 - The revision is `r<mmdd>.<n>`: the date of the latest commit and its place among that day's commits. The same commit gets the same revision on any machine, and re-running a workflow doesn't change it. It needs the whole history, so a shallow clone shows the version only, and CI, which checks out with `fetch-depth: 0`, fails the check without a revision. `DOCS_REVISION` sets it by hand.
@@ -63,7 +63,7 @@ The workflow, `.github/workflows/deploy.yml`, builds the site once and ships the
 
 1. A pull request builds the site, checks it for both stages and deploys nothing. Its `Build the site` job is the check the ruleset on `main` requires.
 2. A push to `main` deploys to pre at once. Pre is the GitHub Pages site of the `relayoutui/pages-pre` repository, from its `gh-pages` branch, which the workflow pushes with a deploy key (the `PAGES_PRE_DEPLOY_KEY` secret).
-3. Prod deploys after pre has, and waits for the `production` approval. Look at pre first, and compare the revision in its header with the one in the name of the run's jobs.
+3. Prod deploys after pre has, and waits for the `production` approval. Look at pre first, and compare the revision in its header with the one in the name of the run's jobs. The build's artifact is kept for 30 days, the longest a deployment can wait for approval, so the approval can be given after a release and still deploys the files that were looked at.
 
 The pages say `https://relayout.net` on both stages, in their canonical addresses and the sitemap. The stages differ only in what `.github/set-stage.sh <dir> pre|prod` puts beside the pages: pre gets a `CNAME` and a `robots.txt` that disallows everything, so it stays out of search results, and prod keeps `www/robots.txt`. The script checks what it wrote, and fails the build if prod names the pre host. To look at a stage locally, run `npm run build` here, then `bash .github/assemble-site.sh <dir>` and `bash .github/set-stage.sh <dir> pre` at the top of the repo.
 
