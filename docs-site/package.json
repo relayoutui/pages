@@ -4,9 +4,9 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "astro dev",
-        "build": "astro build",
-        "check": "node scripts/check-relayout-version.mjs && node scripts/check-page-meta.mjs",
+        "dev": "node scripts/build-info.mjs && astro dev",
+        "build": "node scripts/build-info.mjs && astro build",
+        "check": "node scripts/check-relayout-version.mjs && node scripts/check-build-info.mjs && node scripts/check-page-meta.mjs",
         "preview": "astro preview"
     },
     "dependencies": {

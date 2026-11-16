@@ -6,6 +6,9 @@ dist/
 .astro/
 _site/
 
+# Written by docs-site/scripts/build-info.mjs: the version and revision the docs header shows
+docs-site/src/build-info.json
+
 # Env files
 .env
 .env.*
