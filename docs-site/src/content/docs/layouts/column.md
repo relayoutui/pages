@@ -46,7 +46,7 @@ The column layout is a fundamental vertical layout pattern with specific charact
 
 - **Main axis**: Vertical (controlled by `justify-content`)
 - **Cross axis**: Horizontal (controlled by `align-items`)
-- **Text alignment**: The `rl-align-*` classes also set `text-align` for proper text positioning
+- **Text alignment**: `rl-align-start`, `rl-align-center` and `rl-align-end` also set the text alignment, as a default that `rl-text-*` or a rule of your own overrides
 - **Gap behavior**: Uses CSS flexbox `gap` property for consistent spacing
 - **Vertical space**: By default, columns only take as much vertical space as their content needs
 - **No shrinking**: Elements keep their height; only an `rl-height-fill` element grows or shrinks

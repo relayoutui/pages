@@ -22,6 +22,7 @@ The align utility places the elements of a layout along its cross axis, the one 
 | `rl-align-center` | in the middle of it |
 | `rl-align-end` | at the end of it |
 | `rl-align-stretch` | across all of it, unless an element has a size of its own |
+| `rl-align-baseline` | so the first lines of their text sit on one line, whatever their size. For a row or a grid |
 
 | Layout | Cross axis | Default |
 |---|---|---|
@@ -30,7 +31,7 @@ The align utility places the elements of a layout along its cross axis, the one 
 | Grid | Vertical, within each cell | `stretch` |
 | Frame | Vertical | `center` |
 
-In a column, `start`, `center` and `end` also set the text alignment, and make each element only as wide as it needs. An element with `rl-width-fill` in a column, or `rl-height-fill` in a row, stretches whatever the value ([Fill and scroll](/docs/utilities/height/)). [Justify](/docs/utilities/justify/) places the elements along the main axis.
+In a column, `start`, `center` and `end` also set the text alignment, and make each element only as wide as it needs. The text alignment is a default: `rl-text-start`, `rl-text-center` or `rl-text-end` on the column, or a rule of your own, overrides it. `baseline` places the elements of a column as `start` does, and leaves the text alone. An element with `rl-width-fill` in a column, or `rl-height-fill` in a row, stretches whatever the value ([Fill and scroll](/docs/utilities/height/)). [Justify](/docs/utilities/justify/) places the elements along the main axis.
 
 ## Align with column layout
 
@@ -92,6 +93,15 @@ Column alignment also controls text alignment within elements:
 </div>
 ```
 
+A paragraph that wraps fills the width of a centered column, and its lines are centered too. To keep the elements centered and start each line of text at the start, add `rl-text-start` to the column:
+
+```html preview
+<div class="rl-column rl-align-center rl-text-start rl-gap-m rl-border rl-padding-m">
+    <strong>A centered heading</strong>
+    <p>A paragraph long enough to wrap. The column centers its elements, and with rl-text-start every line of this text starts at the left edge, where without it each line would be centered.</p>
+</div>
+```
+
 ## Align with row layout
 
 In row layouts, the **cross axis is vertical**. Align controls how items are positioned vertically within the container.
@@ -137,6 +147,18 @@ In row layouts, the **cross axis is vertical**. Align controls how items are pos
     <div>Item 2</div>
     <div>Item 3</div>
     <div>Item 4</div>
+</div>
+```
+
+### `rl-align-baseline`
+
+The first lines of text sit on one line, whatever their size: a title beside a count and a link line up on their text, where `rl-align-center` lines up the middles of their boxes and `rl-align-start` their tops.
+
+```html preview debug
+<div class="rl-row rl-align-baseline rl-gap-m">
+    <strong class="rl-text-2xl">Invoices</strong>
+    <span class="rl-text-s rl-color-muted">12 open</span>
+    <a href="#">View all</a>
 </div>
 ```
 

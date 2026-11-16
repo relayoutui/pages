@@ -10,7 +10,7 @@ head:
       content: "Relayout gap: even spacing between the elements of a layout"
 ---
 
-Class: `rl-gap-*`
+Classes: `rl-gap-*`, `rl-gap-wrap-*`
 
 The gap utility puts space between the elements of a layout. The space is between the elements only, none before the first or after the last, so no element needs a margin. It works in a column, a row, a grid and a frame.
 
@@ -137,6 +137,23 @@ In grid layouts, gap creates both horizontal and vertical spacing between grid i
     <div>Card 6</div>
 </div>
 ```
+
+## Between wrapped lines
+
+`rl-gap-wrap-*` sets the gap between the lines of a row that wraps, or between the rows of a grid, apart from the gap between the elements. The sizes are those of `rl-gap-*`, from `rl-gap-wrap-0` to `rl-gap-wrap-2xl`. A row of links 24px apart looks right across, and loose when its second line sits 24px below the first:
+
+```html preview debug
+<div class="rl-row rl-gap-xl rl-gap-wrap-s" style="max-width: 18em;">
+    <a href="#">Product</a>
+    <a href="#">Pricing</a>
+    <a href="#">Docs</a>
+    <a href="#">Blog</a>
+    <a href="#">Changelog</a>
+    <a href="#">Support</a>
+</div>
+```
+
+With `rl-gap-l rl-gap-wrap-xs`, the elements are 16px apart across and the lines 2px apart, whatever the order of the two classes. It goes on a row or a grid. A column's lines are its elements, so in a column it does nothing: use `rl-gap-*`.
 
 ## Gap with frame layout
 

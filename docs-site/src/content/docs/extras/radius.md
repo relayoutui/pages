@@ -12,7 +12,7 @@ head:
 
 Class: `rl-radius-*`
 
-The radius utility rounds the corners of an element, all four by the same amount. It shows where the element has something at its corners: a border, a background, a gradient or a shadow.
+The radius utility rounds the corners of an element, all four by the same amount. It shows where the element has something at its corners: a border, a background or a shadow.
 
 ## Sizes
 
@@ -25,8 +25,27 @@ The radius utility rounds the corners of an element, all four by the same amount
 | `rl-radius-l` | 1rem (16px) |
 | `rl-radius-xl` | 1.5rem (24px) |
 | `rl-radius-2xl` | 2.25rem (36px) |
+| `rl-radius-full` | 9999px (round ends) |
 
-The sizes are the spacing scale, `--rl-space-*`, which gap and padding use too.
+The sizes are the spacing scale, `--rl-space-*`, which gap and padding use too. `rl-radius-full` isn't a step of the scale.
+
+## Round ends
+
+`rl-radius-full` makes the ends fully round at any size: a pill on a wide element, a circle on a square one. `rl-radius-2xl` already makes a pill of an element up to 72px tall, and a circle of a 72px square. On a taller one it leaves flat sides, so a 120px avatar is a square with rounded corners. `rl-radius-full` is 9999px, not 50%, which would make an ellipse of a wide element.
+
+```html preview
+<div class="rl-row rl-gap-l">
+    <div class="rl-bg-surface-alt rl-radius-full" style="width: 120px; height: 120px;"></div>
+    <div class="rl-bg-surface-alt rl-radius-2xl" style="width: 120px; height: 120px;"></div>
+    <span class="rl-border rl-radius-full rl-padding-x-m rl-padding-y-xs">A pill</span>
+</div>
+```
+
+The first square has `rl-radius-full` and the second `rl-radius-2xl`. For a picture, put the class on the `<img>`, with the same width and height:
+
+```html
+<img class="rl-radius-full" src="avatar.png" alt="" width="120" height="120" style="object-fit: cover;">
+```
 
 ## Default radius
 
@@ -430,7 +449,10 @@ Different radius sizes for different component types:
         Large radius - Prominent, for hero sections and featured content
     </div>
     <div class="rl-border rl-radius-2xl rl-padding-xl">
-        Extra large radius - Bold, for special emphasis or pill shapes
+        Extra large radius - Bold, for special emphasis
+    </div>
+    <div class="rl-border rl-radius-full rl-padding-x-l rl-padding-y-s">
+        Full radius - Round ends, for pills and avatars
     </div>
 </div>
 ```

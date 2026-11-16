@@ -65,6 +65,8 @@ Apply class `rl-text-*` to set the font size, where `*` can be `xs`, `s`, `m`, `
 | `rl-text-xl` | 1.5rem (24px) |
 | `rl-text-2xl` | 2.25rem (36px) |
 
+`rl-text-l` is the browser's normal size, 16px, and `rl-text-m` is a step below it: `m` is the middle of the scale, not the normal size. Change a step with its variable ([Customizing](#customizing)), and write a size outside the scale in your own CSS.
+
 ```html preview
 <div class="rl-column rl-gap-s">
     <div class="rl-text-xs">Extra small</div>
@@ -97,7 +99,7 @@ These classes style the text of the element they are on.
 | Classes | Effect |
 |---|---|
 | `rl-text-italic`, `rl-text-underline`, `rl-text-strike` | Italic, underline, line through |
-| `rl-text-left`, `rl-text-center`, `rl-text-right` | Text alignment |
+| `rl-text-start`, `rl-text-center`, `rl-text-end` | Text alignment. Start and end follow the reading direction: in a page that reads from right to left, start is the right side |
 | `rl-text-uppercase`, `rl-text-lowercase`, `rl-text-capitalize` | Letter case |
 | `rl-text-wrap`, `rl-text-nowrap` | Wrap the text, or keep it on one line |
 | `rl-text-truncate` | One line, with an ellipsis where it is cut off. The element needs a width |

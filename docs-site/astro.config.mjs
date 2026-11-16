@@ -72,6 +72,7 @@ export default defineConfig({
                         { slug: 'utilities/wrapping', label: 'Wrapping' },
                         { slug: 'utilities/width', label: 'Width' },
                         { slug: 'utilities/height', label: 'Height, fill and scroll' },
+                        { slug: 'utilities/sticky', label: 'Sticky' },
                     ],
                 },
                 {
