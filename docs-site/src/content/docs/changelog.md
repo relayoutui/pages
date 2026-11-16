@@ -65,3 +65,41 @@ Relayout is before 1.0, so a release can rename classes. This page lists the cha
 ## 0.3.0
 
 - `rl-width-*` only limits the width, and `rl-center-self` centers. Before 0.3.0, `rl-width-*` also centered, and `rl-center-self` didn't exist. Markup with both classes lays out the same on either version.
+
+## 0.2.3
+
+No change to the classes, the elements or the CSS.
+
+## 0.2.2
+
+- A grid cell is never wider than the grid. In a grid narrower than one cell's minimum, the single column now shrinks to fit the grid. In 0.2.0 and 0.2.1 it kept its minimum width and overflowed, so a `rl-grid-fit-2xl` on a phone made the page scroll sideways. See [Grid](/docs/layouts/grid/).
+
+## 0.2.1
+
+- A vertical divider, `rl-divider vertical`, is as tall as its row. Before 0.2.1 the row needed a height of its own, or the line had none. A divider takes its direction from its layout from 0.6.0, which has the later change.
+
+## 0.2.0
+
+- `rl-stack` is `rl-column` and `rl-cluster` is `rl-row`. The CSS is the same, and the old names do nothing, so replace each whole word, in class lists, in element tags such as `<rl-stack>` and in selectors. See [Column](/docs/layouts/column/) and [Row](/docs/layouts/row/).
+- `rl-flank`, `rl-flank-end`, `rl-split` and `rl-split-equal` are gone, with the elements `<rl-flank>` and `<rl-split>`. Write the row they were:
+
+  | Before 0.2.0 | From 0.2.0 |
+  |---|---|
+  | `rl-flank` | `rl-row`, with `rl-width-fill` on the last child |
+  | `rl-flank rl-flank-end` | `rl-row`, with `rl-width-fill` on the first child |
+  | `rl-split` | `rl-row rl-justify-between` |
+  | `rl-split rl-split-equal` | `rl-grid`, or `rl-row rl-nowrap` with `rl-width-fill` on each child |
+
+- `rl-width-fill` is new. A child of a row that took the width the others left with `rl-height-fill` takes it with `rl-width-fill`, and `rl-height-fill` on a child of a row now stretches it to the row's height. In a column `rl-height-fill` still takes the height the others leave, and `rl-width-fill` stretches the child across, whatever `rl-align-*` says. See [Fill and scroll](/docs/utilities/height/).
+- `rl-scroll` is new, and `rl-height-full` and `rl-height-fill` no longer scroll: before 0.2.0 both set `overflow-y: auto`. Put `rl-scroll` on the element that should scroll, as the attribute `rl-scroll` on the elements.
+- The children of a `rl-column` no longer shrink: only a child with `rl-height-fill` gives up height. A child with a set height, or `rl-height-full`, beside other children used to shrink to fit and now keeps its height. A page shell whose column had a `min-height` and whose main area scrolled inside it now grows and scrolls as a whole. To keep the header in place, give the column a `height` and the main area `rl-scroll`.
+- `rl-justify-between` is new.
+- The attributes `height-full` and `height-fill` of the elements are `rl-height-full` and `rl-height-fill`, like the others.
+
+## 0.1.7
+
+No change to the classes, the elements or the CSS.
+
+## 0.1.6
+
+The first version on npm. It has the layouts `rl-stack`, `rl-cluster`, `rl-flank`, `rl-split`, `rl-grid`, `rl-frame` and `rl-divider`, each as a class and as an element with the same name, and the utilities for gap, alignment, justification, padding, width, height, wrapping, border, radius, shadow, color, gradient and text.
