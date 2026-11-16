@@ -377,7 +377,7 @@ column (page)
 
 Relayout has four layouts, [column](/docs/layouts/column/), [row](/docs/layouts/row/), [grid](/docs/layouts/grid/) and [frame](/docs/layouts/frame/). Common patterns come from combining them with utilities. Each recipe below is a starting point to copy and adjust.
 
-The page recipes use a fixed height in the previews, so they fit on this page. On a real page, use `100vh` instead.
+The page recipes use a fixed height in the previews, so they fit on this page. On a real page, the column takes `rl-height-screen-min` or `rl-height-screen` instead, as in the code above each preview ([The height of the window](/docs/utilities/height/#the-height-of-the-window)).
 
 ### Header: two groups pushed apart
 
@@ -396,14 +396,29 @@ The page recipes use a fixed height in the previews, so they fit on this page. O
 
 ### Sidebar that moves below the content on narrow screens
 
-The content takes the width the sidebar leaves, and drops below the sidebar when it no longer fits next to it. The page scrolls as a whole; nothing scrolls inside. Resize the preview to see it wrap. For a sidebar on the right, put the sidebar last.
+The content takes the width the sidebar leaves. It is at least 16rem (256px) wide, so when less is left next to the sidebar, it moves below it and takes the whole width: with a 12em sidebar and `rl-gap-m`, under 456px, which is every phone. The page scrolls as a whole; nothing scrolls inside. Resize the preview to see it wrap.
 
 ```html preview debug
 <div class="rl-row rl-align-start rl-gap-m">
     <aside style="width: 12em;">Sidebar</aside>
-    <main class="rl-width-fill">The main content takes the remaining width, and moves below the sidebar when the row gets too narrow.</main>
+    <main class="rl-width-fill">The main content takes the remaining width, and moves below the sidebar when less than 16rem is left.</main>
 </div>
 ```
+
+To keep the content beside the sidebar on narrower screens, set a smaller minimum on the row, such as `style="--rl-fill-min: 12rem;"` ([The minimum in a row that wraps](/docs/utilities/height/#the-minimum-in-a-row-that-wraps)).
+
+### Sidebar after the content
+
+With the sidebar last, it is on the right, and it is the sidebar that moves below the content on a narrow screen.
+
+```html preview debug
+<div class="rl-row rl-align-start rl-gap-m">
+    <main class="rl-width-fill">The main content comes first. On a narrow screen the sidebar moves below it.</main>
+    <aside style="width: 12em;">Sidebar</aside>
+</div>
+```
+
+The order of the markup is the order on a phone. A sidebar on the left that should move below the content on a phone needs CSS of your own, such as `order` in a media or container query.
 
 ### A field and a button
 
@@ -418,10 +433,10 @@ The field takes the width the button leaves. `rl-nowrap` keeps them on one line,
 
 ### Page: footer at the bottom, the page scrolls
 
-The column is at least as tall as the window, and the main area takes the height the header and footer leave. With more content, the column grows and the page scrolls.
+The column is at least as tall as the window, with `rl-height-screen-min`, and the main area takes the height the header and footer leave. With more content, the column grows and the page scrolls.
 
 ```html
-<div class="rl-column" style="min-height: 100vh;">
+<div class="rl-column rl-height-screen-min">
     <header>…</header>
     <main class="rl-height-fill">…</main>
     <footer>…</footer>
@@ -436,14 +451,14 @@ The column is at least as tall as the window, and the main area takes the height
 </div>
 ```
 
-To keep the header in view while the page scrolls, make it `position: sticky; top: 0`.
+To keep the header in view while the page scrolls, give it `rl-sticky-top` and a background, such as `rl-bg-surface` ([Sticky](/docs/utilities/sticky/)).
 
 ### App shell: header and sidebar stay, the sidebar and main area scroll
 
-The column is exactly as tall as the window. The row below the header takes the remaining height, and the sidebar and the main area each scroll on their own. The row needs `rl-nowrap`: a row that wraps grows to fit its tallest element, so nothing inside it would scroll.
+The column is exactly as tall as the window, with `rl-height-screen`. The row below the header takes the remaining height, and the sidebar and the main area each scroll on their own. The row needs `rl-nowrap`: a row that wraps grows to fit its tallest element, so nothing inside it would scroll.
 
 ```html
-<div class="rl-column" style="height: 100vh;">
+<div class="rl-column rl-height-screen">
     <header>…</header>
     <div class="rl-row rl-nowrap rl-height-fill">
         <nav class="rl-height-fill rl-scroll" style="width: 12em;">…</nav>

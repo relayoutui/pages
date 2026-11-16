@@ -142,6 +142,18 @@ With three or more elements, each wrapped line is spaced on its own: a single el
 
 Justify does nothing in a grid. The cells share the whole width, so there is no free space to place them in. To place an element within its cell, limit its width with [`rl-width-*`](/docs/utilities/width/) and center it with `rl-center-self`, and use [`rl-align-*`](/docs/utilities/align/) for the vertical position.
 
+A grid has one set of columns for all its rows, so a last row that isn't full sits in the first columns, with or without justify. To center or right-align a last row, use a [row](/docs/layouts/row/) that wraps, with a width on each element: a row places each of its lines on its own. Five elements 150px wide in a row 500px wide make a line of three and a line of two. The line of two starts at 100px and 250px with `rl-justify-center`, and at 200px and 350px with `rl-justify-end`, where in a grid 500px wide with three columns it starts at 0 and 167px, whatever the justify. The elements don't widen to share the line, so each needs its width.
+
+```html preview debug
+<div class="rl-row rl-justify-center" style="max-width: 500px;">
+    <div style="width: 150px;">1</div>
+    <div style="width: 150px;">2</div>
+    <div style="width: 150px;">3</div>
+    <div style="width: 150px;">4</div>
+    <div style="width: 150px;">5</div>
+</div>
+```
+
 ## Justify with frame
 
 In frame layouts, justify controls horizontal positioning of the centered content.

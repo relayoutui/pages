@@ -14,7 +14,7 @@ Classes: `rl-width-*`, `rl-center-self`
 
 `rl-width-*` limits an element's width: it sets a `max-width` from the scale, and `width: 100%` below it. The element is as wide as its parent until the parent is wider than the limit. It doesn't center: a limited element sits at the start of its parent, or where the parent's `rl-align-*` and `rl-justify-*` put it. `rl-center-self` centers it.
 
-`rl-width-fill` is not one of the limits: it makes an element take the width a row leaves ([Fill and scroll](/docs/utilities/height/)).
+`rl-width-fill` is not one of the limits: it makes an element take the width a row leaves. In a row that wraps it is at least `--rl-fill-min` wide, 16rem by default, or the row's width when that is less, and moves to a line of its own before it gets narrower. Set the variable to a smaller length to keep it beside the others longer ([The minimum in a row that wraps](/docs/utilities/height/#the-minimum-in-a-row-that-wraps)).
 
 ## Sizes
 

@@ -56,6 +56,18 @@ Set each property from one source. When both set the same one, for example `p-3`
 - With Bootstrap 5.3.8, Bootstrap wins, because its utilities are marked `!important`.
 - With Tailwind CSS 4.3.5, Relayout wins, because Tailwind keeps its utilities in a cascade layer, and layered CSS loses to CSS outside a layer.
 
+## Tailwind classes on a layout
+
+Relayout winning also means that a Tailwind class can't hide or turn a Relayout layout. `class="rl-row hidden"` stays a flex row, and `flex-col` on it leaves it a row, so `md:hidden` never hides a layout. To let Tailwind's classes win, load Relayout into a cascade layer of its own, after Tailwind's `base` and before its `components` and `utilities`:
+
+```css
+@layer theme, base, relayout, components, utilities;
+@import "@relayoutui/relayout/css" layer(relayout);
+@import "tailwindcss";
+```
+
+The first line sets the order of the layers, so it goes before both imports. Measured with Tailwind CSS 4.3.5: `hidden` and `flex-col` then win on a layout, and `rl-padding-*` and `rl-border` still beat Tailwind's reset, Preflight, which sets every element's padding and border to 0 in the `base` layer. In a layer before `base`, Relayout would lose to Preflight, and its padding and borders would be gone. Inside the `relayout` layer, `rl-padding-*` and `rl-radius-*` still beat Relayout's own defaults.
+
 ## Colors, fonts and shadows
 
 The [extras](/docs/extras/palette/) are optional. If your framework owns the colors, fonts and shadows, add no `rl-bg-*`, `rl-color-*`, `rl-font-*` or `rl-shadow-*` class, and the palette stays as unused variables.

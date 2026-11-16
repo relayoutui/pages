@@ -1,6 +1,6 @@
 ---
 title: "Border"
-description: "The border utility adds a border to a layout container, drawn from the --rl-border-default variable you can change. Corners stay square unless a radius is set."
+description: "The border utility adds a border around an element or on one of its sides, drawn from the --rl-border-default variable, a placeholder you set to your own."
 head:
   - tag: title
     content: "Relayout border: add a border to a layout container"
@@ -10,11 +10,36 @@ head:
       content: "Relayout border: add a border to a layout container"
 ---
 
-Class: `rl-border`
+Classes: `rl-border`, `rl-border-top`, `rl-border-bottom`, `rl-border-start`, `rl-border-end`
 
-The border utility adds a border around an element, drawn from `--rl-border-default`: a solid 1px line, `hsl(0, 0%, 50%)`, on all four sides. The border is inside the element's width (`box-sizing: border-box`). It goes on any element, a layout or an item inside one.
+The border utility adds a border around an element, drawn from `--rl-border-default`: a solid 1px line, `hsl(0, 0%, 50%)`, on all four sides. That gray is a placeholder that keeps a boundary in sight until you set your own ([Customizing](#customizing)). The border is inside the element's width (`box-sizing: border-box`). It goes on any element, a layout or an item inside one.
 
 `rl-border` also rounds the corners by `--rl-radius-default`, which is 0, so the corners are square until you set it or add [`rl-radius-*`](/docs/extras/radius/).
+
+## One side
+
+`rl-border-top`, `rl-border-bottom`, `rl-border-start` and `rl-border-end` draw the same line on one side, with no radius. Start and end follow the reading direction, as `rl-text-start` does: in a page that reads from right to left, start is the right side. Two classes draw two sides, such as `rl-border-top rl-border-bottom`.
+
+A side border separates elements of the same kind, such as the items of a list or a sidebar from its content, with no element of its own. A [divider](/docs/extras/divider/) is an element between two others, and has to be a direct child of a layout: use it where the line isn't part of either side.
+
+```html preview
+<div class="rl-column">
+    <div class="rl-border-bottom rl-padding-m">Invoice 1042</div>
+    <div class="rl-border-bottom rl-padding-m">Invoice 1043</div>
+    <div class="rl-padding-m">Invoice 1044</div>
+</div>
+```
+
+```html preview
+<div class="rl-row rl-nowrap rl-align-stretch" style="height: 8em;">
+    <div class="rl-column rl-gap-s rl-padding-m rl-border-end" style="width: 10em;">
+        <div>Overview</div>
+        <div>Invoices</div>
+        <div>Settings</div>
+    </div>
+    <div class="rl-width-fill rl-padding-m">The sidebar's border is on its end, beside the content.</div>
+</div>
+```
 
 ## Border with column
 
@@ -285,11 +310,23 @@ Borders and dividers work together to create well-structured layouts with clear 
 
 ## Customizing
 
-`--rl-border-default` is a whole `border` value, style, width and color, so one change restyles every `rl-border`:
+The gray line is a placeholder. `--rl-border-default` holds the whole border, its width, style and color, so one change restyles every `rl-border`, side border and [divider](/docs/extras/divider/):
 
 ```css
 :root {
-  --rl-border-default: solid 2px #e0e0e0;
+  --rl-border-default: solid 1px #e0e0e0;
+}
+```
+
+Set it on a section to change the borders inside it only. With `light-dark()` in it, the border follows the theme, as the [palette](/docs/extras/palette/#light-and-dark) does:
+
+```css
+:root {
+  --rl-border-default: solid 1px light-dark(#ddd, #333);
+}
+
+.callout {
+  --rl-border-default: solid 3px var(--rl-color-accent);
 }
 ```
 
@@ -303,7 +340,7 @@ To round every bordered element, set `--rl-radius-default`:
 
 ## Web components
 
-Inside a shadow root, where the page's CSS doesn't reach, `rl-border` goes on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
+Inside a shadow root, where the page's CSS doesn't reach, `rl-border` and the side borders go on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
 
 ```html
 <rl-div class="rl-border rl-padding-m">...</rl-div>
