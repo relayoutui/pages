@@ -55,9 +55,10 @@ jobs:
           DOCS_REVISION: ${{ steps.revision.outputs.revision }}
           UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
 
-      # One Relayout version in the dependency, the examples and the home page's CSS, and in the header. Titles of
-      # at most 60 characters and descriptions of 120 to 160, as the built pages have them
-      - name: Check the Relayout version, the header's stamp, and the page titles and descriptions
+      # One Relayout version in the dependency, the examples and the home page's CSS, and in the header. A row on the
+      # Reference page for each class and custom property of the stylesheet. Titles of at most 60 characters and
+      # descriptions of 120 to 160, as the built pages have them
+      - name: Check the Relayout version, the header's stamp, the Reference page, and the titles and descriptions
         run: npm run check
         working-directory: docs-site
 
