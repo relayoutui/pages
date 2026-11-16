@@ -186,10 +186,10 @@ Gap values can be combined with other layout utilities for sophisticated designs
 
 ## Web components
 
-`rl-gap-*` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>` and `<rl-frame>`:
+Inside a shadow root, where the page's CSS doesn't reach, `rl-gap-*` goes on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
 
 ```html
-<rl-column rl-gap-m>...</rl-column>
+<rl-div class="rl-column rl-gap-m">...</rl-div>
 ```
 
 ## Customizing

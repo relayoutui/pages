@@ -437,8 +437,8 @@ Different radius sizes for different component types:
 
 ## Web components
 
-`rl-radius-*` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`:
+Inside a shadow root, where the page's CSS doesn't reach, `rl-radius-*` goes on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
 
 ```html
-<rl-div rl-border rl-radius-m>...</rl-div>
+<rl-div class="rl-border rl-radius-m">...</rl-div>
 ```

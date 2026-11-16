@@ -128,4 +128,8 @@ Families and sizes are CSS variables: `--rl-font-sans`, `--rl-font-serif`, `--rl
 
 ## Web components
 
-The font and text classes have no attribute form. Put them as classes on the element, or on an element inside it.
+Inside a shadow root, where the page's CSS doesn't reach, the font and text classes go on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
+
+```html
+<rl-div class="rl-text-s rl-color-muted">...</rl-div>
+```

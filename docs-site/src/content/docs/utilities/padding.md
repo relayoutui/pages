@@ -334,8 +334,8 @@ Padding can be applied at different levels to create complex spacing hierarchies
 
 ## Web components
 
-`rl-padding-*`, `rl-padding-x-*` and `rl-padding-y-*` are attributes of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`:
+Inside a shadow root, where the page's CSS doesn't reach, `rl-padding-*`, `rl-padding-x-*` and `rl-padding-y-*` go on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
 
 ```html
-<rl-column rl-padding-l>...</rl-column>
+<rl-div class="rl-column rl-padding-l">...</rl-div>
 ```

@@ -55,4 +55,8 @@ Every shadow is a CSS variable, such as `--rl-shadow-m`. Override it on `:root`:
 
 ## Web components
 
-`rl-shadow-*` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`: `<rl-div rl-shadow-m rl-padding-m>`.
+Inside a shadow root, where the page's CSS doesn't reach, `rl-shadow-*` goes on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
+
+```html
+<rl-div class="rl-shadow-m rl-padding-m">...</rl-div>
+```

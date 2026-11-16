@@ -115,4 +115,8 @@ Every role is a CSS variable, such as `--rl-color-primary`. Override it on `:roo
 
 ## Web components
 
-`rl-bg-*`, `rl-color-*` and `rl-gradient-*` are attributes of `<rl-column>`, `<rl-row>`, `<rl-grid>`, `<rl-frame>` and `<rl-div>`: `<rl-div rl-bg-primary rl-padding-m>`.
+Inside a shadow root, where the page's CSS doesn't reach, `rl-bg-*`, `rl-color-*` and `rl-gradient-*` go on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
+
+```html
+<rl-div class="rl-bg-primary rl-padding-m">...</rl-div>
+```

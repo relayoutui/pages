@@ -172,8 +172,8 @@ In frame layouts, justify controls horizontal positioning of the centered conten
 
 ## Web components
 
-`rl-justify-*` is an attribute of `<rl-column>`, `<rl-row>`, `<rl-grid>` and `<rl-frame>`:
+Inside a shadow root, where the page's CSS doesn't reach, `rl-justify-*` goes on an [`rl-div`](/docs/web-components/), as on a `div` in the page:
 
 ```html
-<rl-row rl-justify-between>...</rl-row>
+<rl-div class="rl-row rl-justify-between">...</rl-div>
 ```
