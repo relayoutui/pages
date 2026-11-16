@@ -3,8 +3,18 @@
 // word, then the section label. The lockup goes to Relayout's home page (../www, at /), and the
 // label to the docs home, so either is one click from any docs page.
 import mark from '../assets/relayout-mark.svg';
+import buildInfo from '../build-info.json';
 
 const { siteTitleHref } = Astro.locals.starlightRoute;
+
+// The Relayout version the previews run and the revision of this build, like v0.7.0-r1116.2. Both come from
+// scripts/build-info.mjs, and either is left out when it is not known.
+const { version, revision } = buildInfo;
+const release = version ? `v${version}` : '';
+const detail = [
+    version && `Docs for Relayout ${version}, the version the examples run`,
+    revision && `Docs revision ${revision}`,
+].filter(Boolean).join('. ');
 ---
 
 <div class="brand">
@@ -13,6 +23,7 @@ const { siteTitleHref } = Astro.locals.starlightRoute;
         <span class="word" translate="no">Relayout</span>
     </a>
     <a href={siteTitleHref} class="label">Docs</a>
+    {(release || revision) && <span class="stamp" title={detail}>{release}{revision && <span class="rev">{release && '-'}{revision}</span>}</span>}
 </div>
 
 <style>
@@ -59,9 +70,27 @@ const { siteTitleHref } = Astro.locals.starlightRoute;
     .label:hover {
         color: var(--brand-text);
     }
+    /* Quiet: it is for whoever wants to know which version the examples run and how recent the build is. */
+    .stamp {
+        color: var(--sl-color-gray-2);
+        font-size: 0.75rem;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        cursor: default;
+    }
+    /* The revision, the "-r1116.2" after the version, is smaller: it is there for whoever looks for it. */
+    .rev {
+        font-size: 0.625rem;
+    }
     /* Below 360px the label would crowd the search button, so it gives way. */
     @media (max-width: 22.49rem) {
         .label {
+            display: none;
+        }
+    }
+    /* The stamp goes before it would meet the search box. */
+    @media (max-width: 64rem) {
+        .stamp {
             display: none;
         }
     }

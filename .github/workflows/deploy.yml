@@ -10,13 +10,21 @@ permissions:
   contents: read
 
 jobs:
-  # The home page is static, so the only thing built here is the docs. A pull request builds and
-  # assembles the site to prove it can; only main uploads it.
+  # The home page is static, so the only thing built here is the docs. It is built once and the same
+  # files go to pre and then to prod: what was looked at on pre.relayout.net is what ships. Nothing in
+  # the pages differs between the two stages, which only differ in a CNAME and a robots.txt beside them
+  # (.github/set-stage.sh). A pull request builds and checks the site to prove it can, for both stages;
+  # only main uploads it and deploys. This job is the check main's ruleset requires.
   build:
     name: Build the site
     runs-on: ubuntu-24.04
+    outputs:
+      revision: ${{ steps.revision.outputs.revision }}
     steps:
+      # The whole history, because the docs revision counts the commits of the day.
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       # Astro 7 needs Node 22.12 or newer
       - uses: actions/setup-node@v5
@@ -29,34 +37,94 @@ jobs:
         run: npm ci
         working-directory: docs-site
 
-      # Umami is added only when the UMAMI_WEBSITE_ID repository variable is set
+      # r<mmdd>.<n>: the commit's date and its place among that day's commits, so a re-run of the same
+      # commit gives the same number. The docs header shows it, and the deploy jobs carry it in their
+      # names. A run's own name cannot: it is fixed before any step has run.
+      - name: Work out the docs revision
+        id: revision
+        run: |
+          revision=$(node docs-site/scripts/build-info.mjs --revision)
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
+          echo "Docs revision: $revision" >> "$GITHUB_STEP_SUMMARY"
+
+      # Umami is added only when the UMAMI_WEBSITE_ID repository variable is set, and counts relayout.net only
       - name: Build the docs
         run: npm run build
         working-directory: docs-site
         env:
+          DOCS_REVISION: ${{ steps.revision.outputs.revision }}
           UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
 
-      # One Relayout version in the dependency, the examples and the home page's CSS. Titles of at most 60
-      # characters and descriptions of 120 to 160, as the built pages have them
-      - name: Check the Relayout version, and the page titles and descriptions
+      # One Relayout version in the dependency, the examples and the home page's CSS, and in the header. Titles of
+      # at most 60 characters and descriptions of 120 to 160, as the built pages have them
+      - name: Check the Relayout version, the header's stamp, and the page titles and descriptions
         run: npm run check
         working-directory: docs-site
 
       - name: Assemble the site
         run: bash ./.github/assemble-site.sh _site
 
-      - uses: actions/upload-pages-artifact@v5
+      # The deploy sets the stage on the artifact. Do it here on copies, so a mistake in a stage fails the
+      # pull request and not the deploy.
+      - name: Check the site takes each stage
+        run: |
+          for stage in pre prod; do
+              cp -a _site "$RUNNER_TEMP/site-$stage"
+              bash ./.github/set-stage.sh "$RUNNER_TEMP/site-$stage" "$stage"
+          done
+
+      # Kept for 30 days, the longest a deployment can wait for its approval: the approval is often given only
+      # when a release is out, and prod downloads this artifact once it is given
+      - uses: actions/upload-artifact@v6
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         with:
-          path: _site/
+          name: site
+          path: _site
+          if-no-files-found: error
+          retention-days: 30
 
-  # Waits for approval in the production environment
-  deploy:
-    name: Deploy to GitHub Pages
+  # No approval: pre is where the site is looked at before the production approval is given. It is the
+  # GitHub Pages site of relayoutui/pages-pre, from its gh-pages branch, which this job pushes with a deploy
+  # key (the public half on that repo with write access, the private half the PAGES_PRE_DEPLOY_KEY secret).
+  deploy-pre:
+    name: Deploy to pre (pages-pre) ${{ needs.build.outputs.revision }}
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-24.04
+    concurrency:
+      group: pages-pre
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: site
+          path: _site
+
+      - name: Set the pre stage
+        run: bash ./.github/set-stage.sh _site pre
+
+      # enable_jekyll is false by default, which writes the .nojekyll that keeps Jekyll from dropping the
+      # docs' _astro folder
+      - name: Push to pages-pre
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.PAGES_PRE_DEPLOY_KEY }}
+          external_repository: relayoutui/pages-pre
+          publish_branch: gh-pages
+          publish_dir: _site/
+          enable_jekyll: false
+          force_orphan: true
+
+  # Waits for approval in the production environment, and for pre to have deployed
+  deploy-prod:
+    name: Deploy to prod (GitHub Pages) ${{ needs.build.outputs.revision }}
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: [build, deploy-pre]
+    runs-on: ubuntu-24.04
     permissions:
+      contents: read
       pages: write
       id-token: write
     concurrency:
@@ -66,7 +134,21 @@ jobs:
       name: production
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: site
+          path: _site
+
+      - name: Check the prod stage
+        run: bash ./.github/set-stage.sh _site prod
+
       - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site/
 
       - id: deployment
         uses: actions/deploy-pages@v5

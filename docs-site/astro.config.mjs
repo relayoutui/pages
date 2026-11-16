@@ -6,7 +6,8 @@ import { satteri } from '@astrojs/markdown-satteri';
 import starlight from '@astrojs/starlight';
 import { previewBlocks } from './src/plugins/preview-blocks.mjs';
 
-// Umami is added only when the build has a website id: the UMAMI_WEBSITE_ID repository variable in CI.
+// Umami is added only when the build has a website id: the UMAMI_WEBSITE_ID repository variable in CI. The same files
+// go to pre.relayout.net and relayout.net, so the script counts visits to relayout.net only (data-domains).
 const umamiWebsiteId = process.env.UMAMI_WEBSITE_ID;
 
 export default defineConfig({
@@ -25,7 +26,12 @@ export default defineConfig({
                 ? [
                     {
                         tag: 'script',
-                        attrs: { defer: true, src: 'https://cloud.umami.is/script.js', 'data-website-id': umamiWebsiteId },
+                        attrs: {
+                            defer: true,
+                            src: 'https://cloud.umami.is/script.js',
+                            'data-website-id': umamiWebsiteId,
+                            'data-domains': 'relayout.net',
+                        },
                     },
                 ]
                 : [],
