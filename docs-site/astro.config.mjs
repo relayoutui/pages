@@ -6,9 +6,10 @@ import { satteri } from '@astrojs/markdown-satteri';
 import starlight from '@astrojs/starlight';
 import { previewBlocks } from './src/plugins/preview-blocks.mjs';
 
-// Umami is added only when the build has a website id: the UMAMI_WEBSITE_ID repository variable in CI. The same files
-// go to pre.relayout.net and relayout.net, so the script counts visits to relayout.net only (data-domains).
-const umamiWebsiteId = process.env.UMAMI_WEBSITE_ID;
+// OpenPanel's visit counter is added only when the build has a client id: the OPENPANEL_CLIENT_ID repository variable
+// in CI. The same files go to pre.relayout.net and relayout.net, so www/assets/js/analytics.js counts visits to
+// relayout.net only. The home page loads the same file (.github/assemble-site.sh).
+const openpanelClientId = process.env.OPENPANEL_CLIENT_ID;
 
 export default defineConfig({
     site: 'https://relayout.net',
@@ -22,15 +23,14 @@ export default defineConfig({
             title: 'Relayout Docs',
             description: 'Four layouts set the direction. Utilities adjust the positioning. Optional extras add the fine touch. Layouts adapt to the space they have.',
             favicon: '/favicon.ico',
-            head: umamiWebsiteId
+            head: openpanelClientId
                 ? [
                     {
                         tag: 'script',
                         attrs: {
                             defer: true,
-                            src: 'https://cloud.umami.is/script.js',
-                            'data-website-id': umamiWebsiteId,
-                            'data-domains': 'relayout.net',
+                            src: '/assets/js/analytics.js',
+                            'data-client-id': openpanelClientId,
                         },
                     },
                 ]

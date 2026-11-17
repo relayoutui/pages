@@ -41,6 +41,26 @@ cp -a "$docs/." "$out/docs/"
     echo '</urlset>'
 } > "$out/sitemap.xml"
 
+# The visit counter. The docs load it from their own head (docs-site/astro.config.mjs), and the home page here, from
+# the same OPENPANEL_CLIENT_ID. A build without it loads no counter. The id goes into HTML, so it is checked first.
+if [ -n "${OPENPANEL_CLIENT_ID:-}" ]; then
+    if ! [[ "$OPENPANEL_CLIENT_ID" =~ ^[A-Za-z0-9-]+$ ]]; then
+        echo "::error::OPENPANEL_CLIENT_ID has characters other than letters, digits and '-'"
+        exit 1
+    fi
+    awk -v tag="<script defer src=\"assets/js/analytics.js\" data-client-id=\"$OPENPANEL_CLIENT_ID\"></script>" \
+        '/<\/head>/ { print "    " tag } { print }' "$out/index.html" > "$out/index.html.new"
+    mv "$out/index.html.new" "$out/index.html"
+    if [ "$(grep -c 'assets/js/analytics.js' "$out/index.html")" != 1 ]; then
+        echo "::error::the home page should load the visit counter once: www/index.html needs one </head>"
+        exit 1
+    fi
+fi
+if grep -rq '/assets/js/analytics.js' "$out/docs" && [ ! -f "$out/assets/js/analytics.js" ]; then
+    echo "::error::the docs load www/assets/js/analytics.js, which is missing"
+    exit 1
+fi
+
 # GitHub Pages answers a missing path with the 404.html at the site's root. Until www has its own,
 # the docs' one serves: its links carry the full /docs/ path, so it works from there too.
 if [ ! -f "$out/404.html" ]; then

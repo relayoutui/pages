@@ -73,7 +73,7 @@ The workflow, `.github/workflows/deploy.yml`, builds the site once and ships the
 
 The pages say `https://relayout.net` on both stages, in their canonical addresses and the sitemap. The stages differ only in what `.github/set-stage.sh <dir> pre|prod` puts beside the pages: pre gets a `CNAME` and a `robots.txt` that disallows everything, so it stays out of search results, and prod keeps `www/robots.txt`. The script checks what it wrote, and fails the build if prod names the pre host. To look at a stage locally, run `npm run build` here, then `bash .github/assemble-site.sh <dir>` and `bash .github/set-stage.sh <dir> pre` at the top of the repo.
 
-The Umami script is added only when the build has `UMAMI_WEBSITE_ID` set, from the repository variable of that name. It counts visits to relayout.net only (`data-domains`), so pre isn't counted.
+Visits are counted with OpenPanel, on the docs and on the home page. The counter is added only when the build has `OPENPANEL_CLIENT_ID` set, from the repository variable of that name, which holds the client id of the OpenPanel project. The docs load `www/assets/js/analytics.js` from their head (`astro.config.mjs`), and `.github/assemble-site.sh` adds the same tag to the home page. The file counts page views and clicks on links that leave the site, and only when the page is served from relayout.net: pre.relayout.net and localhost load nothing from OpenPanel and send nothing.
 
 ## Other files
 
