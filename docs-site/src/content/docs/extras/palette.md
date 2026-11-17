@@ -120,8 +120,10 @@ The roles are mid-tones, so the swatches below put each name on a `surface` chip
 
 Apply class `rl-color-*` to set the text color, where `*` can be `primary`, `muted`, `accent`, `success`, `warning`, `danger`, or `info`.
 
+The sample is on a dark panel, with `color-scheme: dark` on it, so that all seven read: `accent`, `success`, `warning` and `info` are below 4.5:1 on the light surface, as the ratios above say.
+
 ```html preview
-<div class="rl-column rl-gap-s rl-bg-surface rl-border rl-padding-m rl-radius-s">
+<div class="rl-column rl-gap-s rl-bg-surface rl-border rl-padding-m rl-radius-s" style="color-scheme: dark;">
     <div class="rl-color-primary">primary</div>
     <div class="rl-color-muted">muted</div>
     <div class="rl-color-accent">accent</div>

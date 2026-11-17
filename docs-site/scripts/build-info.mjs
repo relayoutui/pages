@@ -42,7 +42,7 @@ export function revision()
     }
 }
 
-/** The installed version of Relayout, such as `0.7.0`, or null before `npm install`. */
+/** The installed version of Relayout, such as `0.8.0`, or null before `npm install`. */
 export function version()
 {
     try

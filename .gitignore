@@ -16,3 +16,6 @@ docs-site/src/build-info.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Written by docs-site/scripts/build-reference.mjs: the Reference page, built from the installed relayout.css
+docs-site/src/content/docs/reference.md

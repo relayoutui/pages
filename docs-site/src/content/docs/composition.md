@@ -394,6 +394,52 @@ The page recipes use a fixed height in the previews, so they fit on this page. O
 </header>
 ```
 
+### Header: the last child at the end
+
+`rl-justify-between` puts the first child at the start and the last at the end, which suits two children. With three, each wrapped line is spaced on its own, so nothing lines up. To push one child to the end, group the others: the logo and the links are one row, and the button is the second child.
+
+```html preview debug
+<header class="rl-row rl-justify-between rl-gap-m">
+    <div class="rl-row rl-gap-m">
+        <a>Logo</a>
+        <a>Docs</a>
+        <a>Pricing</a>
+    </div>
+    <button>Sign in</button>
+</header>
+```
+
+### A header that stays
+
+`rl-sticky-top` keeps the header at the top while the page scrolls. Give it a background, such as `rl-bg-surface`, so the content doesn't show through, and keep it a sibling of the content, not in a wrapper with the elements above it ([Sticky](/docs/utilities/sticky/)).
+
+```html
+<body>
+    <header class="rl-sticky-top rl-bg-surface rl-row rl-justify-between rl-gap-m rl-padding-m rl-border-bottom">…</header>
+    <main>…</main>
+</body>
+```
+
+A preview can't scroll the window, so this one scrolls an area of its own, which the header sticks to the same way:
+
+```html preview debug
+<div class="rl-column rl-scroll" style="height: 12em;">
+    <header class="rl-sticky-top rl-bg-surface rl-row rl-justify-between rl-gap-m rl-padding-m rl-border-bottom">
+        <strong>Acme</strong>
+        <nav class="rl-row rl-gap-m">
+            <a href="#">Docs</a>
+            <a href="#">Pricing</a>
+        </nav>
+    </header>
+    <main class="rl-column rl-gap-m rl-padding-m">
+        <p>Scroll this area: the header stays at its top.</p>
+        <p>More content, to scroll.</p>
+        <p>More content, to scroll.</p>
+        <p>The end of the content.</p>
+    </main>
+</div>
+```
+
 ### Sidebar that moves below the content on narrow screens
 
 The content takes the width the sidebar leaves. It is at least 16rem (256px) wide, so when less is left next to the sidebar, it moves below it and takes the whole width: with a 12em sidebar and `rl-gap-m`, under 456px, which is every phone. The page scrolls as a whole; nothing scrolls inside. Resize the preview to see it wrap.
@@ -431,6 +477,35 @@ The field takes the width the button leaves. `rl-nowrap` keeps them on one line,
 </div>
 ```
 
+### Labels beside their fields
+
+A label above its field needs no CSS: it is a column. Labels beside their fields, in two aligned columns, are a grid whose first column is as wide as the longest label. Relayout has no class for set columns, so that is one line of your own, on the `rl-grid`: `grid-template-columns: max-content 1fr` ([Where it stops](/docs/introduction/#where-it-stops)). `rl-align-center` lines each label up with its field.
+
+```html preview
+<form class="rl-grid rl-align-center rl-gap-m" style="grid-template-columns: max-content 1fr;">
+    <label for="recipe-name">Name</label>
+    <input id="recipe-name" />
+    <label for="recipe-email">Email address</label>
+    <input id="recipe-email" type="email" />
+    <label for="recipe-password">Password</label>
+    <input id="recipe-password" type="password" />
+</form>
+```
+
+### A picture beside text
+
+The picture has a width of its own, and the text takes the width it leaves. The text is at least 16rem (256px) wide, so on a phone it moves below the picture. For the picture on the right, put it last, and it is the picture that moves below the text.
+
+```html preview
+<div class="rl-row rl-align-start rl-gap-l">
+    <img src="/docs/frame-landscape.svg" alt="" style="width: 8em;" />
+    <div class="rl-column rl-gap-s rl-width-fill">
+        <strong>A title for the picture</strong>
+        <p>The text takes the width the picture leaves, and moves below it when less than 16rem is left.</p>
+    </div>
+</div>
+```
+
 ### Page: footer at the bottom, the page scrolls
 
 The column is at least as tall as the window, with `rl-height-screen-min`, and the main area takes the height the header and footer leave. With more content, the column grows and the page scrolls.
@@ -452,6 +527,27 @@ The column is at least as tall as the window, with `rl-height-screen-min`, and t
 ```
 
 To keep the header in view while the page scrolls, give it `rl-sticky-top` and a background, such as `rl-bg-surface` ([Sticky](/docs/utilities/sticky/)).
+
+### A centered sign-in card
+
+One element in the middle of the window: a column as tall as the window, with `rl-align-center` and `rl-justify-center`. The card is `rl-width-xs`, at most 20rem wide and narrower on a phone. `rl-align-center` also centers the text of a column, which the card inherits, so the card takes `rl-text-start` to keep its text at the start.
+
+```html
+<div class="rl-column rl-align-center rl-justify-center rl-height-screen-min rl-padding-l">
+    <form class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-xs rl-text-start">…</form>
+</div>
+```
+
+```html preview
+<div class="rl-column rl-align-center rl-justify-center rl-padding-l" style="min-height: 18em;">
+    <form class="rl-column rl-gap-m rl-padding-l rl-border rl-radius-m rl-width-xs rl-text-start">
+        <strong>Sign in</strong>
+        <label class="rl-column rl-gap-xs">Email <input type="email" /></label>
+        <label class="rl-column rl-gap-xs">Password <input type="password" /></label>
+        <button>Sign in</button>
+    </form>
+</div>
+```
 
 ### App shell: header and sidebar stay, the sidebar and main area scroll
 

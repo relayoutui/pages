@@ -196,6 +196,11 @@ mobile-starlight-toc nav {
     padding-inline-end: 1rem;
 }
 
+/* A class name or a variable alone in a first cell stays whole, and doesn't break at its hyphens in a narrow column. */
+.sl-markdown-content td:first-child > code:only-child:not(:where(.not-content *)) {
+    white-space: nowrap;
+}
+
 /* The panel's own border closes the last row. */
 .sl-markdown-content tbody tr:last-child :is(th, td):not(:where(.not-content *)) {
     border-bottom: 0;

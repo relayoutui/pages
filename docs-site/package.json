@@ -4,16 +4,17 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "node scripts/build-info.mjs && astro dev",
-        "build": "node scripts/build-info.mjs && astro build",
-        "check": "node scripts/check-relayout-version.mjs && node scripts/check-build-info.mjs && node scripts/check-page-meta.mjs",
+        "dev": "node scripts/build-info.mjs && node scripts/build-reference.mjs && astro dev",
+        "build": "node scripts/build-info.mjs && node scripts/build-reference.mjs && astro build",
+        "check": "node scripts/check-relayout-version.mjs && node scripts/check-build-info.mjs && node scripts/check-reference.mjs && node scripts/check-page-meta.mjs",
         "preview": "astro preview"
     },
     "dependencies": {
         "@astrojs/markdown-satteri": "^0.4.2",
         "@astrojs/starlight": "^0.42.4",
-        "@relayoutui/relayout": "^0.7.0",
+        "@relayoutui/relayout": "^0.8.0",
         "astro": "^7.3.5",
+        "postcss": "^8.5.33",
         "sharp": "^0.35.5"
     }
 }

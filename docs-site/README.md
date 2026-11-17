@@ -11,8 +11,8 @@ Run from this folder, in PowerShell or any shell. The first time, install the de
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server at http://localhost:4321/docs/. Search says it is unavailable in dev |
-| `npm run build` | Writes the header's version and revision (*Version in the header*), then builds the static site into `dist/`, with the search index and a sitemap |
-| `npm run check` | Fails if a page names another Relayout version than the one installed (*Relayout version*), and, after a build, if a page's header stamp isn't that version, or if a page's title is over 60 characters or its description is outside 120 to 160, as search results show them (the docs and the home page) |
+| `npm run build` | Writes the header's version and revision (*Version in the header*) and the Reference page (*Reference page*), then builds the static site into `dist/`, with the search index and a sitemap |
+| `npm run check` | Fails if a page names another Relayout version than the one installed (*Relayout version*), and, after a build, if a page's header stamp isn't that version, if the Reference page lacks a class or a custom property of the stylesheet, or if a page's title is over 60 characters or its description is outside 120 to 160, as search results show them (the docs and the home page) |
 | `npm run preview` | Serves `dist/` at http://localhost:4321/docs/, as it would be deployed |
 
 **On relayout.local.** The Caddyfile in `_local` serves `dist/` at http://relayout.local/docs, beside the home page. Run `npm run build`, then reload; there is no server to restart.
@@ -51,11 +51,17 @@ The previews use the CSS of the `@relayoutui/relayout` version in `package.json`
 
 ## Version in the header
 
-The header shows `v0.7.0-r1116.2` after the "Docs" label: the version of Relayout the previews run, and the revision of the build. Hovering over it says both in words. It is hidden at 64rem and below, where it would crowd the search box.
+The header shows `v0.8.0-r1116.2` after the "Docs" label: the version of Relayout the previews run, and the revision of the build. Hovering over it says both in words. It is hidden at 64rem and below, where it would crowd the search box.
 
 - The version is the installed `@relayoutui/relayout`, which `npm run check` holds equal to the dependency, the examples and the home page's CSS.
 - The revision is `r<mmdd>.<n>`: the date of the latest commit and its place among that day's commits. The same commit gets the same revision on any machine, and re-running a workflow doesn't change it. It needs the whole history, so a shallow clone shows the version only, and CI, which checks out with `fetch-depth: 0`, fails the check without a revision. `DOCS_REVISION` sets it by hand.
 - `scripts/build-info.mjs` writes both to `src/build-info.json`, which isn't committed. `npm run dev` and `npm run build` run it first.
+
+## Reference page
+
+`src/content/docs/reference.md` lists every class and custom property of the installed `@relayoutui/relayout`, with the rules each class sets, the variables it reads and each variable's default, light and dark. It isn't written by hand and isn't committed: `scripts/build-reference.mjs` reads `node_modules/@relayoutui/relayout/dist/css/relayout.css` with PostCSS and writes it, and `npm run dev` and `npm run build` run it first. So the page changes with the version, and no row of it can drift from what ships.
+
+What the script decides is the layout: its `SECTIONS` follow the docs' own pages, so each group of classes links to its page. A class that no section names goes under "Other classes", so adding a class to Relayout needs no change here, only a section when it belongs to a page. `npm run check` reads the stylesheet with a plain pattern and the built page, and fails when a class or a custom property has no row.
 
 ## Deploy
 

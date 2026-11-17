@@ -46,6 +46,59 @@ Extras add the fine touch: [border](/docs/extras/border/), [radius](/docs/extras
 
 ## Where it stops
 
-Relayout doesn't solve every UI problem, and it isn't meant to. It handles positioning. The extras give the common colors, fonts and shadows a name, but the look of your components is yours, in whatever CSS you already use.
+Relayout handles positioning, and it adapts by wrapping and fitting, not by breakpoints. The extras give the common colors, fonts and shadows a name, but the look of your components is yours, in whatever CSS you already use.
 
-For any layout, consider using Relayout. Most of the time, you will find that it just works. When it does not, custom CSS is always available.
+These are the things it has no class for, each with the CSS to write. Write it in your own stylesheet, and keep Relayout for everything around it.
+
+- **A change at a width.** Hiding an element on a phone, or turning a row into a column all at once, needs a media query, or a container query to follow the width of an element instead of the window's. The [menu and the drawer](/docs/composition/#header-links-that-collapse-into-a-menu) recipes are built this way.
+
+  ```css
+  @media (max-width: 40rem) {
+      .sidebar { display: none; }
+      .rl-row.switcher { flex-direction: column; align-items: stretch; }
+  }
+  ```
+
+- **Set columns and spans.** A grid fits as many equal cells as the width allows. A set number of columns, a column twice as wide, or a cell across the whole line is `grid-template-columns` and `grid-column`, on a grid of Relayout's or of your own.
+
+  ```css
+  .three { grid-template-columns: repeat(3, 1fr); }
+  .main-and-side { grid-template-columns: 2fr 1fr; }
+  .wide { grid-column: span 2; }
+  .whole { grid-column: 1 / -1; }
+  ```
+
+- **A sidebar's width.** A sidebar has no standard width, so the number is yours. `rl-width-xs` gives 20rem (320px) when that suits.
+
+  ```css
+  .sidebar { width: 14rem; }
+  ```
+
+- **A shape for media.** `rl-frame` fits an image inside its parent and leaves empty bands. A ratio and a crop are lines on the image.
+
+  ```css
+  img.cover { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; }
+  img.avatar { aspect-ratio: 1; object-fit: cover; }
+  ```
+
+- **Badges, dropdowns and dialogs.** Anything laid over the page needs `position: absolute` against a parent that has `position: relative`, and the corner, the offset and the layer are yours. The `<dialog>` element does a dialog.
+
+  ```css
+  .has-badge { position: relative; }
+  .badge { position: absolute; top: 0; right: 0; }
+  ```
+
+- **Equal shares.** Several `rl-width-fill` elements of a row share the width equally, but several `rl-height-fill` elements of a column share the height by their content. Panes of equal height, one above the other, take `flex: 1 1 0` on each, with `rl-scroll` on any that can run long. [Fill and scroll](/docs/utilities/height/) says what the classes do.
+
+  ```css
+  .pane { flex: 1 1 0; min-height: 0; } /* min-width: 0 for panes side by side */
+  ```
+
+- **A value outside a scale.** The spacing, text, width and grid scales are closed on purpose, so a page stays consistent and a value of your own is easy to find. A step between two, or beyond the last, is a line of CSS, or a change of the step's variable for the whole page.
+
+  ```css
+  .card { padding: 12px; }
+  :root { --rl-space-m: 0.75rem; }
+  ```
+
+For any layout, consider using Relayout. Most of the time, you will find that it just works. When it does not, the CSS above is all it takes. [Reference](/docs/reference/) lists every class and variable.
