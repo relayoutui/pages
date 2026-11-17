@@ -51,7 +51,7 @@ The previews use the CSS of the `@relayoutui/relayout` version in `package.json`
 
 ## Version in the header
 
-The header shows `v0.7.0-r1116.2` after the "Docs" label: the version of Relayout the previews run, and the revision of the build. Hovering over it says both in words. It is hidden at 64rem and below, where it would crowd the search box.
+The header shows `v0.8.0-r1116.2` after the "Docs" label: the version of Relayout the previews run, and the revision of the build. Hovering over it says both in words. It is hidden at 64rem and below, where it would crowd the search box.
 
 - The version is the installed `@relayoutui/relayout`, which `npm run check` holds equal to the dependency, the examples and the home page's CSS.
 - The revision is `r<mmdd>.<n>`: the date of the latest commit and its place among that day's commits. The same commit gets the same revision on any machine, and re-running a workflow doesn't change it. It needs the whole history, so a shallow clone shows the version only, and CI, which checks out with `fetch-depth: 0`, fails the check without a revision. `DOCS_REVISION` sets it by hand.

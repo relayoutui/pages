@@ -119,14 +119,14 @@ function lightDark(value)
  */
 export function readStylesheet(css)
 {
-    const root = postcss.parse(css);
+    const tree = postcss.parse(css);
     const classes = new Map();
     const variables = new Map();
     const reads = new Map();
 
     const classNamed = name => classes.get(name) ?? classes.set(name, { name, rules: [], named: [] }).get(name);
 
-    root.walkRules(rule =>
+    tree.walkRules(rule =>
     {
         const layer = rule.parent?.type === 'atrule' && rule.parent.name === 'layer' ? rule.parent.params : null;
         const declarations = rule.nodes.filter(node => node.type === 'decl');
@@ -147,7 +147,7 @@ export function readStylesheet(css)
         }
     });
 
-    root.walkDecls(declaration =>
+    tree.walkDecls(declaration =>
     {
         if (!declaration.prop.startsWith('--rl-')) return;
         const entry = variables.get(declaration.prop) ?? variables.set(declaration.prop, { name: declaration.prop, value: null, dark: null }).get(declaration.prop);
@@ -161,7 +161,7 @@ export function readStylesheet(css)
     {
         if (!variables.has(name)) variables.set(name, { name, value: null, dark: null });
     }
-    root.walkDecls(declaration =>
+    tree.walkDecls(declaration =>
     {
         for (const match of declaration.value.matchAll(/var\((--rl-[\w-]+)\s*,\s*([^)]+)\)/g))
         {
