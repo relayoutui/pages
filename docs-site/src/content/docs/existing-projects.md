@@ -62,7 +62,7 @@ Relayout winning also means that a Tailwind class can't hide or turn a Relayout 
 
 ```css
 @layer theme, base, relayout, components, utilities;
-@import "@relayoutui/relayout/css" layer(relayout);
+@import "@relayoutui/relayout/relayout.css" layer(relayout);
 @import "tailwindcss";
 ```
 

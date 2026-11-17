@@ -64,10 +64,10 @@ The package ships its compiled CSS in `dist/css/relayout.css`, which Sass loads 
 
 ### With a bundler
 
-A bundler such as Vite or webpack can load the CSS from your code. The package exports it as `@relayoutui/relayout/css`:
+A bundler such as Vite or webpack can load the CSS from your code. The package exports it as `@relayoutui/relayout/relayout.css`:
 
 ```js
-import '@relayoutui/relayout/css';
+import '@relayoutui/relayout/relayout.css';
 ```
 
 Import `rl-div` the same way, once, anywhere in your code:
