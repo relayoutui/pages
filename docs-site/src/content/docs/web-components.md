@@ -29,10 +29,10 @@ The rule:
 
 The element reads its sizes and colors from the CSS custom properties that `relayout.css` defines, and they reach a shadow root from the page. So load the CSS in the page as in [Installation](/docs/install/), and the script beside it.
 
-From the CDN, where `0.8.0` is the version to load. The bundled file includes everything it needs, [Lit](https://lit.dev) too, so there is no other script to add:
+From the CDN, where `0.8.1` is the version to load. The bundled file includes everything it needs, [Lit](https://lit.dev) too, so there is no other script to add:
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.8.0/dist/js/relayout.bundle.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@relayoutui/relayout@0.8.1/dist/js/relayout.bundle.js"></script>
 ```
 
 With `npm`, import the package once, anywhere in your code:
